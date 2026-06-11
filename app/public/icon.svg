@@ -1,0 +1,10 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 어제 이슈 앱 아이콘: 흰 배경 + 블루 상승 막대(트렌드) + 떠오르는 해(아침) -->
+  <rect width="1024" height="1024" rx="224" fill="#FFFFFF"/>
+  <g transform="translate(192 192) scale(20)">
+    <circle cx="8.6" cy="8.2" r="3" fill="#7FA7FF"/>
+    <rect x="5.4" y="17" width="4.7" height="9" rx="1.9" fill="#9DBCFF"/>
+    <rect x="13.65" y="13" width="4.7" height="13" rx="1.9" fill="#5C8AFF"/>
+    <rect x="21.9" y="8.6" width="4.7" height="17.4" rx="1.9" fill="#2F6BFF"/>
+  </g>
+</svg>

@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>어제이슈 리디자인 프로토타입</title>
+    <style>
+      :root {
+        --canvas: #f4f5f7;
+        --surface: #ffffff;
+        --surface-muted: #f0f2f5;
+        --ink: #111318;
+        --sub: #5a626e;
+        --muted: #8b93a1;
+        --line: #e1e5ea;
+        --blue: #2563eb;
+        --red: #e5484d;
+        --green: #16a34a;
+        --violet: #7c3aed;
+        --amber: #d97706;
+        --shadow: 0 16px 44px -32px rgba(17, 19, 24, .48);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #dfe3e8;
+        color: var(--ink);
+        font-family: Pretendard, "Apple SD Gothic Neo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.45;
+        word-break: keep-all;
+      }
+
+      .stage {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 28px;
+      }
+
+      .phone {
+        width: min(390px, 100%);
+        min-height: 844px;
+        overflow: hidden;
+        border-radius: 34px;
+        background: var(--canvas);
+        box-shadow: 0 24px 80px -36px rgba(17, 19, 24, .55);
+      }
+
+      .app {
+        display: grid;
+        gap: 18px;
+        padding: 18px 16px 28px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding-top: 8px;
+      }
+
+      .date {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      h1 {
+        margin: 2px 0 0;
+        font-size: 28px;
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      .save {
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--surface);
+        color: var(--ink);
+        font-weight: 900;
+      }
+
+      .brief {
+        display: grid;
+        gap: 14px;
+      }
+
+      .section-label {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .section-label span {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 850;
+      }
+
+      .section-label strong {
+        font-size: 17px;
+        letter-spacing: 0;
+      }
+
+      .lead-card {
+        position: relative;
+        display: grid;
+        gap: 15px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .lead-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 5px;
+        border-radius: 22px 0 0 22px;
+        background: var(--red);
+      }
+
+      .meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 750;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 99px;
+        background: var(--red);
+      }
+
+      .lead-card h2 {
+        margin: 0;
+        font-size: 25px;
+        line-height: 1.22;
+        letter-spacing: 0;
+      }
+
+      .lead-card p {
+        margin: 0;
+        color: var(--sub);
+        font-size: 14.5px;
+      }
+
+      .metrics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        padding: 0 10px;
+        border-radius: 999px;
+        background: var(--surface-muted);
+        color: var(--sub);
+        font-size: 12px;
+        font-weight: 850;
+      }
+
+      .pill.hot {
+        background: #eef4ff;
+        color: var(--blue);
+      }
+
+      .tabs {
+        position: sticky;
+        top: 0;
+        display: flex;
+        gap: 7px;
+        margin: 0 -16px;
+        padding: 0 16px 2px;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .tabs::-webkit-scrollbar { display: none; }
+
+      .tab {
+        flex: 0 0 auto;
+        min-height: 36px;
+        padding: 0 13px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--surface);
+        color: var(--sub);
+        font-size: 13px;
+        font-weight: 850;
+      }
+
+      .tab.active {
+        border-color: var(--ink);
+        background: var(--ink);
+        color: #fff;
+      }
+
+      .rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 34px 1fr auto;
+        gap: 12px;
+        align-items: start;
+        padding: 15px 14px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--surface);
+      }
+
+      .rank {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        background: var(--surface-muted);
+        color: var(--ink);
+        font-size: 15px;
+        font-weight: 950;
+      }
+
+      .row-body {
+        display: grid;
+        gap: 5px;
+        min-width: 0;
+      }
+
+      .row-kicker {
+        color: var(--muted);
+        font-size: 11.5px;
+        font-weight: 800;
+      }
+
+      .row-title {
+        font-size: 15.5px;
+        font-weight: 900;
+      }
+
+      .row-summary {
+        color: var(--sub);
+        font-size: 13px;
+      }
+
+      .bookmark {
+        width: 34px;
+        height: 34px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--muted);
+        font-weight: 950;
+      }
+
+      .sheet-preview {
+        display: grid;
+        gap: 11px;
+        margin-top: 2px;
+        padding: 16px;
+        border-radius: 24px 24px 0 0;
+        background: #151820;
+        color: #fff;
+      }
+
+      .sheet-preview span {
+        color: #aeb6c2;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .sheet-preview strong {
+        font-size: 18px;
+        line-height: 1.28;
+      }
+
+      .sheet-preview p {
+        margin: 0;
+        color: #d6dbe3;
+        font-size: 13.5px;
+      }
+
+      @media (max-width: 480px) {
+        .stage { padding: 0; }
+        .phone {
+          width: 100%;
+          min-height: 100vh;
+          border-radius: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="stage">
+      <section class="phone" aria-label="어제이슈 리디자인 모바일 화면">
+        <div class="app">
+          <header class="topbar">
+            <div>
+              <div class="date">2026.06.11 · MORNING BRIEF</div>
+              <h1>어제이슈</h1>
+            </div>
+            <button class="save" type="button" aria-label="저장한 이슈">3</button>
+          </header>
+
+          <section class="brief">
+            <div class="section-label">
+              <span>TOP 5</span>
+              <strong>오늘 아침 먼저 볼 이슈</strong>
+            </div>
+
+            <article class="lead-card">
+              <div class="meta"><i class="dot"></i> 정치 · kyeonggi · 14:07</div>
+              <h2>대통령 지지율 57%, 직전 조사 대비 9%p 하락</h2>
+              <p>국정 지지율이 직전 조사 대비 하락했다는 여론조사 결과가 나왔습니다.</p>
+              <div class="metrics">
+                <span class="pill hot">주목도 86</span>
+                <span class="pill">민감도 낮음</span>
+                <span class="pill">지지율</span>
+              </div>
+            </article>
+          </section>
+
+          <nav class="tabs" aria-label="카테고리">
+            <button class="tab active" type="button">헤드라인</button>
+            <button class="tab" type="button">정치</button>
+            <button class="tab" type="button">경제</button>
+            <button class="tab" type="button">사회</button>
+            <button class="tab" type="button">문화</button>
+            <button class="tab" type="button">연예</button>
+          </nav>
+
+          <section class="rows">
+            <article class="row">
+              <div class="rank">2</div>
+              <div class="row-body">
+                <div class="row-kicker">경제 · 중앙일보 · 어제</div>
+                <div class="row-title">반도체 호황 뒤 그늘, 이자도 못 내는 기업 40%</div>
+                <div class="row-summary">기업 평균 수익성은 올랐지만 한계기업 비중은 최고치로 올라섰습니다.</div>
+              </div>
+              <button class="bookmark" type="button" aria-label="저장">＋</button>
+            </article>
+
+            <article class="row">
+              <div class="rank">3</div>
+              <div class="row-body">
+                <div class="row-kicker">사회 · 매일경제 · 17:52</div>
+                <div class="row-title">검찰개혁 비판 검사 강등 인사발령 취소 판결</div>
+                <div class="row-summary">법원이 인사명령처분 취소 소송에서 원고 승소 판결했습니다.</div>
+              </div>
+              <button class="bookmark" type="button" aria-label="저장">＋</button>
+            </article>
+
+            <article class="row">
+              <div class="rank">4</div>
+              <div class="row-body">
+                <div class="row-kicker">문화 · 연합뉴스 · 11:20</div>
+                <div class="row-title">주말 전시와 공연 소식, 도심 문화 일정 확대</div>
+                <div class="row-summary">이번 주말 볼 만한 문화 행사가 주요 도심에서 이어집니다.</div>
+              </div>
+              <button class="bookmark" type="button" aria-label="저장">＋</button>
+            </article>
+          </section>
+
+          <aside class="sheet-preview" aria-label="상세 바텀시트 예시">
+            <span>DETAIL SHEET PREVIEW</span>
+            <strong>이슈를 열면 핵심 요약과 판단 근거를 먼저 보여줍니다.</strong>
+            <p>원문 보기와 저장은 하단 액션으로 분리해 읽기 흐름을 방해하지 않습니다.</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

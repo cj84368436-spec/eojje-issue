@@ -1,0 +1,28 @@
+{
+  "date": "2026-06-12",
+  "quality": {
+    "total": 25,
+    "emptySummary": 0,
+    "truncated": 0,
+    "fragment": 0,
+    "runOn": 0,
+    "caption": 0,
+    "titleMismatch": 0,
+    "heat": {
+      "avg": 77.2,
+      "max": 96,
+      "min": 58,
+      "ge90": 5,
+      "ge75": 14,
+      "lt60": 1
+    },
+    "sensitivity": {
+      "낮음": 18,
+      "중간": 7,
+      "높음": 0
+    },
+    "dupSuspects": 0,
+    "emptySummaryRate": 0
+  },
+  "warnings": []
+}

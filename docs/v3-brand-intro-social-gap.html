@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>어제이슈 v3 브랜드 인트로</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #dfe3e8;
+        font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", -apple-system, BlinkMacSystemFont, sans-serif;
+        color: #fff;
+      }
+      .phone {
+        position: relative;
+        width: 390px;
+        height: 844px;
+        overflow: hidden;
+        border-radius: 34px;
+        background: #0b0d12;
+        box-shadow: 0 28px 72px -34px rgba(17, 19, 24, .55);
+      }
+      .status {
+        position: absolute;
+        inset: 14px 22px auto;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .signals {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .signals i {
+        display: block;
+        width: 16px;
+        height: 8px;
+        border-radius: 2px;
+        background: #fff;
+        opacity: .9;
+      }
+      .signals i:nth-child(2) { width: 14px; opacity: .72; }
+      .signals i:nth-child(3) {
+        width: 24px;
+        height: 12px;
+        border: 1.5px solid #fff;
+        background: transparent;
+        border-radius: 4px;
+        opacity: 1;
+      }
+      .art {
+        position: absolute;
+        left: 35px;
+        top: 92px;
+        width: 320px;
+        height: 354px;
+      }
+      .glow {
+        position: absolute;
+        inset: 18px 16px 50px;
+        border-radius: 50%;
+        background: #1d4ed8;
+        opacity: .16;
+      }
+      .bubble {
+        position: absolute;
+        background: #fff;
+        border-radius: 999px;
+      }
+      .bubble::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        width: 34px;
+        height: 24px;
+        background: #fff;
+        clip-path: polygon(0 0, 100% 0, 30% 100%);
+      }
+      .bubble.one { left: 92px; top: 8px; width: 72px; height: 42px; }
+      .bubble.one::after { left: 14px; transform: rotate(14deg); }
+      .bubble.two { left: 184px; top: 0; width: 88px; height: 46px; }
+      .bubble.two::after { right: 16px; transform: rotate(-18deg); }
+      .bubble span {
+        position: absolute;
+        left: 18px;
+        top: 18px;
+        width: 34px;
+        height: 7px;
+        border-radius: 999px;
+        background: #2563eb;
+      }
+      .bubble.two span { width: 44px; }
+      .person {
+        position: absolute;
+        width: 112px;
+        height: 150px;
+      }
+      .person.a { left: 18px; top: 92px; }
+      .person.b { left: 142px; top: 92px; }
+      .person.me { left: 260px; top: 178px; transform: scale(.62); transform-origin: top left; }
+      .body {
+        position: absolute;
+        left: 26px;
+        top: 78px;
+        width: 62px;
+        height: 70px;
+        border-radius: 46px;
+        background: #f8fafc;
+      }
+      .me .body { background: #3b82f6; }
+      .head {
+        position: absolute;
+        left: 9px;
+        top: 0;
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        background: #ffdcc2;
+      }
+      .b .head { background: #ffe8d6; }
+      .hair {
+        position: absolute;
+        left: 16px;
+        top: 1px;
+        width: 82px;
+        height: 38px;
+        border-radius: 50%;
+        background: #111318;
+      }
+      .eye {
+        position: absolute;
+        top: 46px;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #111318;
+      }
+      .eye.l { left: 43px; }
+      .eye.r { left: 66px; }
+      .smile {
+        position: absolute;
+        left: 43px;
+        top: 67px;
+        width: 32px;
+        height: 13px;
+        border-bottom: 4px solid #111318;
+        border-radius: 50%;
+      }
+      .me .smile {
+        left: 48px;
+        width: 22px;
+        height: 12px;
+        border-top: 4px solid #111318;
+        border-bottom: 0;
+      }
+      .arm {
+        position: absolute;
+        top: 96px;
+        width: 24px;
+        height: 48px;
+        border-radius: 999px;
+        background: #f8fafc;
+      }
+      .me .arm { background: #3b82f6; }
+      .arm.l { left: 8px; transform: rotate(18deg); }
+      .arm.r { right: 8px; transform: rotate(-18deg); }
+      .question {
+        position: absolute;
+        left: 335px;
+        top: 142px;
+        color: #3b82f6;
+        font-size: 38px;
+        font-weight: 900;
+      }
+      h1 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 502px;
+        margin: 0;
+        text-align: center;
+        font-size: 42px;
+        line-height: 1.05;
+        font-weight: 950;
+      }
+      .tagline {
+        position: absolute;
+        left: 54px;
+        right: 54px;
+        top: 574px;
+        margin: 0;
+        color: #c5cdd8;
+        text-align: center;
+        font-size: 17px;
+        line-height: 1.58;
+        font-weight: 700;
+      }
+      .hint {
+        position: absolute;
+        left: 78px;
+        right: 78px;
+        top: 680px;
+        height: 46px;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .08);
+        font-size: 13px;
+        font-weight: 850;
+      }
+      .progress {
+        position: absolute;
+        left: 128px;
+        bottom: 78px;
+        width: 134px;
+        height: 3px;
+        border-radius: 999px;
+        background: #29303a;
+      }
+      .progress::before {
+        content: "";
+        display: block;
+        width: 70px;
+        height: 3px;
+        border-radius: 999px;
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="phone" aria-label="어제이슈 v3 브랜드 인트로">
+      <div class="status"><span>8:46</span><span class="signals"><i></i><i></i><i></i></span></div>
+      <section class="art" aria-label="다른 사람들은 이슈를 이야기하는데 나만 모르는 장면">
+        <div class="glow"></div>
+        <div class="bubble one"><span></span></div>
+        <div class="bubble two"><span></span></div>
+        <div class="person a">
+          <div class="body"></div><div class="head"></div><div class="hair"></div>
+          <i class="eye l"></i><i class="eye r"></i><i class="smile"></i>
+          <i class="arm l"></i><i class="arm r"></i>
+        </div>
+        <div class="person b">
+          <div class="body"></div><div class="head"></div><div class="hair"></div>
+          <i class="eye l"></i><i class="eye r"></i><i class="smile"></i>
+          <i class="arm l"></i><i class="arm r"></i>
+        </div>
+        <div class="person me">
+          <div class="body"></div><div class="head"></div><div class="hair"></div>
+          <i class="eye l"></i><i class="eye r"></i><i class="smile"></i>
+          <i class="arm l"></i><i class="arm r"></i>
+        </div>
+        <div class="question">?</div>
+      </section>
+      <h1>어제이슈</h1>
+      <p class="tagline">어제 다들 얘기한 이슈를<br />오늘 아침 5분 만에</p>
+      <div class="hint">나만 몰랐던 얘기 따라잡기</div>
+      <div class="progress"></div>
+    </main>
+  </body>
+</html>
+

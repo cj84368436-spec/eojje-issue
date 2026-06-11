@@ -1,0 +1,17 @@
+{
+  "name": "eojje-issue",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build:web": "vite build",
+    "build": "ait build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@apps-in-toss/web-framework": "latest",
+    "vite": "^6.0.0"
+  },
+  "devDependencies": {}
+}

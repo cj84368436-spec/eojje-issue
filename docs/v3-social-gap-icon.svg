@@ -1,0 +1,51 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1024" height="1024" rx="224" fill="#0B0D12"/>
+  <circle cx="512" cy="418" r="338" fill="#1D4ED8" opacity="0.16"/>
+
+  <g transform="translate(126 162)">
+    <rect x="238" y="20" width="142" height="74" rx="37" fill="white"/>
+    <path d="M272 82L232 132L300 96Z" fill="white"/>
+    <rect x="416" y="0" width="178" height="84" rx="42" fill="white"/>
+    <path d="M526 70L556 134L486 88Z" fill="white"/>
+    <path d="M275 58H337" stroke="#2563EB" stroke-width="14" stroke-linecap="round"/>
+    <path d="M456 42H540" stroke="#2563EB" stroke-width="14" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(134 318)">
+    <ellipse cx="116" cy="224" rx="78" ry="102" fill="#F8FAFC"/>
+    <circle cx="116" cy="96" r="104" fill="#FFDCC2"/>
+    <path d="M36 72C62 20 166 12 206 64C190 36 168 20 136 14C86 4 42 28 26 70C16 98 22 134 44 156C38 124 28 94 36 72Z" fill="#111318"/>
+    <circle cx="96" cy="104" r="8" fill="#111318"/>
+    <circle cx="142" cy="104" r="8" fill="#111318"/>
+    <path d="M96 136C112 152 138 152 154 136" stroke="#111318" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="38" cy="246" rx="34" ry="64" fill="#F8FAFC"/>
+    <ellipse cx="194" cy="246" rx="34" ry="64" fill="#F8FAFC"/>
+  </g>
+
+  <g transform="translate(402 318)">
+    <ellipse cx="116" cy="224" rx="78" ry="102" fill="#F8FAFC"/>
+    <circle cx="116" cy="96" r="104" fill="#FFE8D6"/>
+    <path d="M28 74C54 18 166 10 208 66C188 34 162 16 128 12C76 6 34 34 22 78C14 110 24 140 52 160C46 124 20 102 28 74Z" fill="#111318"/>
+    <circle cx="88" cy="104" r="8" fill="#111318"/>
+    <circle cx="134" cy="104" r="8" fill="#111318"/>
+    <path d="M84 136C100 152 126 152 142 136" stroke="#111318" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="38" cy="246" rx="34" ry="64" fill="#F8FAFC"/>
+    <ellipse cx="194" cy="246" rx="34" ry="64" fill="#F8FAFC"/>
+  </g>
+
+  <g transform="translate(720 482)">
+    <ellipse cx="78" cy="150" rx="46" ry="66" fill="#3B82F6"/>
+    <circle cx="78" cy="70" r="72" fill="#FFE1C7"/>
+    <path d="M28 50C48 12 118 10 140 52C118 28 54 26 28 50Z" fill="#111318"/>
+    <circle cx="56" cy="72" r="6" fill="#111318"/>
+    <circle cx="90" cy="72" r="6" fill="#111318"/>
+    <path d="M64 100C74 92 88 96 94 108" stroke="#111318" stroke-width="7" stroke-linecap="round"/>
+    <ellipse cx="28" cy="168" rx="20" ry="42" fill="#3B82F6"/>
+    <ellipse cx="124" cy="168" rx="20" ry="42" fill="#3B82F6"/>
+    <path d="M144 12C176 20 190 54 174 82" stroke="#2563EB" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="168" cy="110" r="8" fill="#2563EB"/>
+  </g>
+
+  <text x="512" y="856" text-anchor="middle" fill="white" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="76" font-weight="900">어제이슈</text>
+</svg>
+

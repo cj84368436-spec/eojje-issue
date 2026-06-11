@@ -1,0 +1,49 @@
+name: daily-news
+
+on:
+  schedule:
+    # 매일 KST 06:30 (UTC 21:30) 1차, KST 08:00 (UTC 23:00) 보정 1회
+    - cron: "30 21 * * *"
+    - cron: "0 23 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  publish-news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run news pipeline
+        working-directory: pipeline
+        env:
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+          PUBLISH_TO_APP_PUBLIC: "false"
+        run: node src/run.js
+
+      - name: Validate published data
+        working-directory: pipeline
+        run: node src/validate.js
+
+      - name: Prepare Pages artifact
+        run: |
+          mkdir -p public-data
+          cp pipeline/output/today-news.json public-data/today-news.json
+          cp pipeline/output/quality-report.json public-data/quality-report.json
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public-data
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

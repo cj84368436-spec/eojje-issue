@@ -1,0 +1,33 @@
+import { CATEGORIES } from "./config.js";
+
+// 카테고리 분류: 키워드 점수 - 타 카테고리 감점.
+// 점수가 모두 약하면 수집 쿼리의 카테고리(rawCategory)를 유지하되 fitScore를 낮게 남겨서
+// 선별 단계에서 후순위로 밀리게 한다.
+export function classifyNews(items) {
+  return items.map((item) => {
+    const text = `${item.title} ${item.description || ""}`;
+    let best = { id: item.rawCategory, score: 0 };
+
+    for (const category of CATEGORIES) {
+      const positive = category.keywords.reduce(
+        (sum, word) => sum + (text.includes(word) ? weight(word) : 0), 0
+      );
+      const negative = category.negative.reduce(
+        (sum, word) => sum + (text.includes(word) ? 4 : 0), 0
+      );
+      const rawBoost = category.id === item.rawCategory ? 2 : 0;
+      const score = positive + rawBoost - negative;
+      if (score > best.score) best = { id: category.id, score };
+    }
+
+    return {
+      ...item,
+      category: best.id,
+      categoryFit: best.score
+    };
+  });
+}
+
+function weight(word) {
+  return word.length >= 4 ? 3 : 2;
+}
