@@ -3,6 +3,7 @@ import { CATEGORIES, FRESH_HOURS, FETCH_PER_QUERY } from "./config.js";
 import { cleanText, cleanTitle, isTruncated } from "./text.js";
 import { resolveSource } from "./sources.js";
 import { collectMockNews } from "./mock.js";
+import { collectRssTopNews } from "./rss.js";
 
 function hasNaverCredentials() {
   return Boolean(process.env.NAVER_CLIENT_ID && process.env.NAVER_CLIENT_SECRET);
@@ -38,6 +39,13 @@ export async function collectNews({ date }) {
   const freshLimit = Date.now() - FRESH_HOURS * 60 * 60 * 1000;
   const items = [];
   const seenUrls = new Set();
+
+  // 1단계: 주요 언론사 톱 피드(RSS) - 키워드 사전과 무관하게 "오늘의 진짜 화제"를 발견한다.
+  for (const item of await collectRssTopNews({ date })) {
+    if (seenUrls.has(item.sourceUrl)) continue;
+    seenUrls.add(item.sourceUrl);
+    items.push(item);
+  }
   let fetched = 0;
   let droppedStale = 0;
   let droppedBroken = 0;

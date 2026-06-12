@@ -12,9 +12,14 @@ export function dedupeNews(items) {
     if (!key) continue;
     const existing = byNormTitle.get(key);
     if (!existing || isBetter(item, existing)) {
-      byNormTitle.set(key, { ...item, clusterSize: (existing?.clusterSize || 0) + 1 });
+      byNormTitle.set(key, {
+        ...item,
+        clusterSize: (existing?.clusterSize || 0) + 1,
+        fromTopFeed: Boolean(item.fromTopFeed || existing?.fromTopFeed)
+      });
     } else {
       existing.clusterSize = (existing.clusterSize || 1) + 1;
+      existing.fromTopFeed = Boolean(existing.fromTopFeed || item.fromTopFeed);
     }
   }
 
@@ -26,10 +31,13 @@ export function dedupeNews(items) {
     const duplicate = result.find((kept) => overlapRatio(tokens, kept._titleTokens) >= 0.6);
     if (duplicate) {
       duplicate.clusterSize += item.clusterSize;
+      const fromTopFeed = Boolean(duplicate.fromTopFeed || item.fromTopFeed);
       if (isBetter(item, duplicate)) {
         // 더 나은 기사로 본문을 교체하되 cluster 집계는 유지한다.
         const clusterSize = duplicate.clusterSize;
-        Object.assign(duplicate, item, { clusterSize, _titleTokens: duplicate._titleTokens });
+        Object.assign(duplicate, item, { clusterSize, fromTopFeed, _titleTokens: duplicate._titleTokens });
+      } else {
+        duplicate.fromTopFeed = fromTopFeed;
       }
       continue;
     }

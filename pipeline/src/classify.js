@@ -6,7 +6,7 @@ import { CATEGORIES } from "./config.js";
 export function classifyNews(items) {
   return items.map((item) => {
     const text = `${item.title} ${item.description || ""}`;
-    let best = { id: item.rawCategory, score: 0 };
+    let best = { id: item.rawCategory || "", score: 0 };
 
     for (const category of CATEGORIES) {
       const positive = category.keywords.reduce(
@@ -22,7 +22,8 @@ export function classifyNews(items) {
 
     return {
       ...item,
-      category: best.id,
+      // RSS처럼 수집 단서가 없는 기사가 어떤 키워드에도 안 걸리면 사회로 보낸다.
+      category: best.id || "society",
       categoryFit: best.score
     };
   });

@@ -10,6 +10,7 @@ export function cleanText(raw = "") {
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&nbsp;/g, " ")
+    .replace(/&#(\d+);?/g, (_, code) => String.fromCodePoint(Number(code)))
     // 기자 바이라인 제거: "[오피니언뉴스=박정훈 기자]", "(서울=연합뉴스) 홍길동 기자 ="
     .replace(/\[[가-힣A-Za-z0-9 ]{2,16}=[^\]]{2,20}\]/g, " ")
     .replace(/\([가-힣]{2,8}=[가-힣A-Za-z0-9]{2,12}\)\s*([가-힣]{2,4}\s*기자\s*=?\s*)?/g, " ")
@@ -114,9 +115,16 @@ const STOPWORDS = new Set([
   "위해", "함께", "대상", "가능성", "예정", "진행", "모습", "사진", "영상"
 ]);
 
+// 기사 제목의 한자 약칭을 한글로 정규화한다 ("李대통령" = "이 대통령").
+const HANJA_MAP = { "李": "이", "尹": "윤", "美": "미", "中": "중", "日": "일", "北": "북", "韓": "한", "與": "여", "野": "야", "靑": "청", "檢": "검" };
+
+function normalizeHanja(text = "") {
+  return String(text).replace(/[李尹美中日北韓與野靑檢]/g, (ch) => HANJA_MAP[ch] || ch);
+}
+
 export function importantTokens(text = "", limit = 18) {
   return [...new Set(
-    cleanText(text)
+    cleanText(normalizeHanja(text))
       .replace(/[^\p{L}\p{N}\s]/gu, " ")
       .split(/\s+/)
       .filter((w) => w.length >= 2 && w.length <= 10)
@@ -128,7 +136,8 @@ export function importantTokens(text = "", limit = 18) {
 function prefixMatch(a, b) {
   if (a === b) return true;
   const [short, long] = a.length <= b.length ? [a, b] : [b, a];
-  return short.length >= 2 && long.startsWith(short) && long.length - short.length <= 2;
+  // "할인"="할인권", "대통령"="이대통령" 처럼 포함 관계 + 길이 차이 2 이내면 같은 토큰으로 본다.
+  return short.length >= 2 && long.includes(short) && long.length - short.length <= 2;
 }
 
 export function overlapRatio(aTokens, bTokens) {
@@ -146,8 +155,14 @@ export function isSimilarIssue(a, b) {
 
   // 표현은 달라도 핵심 토큰("한은·6개월·연장" 등)이 3개 이상 겹치면 같은 사건으로 본다.
   // "할인"/"할인권"처럼 어미만 다른 토큰은 접두 일치로 같은 토큰으로 센다.
-  const sharedTitle = aTitle.filter((t) => bTitle.some((b) => prefixMatch(t, b))).length;
+  const sharedTokens = aTitle.filter((t) => bTitle.some((b) => prefixMatch(t, b)));
+  const sharedTitle = sharedTokens.length;
   if (sharedTitle >= 3 && sharedTitle / Math.min(aTitle.length, bTitle.length) >= 0.4) return true;
+
+  // 같은 인물(직책) + 같은 행위가 겹치면 같은 사건으로 본다
+  // (예: "이 대통령 ~ 응원" / "李대통령 ~ 응원 메시지").
+  const PERSON_TITLES = ["대통령", "총리", "장관", "총재", "의장", "위원장", "회장"];
+  if (sharedTitle >= 2 && sharedTokens.some((t) => PERSON_TITLES.some((p) => t.includes(p)))) return true;
   const bTitleSet = new Set(bTitle);
 
   // 6자 이상 고유명(그룹명/기관명 등)을 제목에서 공유하면 같은 주제로 본다

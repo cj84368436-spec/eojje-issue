@@ -23,7 +23,9 @@ const MID_SENSITIVITY = [
 const CONVERSATION_WORDS = [
   "대통령", "국회", "선거", "특검", "탄핵",
   "물가", "금리", "환율", "코스피", "부동산", "전세", "대출", "월급", "연봉",
+  "상장", "IPO", "공모주",
   "사고", "재판", "날씨", "폭염", "한파", "지하철", "학교", "수능",
+  "월드컵", "올림픽", "국가대표",
   "아이돌", "드라마", "예능", "콘서트", "빌보드", "신곡", "시청률", "결혼"
 ];
 
@@ -55,8 +57,9 @@ const PRESS_RELEASE_WORDS = [
 ];
 
 const LOCAL_GOV_PATTERN = /[가-힣]{2,5}(시청|군청|구청|시의회|군의회|구의회|군수|구청장|부시장|읍|면사무소|교육청|도청|교육지원청)/;
-// 인사·동정: "OO장에 홍길동(씨)" / "신임 OO장에 ..." 패턴.
+// 인사·동정: "OO장에 홍길동(씨)" / "신임 OO장에 ..." / "홍길동 OO박물관 관장" 패턴.
 const APPOINTMENT_PATTERN = /(^|\s)(신임\s*)?[가-힣]{2,14}(장|이사장|사장|회장|대표|위원장|총장|청장)에\s+[가-힣]{2,4}(씨|님)?(\s|$)/;
+const APPOINTMENT_TITLE_PATTERN = /^[가-힣]{2,4}\s[가-힣]{2,14}\s?(관장|원장|이사장|사장|회장|대표이사|위원장|총장|청장)$/;
 // 단순 일정 안내: "~ 개최/열린다/개막" 으로 끝나는 행사 공지형 제목.
 const SCHEDULE_TITLE_PATTERN = /(축제|행사|페스티벌|박람회|대회|전시회?|음악회|발표회)[^,]{0,14}(개최|열린다|열려|개막)$/;
 // 기관 공지형: "OO문화재단, ~ 모금/모집/공모 ..." 같은 보도자료 제목.
@@ -78,6 +81,7 @@ export function scoreNews(items) {
     const text = `${item.title} ${item.description || ""}`;
 
     const cluster = Math.min(24, (item.clusterSize - 1) * 8);          // 여러 매체 반복 보도
+    const topFeed = item.fromTopFeed ? 8 : 0;                           // 편집국 톱 피드 출신
     const recency = recencyScore(item.publishedAt);                     // 최신성
     const conversation = hitScore(text, CONVERSATION_WORDS, 5, 20);     // 대화 소재성
     const fit = Math.min(20, item.categoryFit * 2);                     // 카테고리 적합성
@@ -101,8 +105,8 @@ export function scoreNews(items) {
     return {
       ...item,
       sensitivity: sensitivityOf(text),
-      heat: cluster + recency + conversation + fit + source + Math.min(12, national) - penalty,
-      scoreSignals: { cluster, recency, conversation, fit, source, national, rawPenalty, penalty }
+      heat: cluster + topFeed + recency + conversation + fit + source + Math.min(12, national) - penalty,
+      scoreSignals: { cluster, topFeed, recency, conversation, fit, source, national, rawPenalty, penalty }
     };
   });
 
@@ -152,12 +156,16 @@ function hitScore(text, words, per, max) {
   return Math.min(max, hits * per);
 }
 
+// 국가급 메가 이벤트: 행사 공지형 제목이라도 전 국민 화제이므로 일정성 감점을 면제한다.
+const NATIONAL_MEGA_PATTERN = /(월드컵|올림픽|아시안게임|패럴림픽|엑스포|대선|총선)/;
+
 function lowInterestPenalty(text, title) {
   const cleanedTitle = String(title).trim();
+  const isMegaEvent = NATIONAL_MEGA_PATTERN.test(cleanedTitle);
   let penalty = hitScore(text, PRESS_RELEASE_WORDS, 14, 42);
   if (LOCAL_GOV_PATTERN.test(text)) penalty += 14;
-  if (APPOINTMENT_PATTERN.test(cleanedTitle)) penalty += 34;
-  if (SCHEDULE_TITLE_PATTERN.test(cleanedTitle)) penalty += 22;
+  if (APPOINTMENT_PATTERN.test(cleanedTitle) || APPOINTMENT_TITLE_PATTERN.test(cleanedTitle)) penalty += 34;
+  if (SCHEDULE_TITLE_PATTERN.test(cleanedTitle) && !isMegaEvent) penalty += 22;
   if (INSTITUTION_NOTICE_PATTERN.test(cleanedTitle)) penalty += 26;
   if (LOCAL_LEAD_PATTERN.test(cleanedTitle)) penalty += 14;
   return Math.min(70, penalty);

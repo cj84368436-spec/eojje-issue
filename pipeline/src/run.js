@@ -7,6 +7,7 @@ import { summarizeNews } from "./summarize.js";
 import { scoreNews, rescaleHeat } from "./score.js";
 import { selectNews } from "./select.js";
 import { enrichItems } from "./enrich.js";
+import { applyBuzzSignal } from "./buzz.js";
 import { shapePayload, publishJson } from "./publish.js";
 import { inspectPayload, writeReport } from "./report.js";
 
@@ -23,6 +24,10 @@ console.log(`[run] 중복 제거: ${collected.items.length} → ${deduped.length
 const classified = classifyNews(deduped);
 const summarized = summarizeNews(classified);
 const scored = scoreNews(summarized);
+
+// 세상 기준 화제량(네이버 전체 기사 수)으로 상위 후보의 주목도를 보정한다.
+await applyBuzzSignal(scored);
+
 let { categories, headlines } = selectNews(scored);
 
 // 최종 선별된 기사만 원문 메타(og:description)로 본문을 보강하고 블록을 다시 만든다.
