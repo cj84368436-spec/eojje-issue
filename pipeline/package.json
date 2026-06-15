@@ -7,9 +7,19 @@
   "scripts": {
     "run": "node src/run.js",
     "validate": "node src/validate.js",
-    "check": "node --check src/run.js && node --check src/validate.js"
+    "check": "node --check src/run.js && node --check src/validate.js && tsc --noEmit",
+    "build:cards": "tsc",
+    "example:cards": "tsc && node dist/card-news-example.js",
+    "example:cards:dry": "tsc && node dist/card-news-dry-run.js"
   },
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.104.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "typescript": "^6.0.3"
   }
 }

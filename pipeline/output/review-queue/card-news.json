@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "generatedAt": "2026-06-15T05:28:42.997Z",
+  "items": [
+    {
+      "cover": {
+        "title": "코스피 사이드카 발동"
+      },
+      "what": {
+        "lines": [
+          "코스피가 장중 급등했어요",
+          "프로그램 매수 호가가 잠시 멈췄어요",
+          "시장 변동을 줄이기 위한 조치예요"
+        ]
+      },
+      "points": [
+        "오전 9시 6분 매수 사이드카가 발동됐어요",
+        "코스피200 선물이 5% 이상 올랐어요",
+        "프로그램 매매가 5분간 제한됐어요"
+      ],
+      "number": {
+        "value": "5분",
+        "caption": "프로그램 매매 제한 시간이에요"
+      },
+      "keywords": [
+        "#코스피",
+        "#사이드카",
+        "#한국거래소"
+      ],
+      "summary": {
+        "text": "코스피 급등으로 매수 사이드카가 발동됐어요."
+      },
+      "sensitivity": "낮음",
+      "emoji": "📈",
+      "id": "sample-article-001",
+      "category": "경제",
+      "source": {
+        "name": "샘플뉴스",
+        "url": "https://example.com/news/sample-article-001"
+      },
+      "rank": 1,
+      "attention": 92,
+      "needsReview": true,
+      "createdAt": "2026-06-15T05:28:42.997Z"
+    }
+  ]
+}
