@@ -13,7 +13,7 @@ export function StoryHeader({ card, onClose }: StoryHeaderProps) {
         <div className="av" style={{ background: COLOR[card.category] }} aria-hidden="true">{card.emoji}</div>
         <div>
           <div className="nm">{card.source.name}</div>
-          <div className="tm">{card.category} · {card.rank}위 카드뉴스</div>
+          <div className="tm">{card.category} · {card.rank}위 카드뉴스{card.needsReview ? " · 검수 전" : ""}</div>
         </div>
       </div>
       <button className="story-x" type="button" onClick={onClose} aria-label="닫기">×</button>

@@ -18,7 +18,7 @@ export function HeroCard({ card, onClick }: HeroCardProps) {
       <span className="emoji" aria-hidden="true">{card.emoji}</span>
       <span className="scrim" aria-hidden="true" />
       <span className="cap">
-        <span className="badge">{card.rank}위 · {card.category} · 카드뉴스</span>
+        <span className="badge">{card.rank}위 · {card.category} · 카드뉴스{card.needsReview ? " · 검수 전" : ""}</span>
         <h3>{card.cover.title}</h3>
         <span className="one">{card.summary.text}</span>
         <span className="hrow">

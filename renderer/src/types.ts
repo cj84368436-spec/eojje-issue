@@ -9,6 +9,8 @@ export interface CardNews {
   attention: number;
   sensitivity: Sensitivity;
   emoji: string;
+  needsReview?: boolean;
+  createdAt?: string;
   cover: { title: string };
   what: { lines: [string, string, string] };
   points: [string, string, string];

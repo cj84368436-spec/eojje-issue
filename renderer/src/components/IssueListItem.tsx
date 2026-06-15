@@ -16,6 +16,7 @@ export function IssueListItem({ card, onClick }: IssueListItemProps) {
         <span className="tl">
           <span className="rkno">{card.rank}</span>
           <span className="pill" style={{ background: COLOR[card.category] }}>{card.category}</span>
+          {card.needsReview && <span className="review-pill">검수 전</span>}
           <span className="src">{card.source.name}</span>
         </span>
         <h4>{card.cover.title}</h4>
