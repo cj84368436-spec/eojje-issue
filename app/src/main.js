@@ -3,8 +3,8 @@ import { loadNews, flattenPayload, staleDays } from "./data.js";
 import { attendanceSummary, checkInToday, savedEntries, savedIds, toggleSaved } from "./store.js";
 import {
   renderShell, renderSplash, renderLoading, renderError,
-  renderHeadlines, renderCategoryList, renderSavedList, renderDetailSheet,
-  saveButtonHtml, articleVisualFallbackHtml
+  renderHeadlines, renderCategoryList, renderSavedList, renderStory,
+  saveButtonHtml, storySaveButtonHtml, articleVisualFallbackHtml
 } from "./view.js";
 import { CATEGORIES } from "./config.js";
 import { todayFallbackDate } from "./fallback.js";
@@ -24,6 +24,7 @@ const state = {
   issueById: new Map(),
   activeTab: "headlines",
   detailId: null,
+  storyIndex: 0,
   loading: true,
   failed: false
 };
@@ -70,14 +71,55 @@ function renderSheet() {
   if (!sheetRoot) return;
 
   const item = state.detailId ? findItem(state.detailId) : null;
-  sheetRoot.innerHTML = item ? renderDetailSheet(item, savedIds()) : "";
+  sheetRoot.innerHTML = item
+    ? renderStory(item, savedIds(), { rank: rankOf(item.id), index: state.storyIndex })
+    : "";
   document.body.classList.toggle("sheet-open", Boolean(item));
+
+  // 슬라이드업 등장 애니메이션(.story.on)은 DOM 삽입 후 한 프레임 뒤에 켠다.
+  if (item) {
+    const story = sheetRoot.querySelector(".story");
+    if (story) requestAnimationFrame(() => story.classList.add("on"));
+  }
+}
+
+// 진행/슬라이드 표시만 갱신한다(전체 재렌더 없이) — 등장 애니메이션 재발동 방지.
+function updateStory() {
+  const story = root.querySelector("#sheet-root .story");
+  if (!story) return;
+  const total = storySlideCount();
+  state.storyIndex = Math.max(0, Math.min(state.storyIndex, total - 1));
+  story.querySelectorAll(".pbars i").forEach((bar, i) => {
+    bar.className = i < state.storyIndex ? "done" : i === state.storyIndex ? "cur" : "";
+  });
+  story.querySelectorAll(".slide").forEach((slide, i) => {
+    const on = i === state.storyIndex;
+    slide.classList.toggle("on", on);
+    slide.setAttribute("aria-hidden", String(!on));
+  });
+  const label = story.querySelector(".pbars");
+  if (label) label.setAttribute("aria-label", `${total}장 중 ${state.storyIndex + 1}장`);
 }
 
 function findItem(id) {
   if (state.issueById.has(id)) return state.issueById.get(id);
   const savedEntry = savedEntries().find((entry) => entry.item.id === id);
   return savedEntry ? savedEntry.item : null;
+}
+
+// 스토리 헤더의 "N위"는 헤드라인(랭킹) 순서를 우선 쓰고, 없으면 카테고리 내 순서를 쓴다.
+function rankOf(id) {
+  const headlines = state.payload?.headlines || [];
+  const inHeadlines = headlines.findIndex((item) => item.id === id);
+  if (inHeadlines >= 0) return inHeadlines + 1;
+  const item = findItem(id);
+  const list = (item && state.payload?.categories?.[item.category]) || [];
+  const inCategory = list.findIndex((entry) => entry.id === id);
+  return inCategory >= 0 ? inCategory + 1 : 0;
+}
+
+function storySlideCount() {
+  return root.querySelectorAll("#sheet-root .story .slide").length || 1;
 }
 
 function onAction(action, target) {
@@ -92,6 +134,7 @@ function onAction(action, target) {
 
   if (action === "open") {
     state.detailId = target.dataset.id;
+    state.storyIndex = 0;
     track("issue_open", { id: state.detailId });
     renderSheet();
     return;
@@ -101,6 +144,26 @@ function onAction(action, target) {
     state.detailId = null;
     track("sheet_close");
     renderSheet();
+    return;
+  }
+
+  if (action === "story-prev") {
+    if (state.storyIndex > 0) {
+      state.storyIndex -= 1;
+      updateStory();
+    }
+    return;
+  }
+
+  if (action === "story-next") {
+    if (state.storyIndex >= storySlideCount() - 1) {
+      state.detailId = null;
+      track("sheet_close");
+      renderSheet();
+    } else {
+      state.storyIndex += 1;
+      updateStory();
+    }
     return;
   }
 
@@ -116,7 +179,8 @@ function onAction(action, target) {
       updateSaveButtons(item.id);
     }
     updateSavedCount();
-    renderSheet();
+    // 스토리가 열려 있으면 한 줄 정리 슬라이드의 저장 버튼만 갱신(슬라이드 위치 유지).
+    updateStorySaveButton(item.id);
     return;
   }
 
@@ -148,6 +212,12 @@ function updateSavedCount() {
   if (counter) counter.textContent = String(savedEntries().length);
 }
 
+// 스토리(한 줄 정리)의 저장 버튼만 교체해 슬라이드 위치/애니메이션을 유지한다.
+function updateStorySaveButton(id) {
+  const button = root.querySelector(`#sheet-root .story .acts .save[data-id="${CSS.escape(id)}"]`);
+  if (button) button.outerHTML = storySaveButtonHtml(id, savedIds().has(id));
+}
+
 document.addEventListener("click", (event) => {
   const target = event.target.closest("[data-action]");
   if (!target) {
@@ -163,9 +233,14 @@ document.addEventListener("click", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && state.detailId) {
+  if (!state.detailId) return;
+  if (event.key === "Escape") {
     state.detailId = null;
     renderSheet();
+  } else if (event.key === "ArrowRight") {
+    onAction("story-next", null);
+  } else if (event.key === "ArrowLeft") {
+    onAction("story-prev", null);
   }
 });
 

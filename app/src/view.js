@@ -304,73 +304,218 @@ export function saveButtonHtml(id, on) {
   `;
 }
 
-export function renderDetailSheet(item, saved) {
+// 기사 상세는 재료가 있는 만큼만 스토리 슬라이드로 보여준다.
+// 고정 5장을 억지로 채우지 않고, 빈약한 핵심 포인트는 생략한다.
+
+export function renderStory(item, saved, { rank = 0, index = 0 } = {}) {
   const on = saved.has(item.id);
-  const points = (item.points || []).filter(Boolean);
+  const kor = CATEGORY_LABELS[item.category] || "이슈";
+  const high = item.sensitivity === "높음";
+
+  const slides = buildStorySlides(item, kor, on, high);
+  const activeIndex = Math.max(0, Math.min(index, slides.length - 1));
 
   return `
-    <div class="sheet-backdrop" data-action="close">
-      <section class="sheet cat-${item.category}" role="dialog" aria-modal="true" aria-label="뉴스 상세">
-        <div class="sheet-handle" aria-hidden="true"></div>
-        <button class="sheet-close" data-action="close" type="button" aria-label="닫기">×</button>
-        ${renderArticleVisual(item, "sheet")}
-
-        <div class="sheet-hero">
-          <div class="card-meta">
-            <span class="cat-label">${CATEGORY_LABELS[item.category] || ""}</span>
-            <span class="meta-text">${escapeHtml(coverageLabel(item))} · ${timeLabel(item.publishedAt)}</span>
+    <section class="story cat-${escapeHtml(item.category)}" role="dialog" aria-modal="true"
+      aria-label="${escapeHtml(item.title)} 카드뉴스">
+      <div class="pbars" aria-label="${slides.length}장 중 ${activeIndex + 1}장">
+        ${slides.map((_, i) =>
+          `<i class="${i < activeIndex ? "done" : i === activeIndex ? "cur" : ""}"><b></b></i>`).join("")}
+      </div>
+      <div class="story-top">
+        <div class="who">
+          <div class="av" style="background:var(--c-${escapeHtml(item.category)})" aria-hidden="true">${CATEGORY_ICONS[item.category] || CATEGORY_ICONS.society}</div>
+          <div>
+            <div class="nm">${escapeHtml(item.sourceName || "뉴스")}</div>
+            <div class="tm">${escapeHtml(kor)}${rank ? ` · ${rank}위 카드뉴스` : " 카드뉴스"}</div>
           </div>
-          <h2>${escapeHtml(item.title)}</h2>
         </div>
+        <button class="story-x" data-action="close" type="button" aria-label="닫기">×</button>
+      </div>
+      ${high ? `<div class="sensitive-banner in-story">민감한 이슈예요. 원문과 함께 확인해 주세요</div>` : ""}
 
-        <div class="block primary-block">
-          <span class="block-label">무슨 일?</span>
-          ${item.summary
-            ? `<p>${escapeHtml(item.summary)}</p>`
-            : `<p class="muted">요약이 제공되지 않는 기사입니다. 원본 뉴스에서 내용을 확인해 주세요.</p>`}
-        </div>
+      <div class="stage">
+        ${slides.map((html, i) =>
+          `<article class="slide ${i === activeIndex ? "on" : ""} ${i === slides.length - 1 ? "final" : ""}" aria-hidden="${i !== activeIndex}">${html}</article>`).join("")}
+      </div>
 
-        ${item.why ? `
-          <div class="block">
-            <span class="block-label">왜 중요해?</span>
-            <p>${escapeHtml(item.why)}</p>
-          </div>
-        ` : ""}
+      <div class="nav-zone" aria-hidden="true">
+        <button class="z prev" data-action="story-prev" type="button" tabindex="-1"></button>
+        <button class="z next" data-action="story-next" type="button" tabindex="-1"></button>
+      </div>
+      <div class="hint">왼쪽 탭 이전 · 오른쪽 탭 다음</div>
+    </section>
+  `;
+}
 
-        ${points.length ? `
-          <div class="block">
-            <span class="block-label">핵심 포인트</span>
-            <ul class="block-points">
-              ${points.map((p) => `<li><span class="pt-dot" aria-hidden="true"></span><span>${escapeHtml(p)}</span></li>`).join("")}
-            </ul>
-          </div>
-        ` : ""}
+function buildStorySlides(item, kor, on, high) {
+  const slides = [
+    storyCover(item, kor),
+    storyWhat(item)
+  ];
 
-        ${(item.keywords || []).length ? `
-          <div class="tags sheet-tags">${item.keywords.map((k) => `<span>#${escapeHtml(k)}</span>`).join("")}</div>
-        ` : ""}
+  const pointsSlide = storyPoints(item);
+  if (pointsSlide) slides.push(pointsSlide);
 
-        ${item.sensitivity && item.sensitivity !== "낮음" ? `
-          <p class="sheet-caution">민감한 이슈입니다. 판단하기 전에 원문과 추가 보도를 함께 확인해 주세요.</p>
-        ` : ""}
+  const numberOrKeywords = storyNumberOrKeywords(item);
+  if (numberOrKeywords) slides.push(numberOrKeywords);
 
-        ${renderAdSlot("sheet")}
+  slides.push(storyFinal(item, on, high));
+  return slides;
+}
 
-        <div class="signal-grid is-bottom">
-          ${renderHeatMetric(item)}
-          ${renderSensitivityMetric(item)}
-        </div>
+// summary 한 문단을 문장 단위로 쪼갠다 (한국어 종결부호 기준).
+function splitSentences(text = "") {
+  return String(text)
+    .split(/(?<=[.!?。…])\s+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
 
-        <div class="sheet-actions">
-          <button class="sheet-save ${on ? "is-on" : ""}" data-action="save" data-id="${escapeHtml(item.id)}" type="button" aria-pressed="${on}">
-            ${on ? `${BOOKMARK_ICON} 저장됨` : `${BOOKMARK_OUTLINE} 저장`}
-          </button>
-          <a class="sheet-link" href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">
-            원본 뉴스 보기 ${ARROW_ICON}
-          </a>
-        </div>
-      </section>
+function storyCover(item, kor) {
+  return `
+    <span class="stag">${escapeHtml(kor)} · 카드뉴스</span>
+    <h2>${escapeHtml(item.title)}</h2>
+    <p class="src3">${escapeHtml(item.sourceName || "뉴스")} · 원문 기반 요약</p>
+  `;
+}
+
+// 무슨 일: summary 문장들을 본문으로, 마지막(또는 why)을 강조 줄로.
+function storyWhat(item) {
+  const sentences = splitSentences(item.summary);
+  const why = (item.why || "").trim();
+
+  let body;
+  let highlight;
+  if (sentences.length === 0) {
+    body = ["어제 사람들이 많이 이야기한 이슈예요."];
+    highlight = why || "핵심 내용은 원문 기사에서 확인할 수 있어요.";
+  } else if (why) {
+    body = sentences.slice(0, 2);
+    highlight = why;
+  } else {
+    body = sentences.slice(0, 2);
+    highlight = sentences[Math.min(sentences.length, 3) - 1];
+    if (body[body.length - 1] === highlight) body = body.slice(0, -1);
+  }
+
+  return `
+    <span class="stag">무슨 일이에요?</span>
+    <div class="what">
+      ${body.map((line) => `<p>${escapeHtml(line)}</p>`).join("")}
+      <p><span class="hl">${escapeHtml(highlight)}</span></p>
     </div>
+  `;
+}
+
+// 핵심 포인트: points가 있을 때만 보여준다. summary 반복으로 억지 생성하지 않는다.
+function storyPoints(item) {
+  const points = (item.points || []).filter(Boolean).slice(0, 3);
+  if (points.length === 0) return "";
+  return `
+    <span class="stag">핵심 포인트${points.length > 1 ? ` ${points.length}` : ""}</span>
+    <div class="pts">
+      ${points.map((p, i) => `<div class="pt"><span class="no">${i + 1}</span><p>${escapeHtml(p)}</p></div>`).join("")}
+    </div>
+  `;
+}
+
+// 숫자: 내부 점수(heat)는 쓰지 않는다. 제목/요약/포인트의 실제 숫자만 보여주고,
+// 없으면 키워드 슬라이드로 전환한다.
+function storyNumberOrKeywords(item) {
+  const number = extractStoryNumber(item);
+  const kws = (item.keywords || []).filter(Boolean).slice(0, 3);
+  if (number) {
+    return `
+      <span class="stag">숫자로 보기</span>
+      <div class="statnum">${escapeHtml(number.value)}</div>
+      <p class="statcap">${escapeHtml(number.caption)}</p>
+      ${kws.length ? `<div class="kws">${kws.map((k) => `<span>${escapeHtml(k)}</span>`).join("")}</div>` : ""}
+    `;
+  }
+  if (kws.length === 0) return "";
+  return `
+    <span class="stag">키워드로 보기</span>
+    <h2>이 이슈는<br>이 키워드로 보면 돼요</h2>
+    <div class="kws">${kws.map((k) => `<span>${escapeHtml(k)}</span>`).join("")}</div>
+  `;
+}
+
+function extractStoryNumber(item) {
+  const texts = [
+    item.title,
+    item.summary,
+    ...(item.points || [])
+  ].filter(Boolean);
+  const numberPattern = /(?:\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)(?:\s?(?:%|％|조|억|만|천|원|달러|명|개|건|년|월|일|시|분|위|포인트|배|차|대|곳|개사|km|㎞))?/g;
+
+  for (const text of texts) {
+    const matches = String(text).match(numberPattern) || [];
+    const value = matches.find((match) => {
+      const digits = match.replace(/[^0-9]/g, "");
+      return digits.length > 0 && !/^\d{1,2}시?$/.test(match);
+    });
+    if (value) {
+      return {
+        value,
+        caption: contextForNumber(text, value)
+      };
+    }
+  }
+  return null;
+}
+
+function contextForNumber(text, value) {
+  const clean = String(text).replace(/\s+/g, " ").trim();
+  const sentences = splitSentences(clean);
+  const sentence = sentences.find((line) => line.includes(value)) || clean;
+  if (sentence.length <= 42) return sentence;
+  const index = sentence.indexOf(value);
+  const start = Math.max(0, index - 16);
+  const end = Math.min(sentence.length, index + value.length + 18);
+  return `${start > 0 ? "..." : ""}${sentence.slice(start, end)}${end < sentence.length ? "..." : ""}`;
+}
+
+// 한 줄 정리: 제목/요약 첫 문장 반복을 피하고, 요약을 짧게 재구성한다.
+function oneLineSummary(item) {
+  const title = normalizeComparable(item.title);
+  const sentences = splitSentences(item.summary);
+  const unique = sentences.find((sentence) => {
+    const normalized = normalizeComparable(sentence);
+    return normalized && normalized !== title && !title.includes(normalized) && !normalized.includes(title);
+  });
+  if (unique) return compactSentence(unique);
+  const keyword = (item.keywords || []).filter(Boolean)[0];
+  if (keyword) return `${keyword.replace(/^#/, "")} 관련 흐름을 원문으로 확인해 주세요.`;
+  return "원문에서 맥락을 확인해 주세요.";
+}
+
+function normalizeComparable(text = "") {
+  return String(text).replace(/["'“”‘’\s.,!?·]/g, "").trim();
+}
+
+function compactSentence(text) {
+  const clean = String(text).replace(/\s+/g, " ").trim();
+  if (clean.length <= 46) return clean;
+  return `${clean.slice(0, 43)}...`;
+}
+
+function storyFinal(item, on, high) {
+  return `
+    <span class="stag">한 줄 정리</span>
+    <h2>${escapeHtml(oneLineSummary(item))}</h2>
+    <div class="acts">
+      ${storySaveButtonHtml(item.id, on)}
+      <a class="orig sheet-link ${high ? "is-emphasis" : ""}" href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">원문 보기 ${ARROW_ICON}</a>
+    </div>
+  `;
+}
+
+export function storySaveButtonHtml(id, on) {
+  return `
+    <button class="save ${on ? "is-on" : ""}" data-action="save" data-id="${escapeHtml(id)}" type="button" aria-pressed="${on}">
+      ${on ? BOOKMARK_ICON : BOOKMARK_OUTLINE} ${on ? "저장됨" : "저장"}
+    </button>
   `;
 }
 
@@ -418,35 +563,6 @@ function renderSensitivity(item, { compact = false } = {}) {
   `;
 }
 
-function renderHeatMetric(item) {
-  const pct = heatPct(item.heat);
-  return `
-    <div class="metric-card metric-heat">
-      <span class="metric-label">주목도</span>
-      <strong>${heatLabel(item.heat)}</strong>
-      <span class="heat-track lg"><span class="heat-fill" style="width:${pct}%"></span></span>
-      <small>100점 만점에 ${Number(item.heat || 0)}점</small>
-    </div>
-  `;
-}
-
-function renderSensitivityMetric(item) {
-  const sensitivity = item.sensitivity || "낮음";
-  const cls = sensitivityClass(sensitivity);
-  return `
-    <div class="metric-card metric-sens sens-${cls}">
-      <span class="metric-label">민감도</span>
-      <strong><i class="sens-dot" aria-hidden="true"></i>${escapeHtml(sensitivity)}</strong>
-      <span class="sens-scale" aria-hidden="true">
-        <i class="${cls === "low" || cls === "mid" || cls === "high" ? "on" : ""}"></i>
-        <i class="${cls === "mid" || cls === "high" ? "on" : ""}"></i>
-        <i class="${cls === "high" ? "on" : ""}"></i>
-      </span>
-      <small>${sensitivityHint(sensitivity)}</small>
-    </div>
-  `;
-}
-
 function heatLabel(heat = 0) {
   if (heat >= 90) return "최상위";
   if (heat >= 75) return "높음";
@@ -458,10 +574,4 @@ function sensitivityClass(value = "낮음") {
   if (value === "높음") return "high";
   if (value === "중간") return "mid";
   return "low";
-}
-
-function sensitivityHint(value = "낮음") {
-  if (value === "높음") return "원문 확인 필수";
-  if (value === "중간") return "맥락 확인 권장";
-  return "일반 이슈";
 }
