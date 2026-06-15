@@ -2,7 +2,7 @@
 // 비워두면 빌드에 포함된 ./today-news.json 만 사용한다 (매일 갱신 불가 - 출시 전 반드시 설정).
 // 예: GitHub Pages에 파이프라인 결과를 올린 경우
 //   "https://<계정>.github.io/<저장소>/today-news.json"
-export const REMOTE_DATA_URL = "";
+export const REMOTE_DATA_URL = "https://cj84368436-spec.github.io/eojje-issue/today-news.json";
 
 // 데이터 날짜가 오늘(KST)보다 이 일수 이상 뒤처지면 "갱신 지연" 배너를 띄운다.
 export const STALE_AFTER_DAYS = 2;
