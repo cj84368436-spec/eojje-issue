@@ -84,8 +84,8 @@ a {
   position: sticky;
   top: 0;
   z-index: 20;
-  padding: 22px 20px 6px;
-  background: linear-gradient(var(--bg) 78%, transparent);
+  padding: 20px 20px 12px;
+  background: linear-gradient(var(--bg) 84%, rgba(241, 242, 246, .9) 96%, transparent);
 }
 
 .head-top,
@@ -160,12 +160,12 @@ a {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 11px;
-  padding: 14px 20px 4px;
+  padding: 12px 20px 8px;
 }
 
 .tile {
-  min-height: 103px;
-  padding: 15px 16px;
+  min-height: 122px;
+  padding: 16px;
   border-radius: 20px;
   background: var(--card);
   box-shadow: var(--sh);
@@ -190,22 +190,26 @@ a {
 }
 
 .streak .big {
-  margin-top: 5px;
+  margin-top: 8px;
   color: #E0760F;
-  font-size: 26px;
+  font-size: 25px;
   font-weight: 900;
   letter-spacing: -1px;
+  line-height: 1.08;
 }
 
 .streak .sub {
+  margin-top: 8px;
   color: #C9701A;
   font-size: 11.5px;
   font-weight: 700;
+  line-height: 1.35;
   opacity: .85;
 }
 
 .prog {
   gap: 13px;
+  min-height: 58px;
 }
 
 .ring {
@@ -670,6 +674,7 @@ a {
   position: relative;
   flex: 1;
   overflow: hidden;
+  min-height: 0;
 }
 
 .slide {
@@ -677,8 +682,8 @@ a {
   inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 34px 30px 40px;
+  justify-content: flex-start;
+  padding: clamp(54px, 9vh, 82px) 30px 96px;
   opacity: 0;
   pointer-events: none;
   transition: opacity .25s;
@@ -826,7 +831,7 @@ a {
 
 .nav-zone {
   position: absolute;
-  inset: 82px 0 86px;
+  inset: 82px 0 104px;
   z-index: 3;
   display: flex;
 }
@@ -847,7 +852,7 @@ a {
 .hint {
   position: absolute;
   right: 0;
-  bottom: 18px;
+  bottom: 38px;
   left: 0;
   z-index: 4;
   color: rgba(255, 255, 255, .5);
@@ -891,6 +896,27 @@ a {
 
   .screen {
     height: 100%;
+  }
+
+  .head {
+    padding-top: max(18px, env(safe-area-inset-top));
+  }
+
+  .bento {
+    padding-top: 14px;
+  }
+
+  .tile {
+    min-height: 128px;
+  }
+
+  .slide {
+    padding-top: clamp(58px, 10vh, 88px);
+    padding-bottom: calc(104px + env(safe-area-inset-bottom));
+  }
+
+  .hint {
+    bottom: calc(42px + env(safe-area-inset-bottom));
   }
 }
 
