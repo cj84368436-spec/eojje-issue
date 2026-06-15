@@ -23,6 +23,9 @@ export function IssueListItem({ card, onClick }: IssueListItemProps) {
           <span className="src">{card.source.name}</span>
         </span>
         <h4>{card.cover.title}</h4>
+        {card.sensitivity === "높음" && (
+          <span className="sensitive-banner in-list">민감한 이슈예요. 원문과 함께 확인해 주세요</span>
+        )}
         <span className="foot">
           <span className="mbar" aria-hidden="true">
             <span style={{ width: `${card.attention}%`, background: COLOR[card.category] }} />

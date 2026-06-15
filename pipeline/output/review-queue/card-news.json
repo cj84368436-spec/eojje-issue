@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-15T05:28:42.997Z",
+  "generatedAt": "2026-06-15T06:24:29.607Z",
   "items": [
     {
       "cover": {
@@ -40,8 +40,8 @@
       },
       "rank": 1,
       "attention": 92,
-      "needsReview": true,
-      "createdAt": "2026-06-15T05:28:42.997Z"
+      "needsReview": false,
+      "createdAt": "2026-06-15T06:24:29.607Z"
     }
   ]
 }

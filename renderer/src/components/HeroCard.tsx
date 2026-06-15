@@ -24,6 +24,9 @@ export function HeroCard({ card, onClick }: HeroCardProps) {
         <span className="badge">{card.rank}위 · {card.category} · 카드뉴스{card.needsReview ? " · 검수 전" : ""}</span>
         <h3>{card.cover.title}</h3>
         <span className="one">{card.summary.text}</span>
+        {card.sensitivity === "높음" && (
+          <span className="sensitive-banner in-hero">민감한 이슈예요. 원문과 함께 확인해 주세요</span>
+        )}
         <span className="hrow">
           <span className="lv" style={{ background: `${COLOR[card.category]}55` }}>주목 {attentionLabel(card.attention)}</span>
           <span className={`lv sens-${sensitivityClass(card.sensitivity)}`}>민감 {card.sensitivity}</span>

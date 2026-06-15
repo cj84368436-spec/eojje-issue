@@ -43,7 +43,7 @@ const card: CardNews = {
   source: { name: sampleArticle.sourceName, url: sampleArticle.sourceUrl },
   rank: 1,
   attention: sampleArticle.attention ?? 0,
-  needsReview: true,
+  needsReview: false,
   createdAt: new Date().toISOString()
 };
 

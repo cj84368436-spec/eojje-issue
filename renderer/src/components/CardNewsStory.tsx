@@ -56,6 +56,9 @@ export function CardNewsStory({ card, onClose }: CardNewsStoryProps) {
     >
       <ProgressBars activeIndex={index} total={SLIDE_COUNT} />
       <StoryHeader card={card} onClose={onClose} />
+      {card.sensitivity === "높음" && (
+        <div className="sensitive-banner in-story">민감한 이슈예요. 원문과 함께 확인해 주세요</div>
+      )}
 
       <div className="stage">
         {Array.from({ length: SLIDE_COUNT }, (_, slideIndex) => (

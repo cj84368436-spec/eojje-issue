@@ -68,7 +68,7 @@ export function StorySlide({ card, slideIndex, active }: StorySlideProps) {
       <h2>{card.summary.text}</h2>
       <div className="acts">
         <button className="save" type="button"><Bookmark size={17} strokeWidth={2.2} />저장</button>
-        <a className="orig" href={card.source.url} target="_blank" rel="noreferrer">원문 보기 →</a>
+        <a className={`orig ${card.sensitivity === "높음" ? "is-emphasis" : ""}`} href={card.source.url} target="_blank" rel="noreferrer">원문 보기 →</a>
       </div>
     </article>
   );

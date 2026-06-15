@@ -115,7 +115,7 @@ export async function generateCardNews(article: Article, rank: number): Promise<
     source: { name: article.sourceName, url: article.sourceUrl },
     rank,
     attention: article.attention ?? 0,
-    needsReview: true,
+    needsReview: false,
     createdAt: new Date().toISOString()
   };
 }
@@ -149,7 +149,37 @@ export function parseAndValidate(raw: string, article: Article): GeneratedCard {
   const sensitiveHit = /사망|사고|재난|수사|기소|소송|자의|혐의|폭행|피해/.test(article.body);
   if (sensitiveHit && g.sensitivity === "낮음") g.sensitivity = "중간";
 
+  enforcePublicationRules(g, article);
+
   return g;
+}
+
+function enforcePublicationRules(g: GeneratedCard, article: Article): void {
+  const evidence = `${article.title}\n${article.body}`;
+  const cleanText = (value: string) => (hasUnsupportedNumber(value, evidence) || hasUnsupportedQuote(value, evidence) ? "" : value);
+
+  g.what.lines = g.what.lines.map(cleanText) as [string, string, string];
+  g.points = g.points.map(cleanText) as [string, string, string];
+  g.summary.text = cleanText(g.summary.text);
+  g.number.caption = cleanText(g.number.caption);
+
+  const num = g.number.value?.replace(/[^0-9]/g, "");
+  if (num && num.length >= 2 && !evidence.includes(num)) {
+    g.number = { value: "주목", caption: g.number.caption || "오늘의 이슈" };
+  }
+}
+
+function hasUnsupportedNumber(text: string, evidence: string): boolean {
+  const numbers = text.match(/\d[\d,.%+~-]*/g) || [];
+  return numbers.some((raw) => {
+    const digits = raw.replace(/[^0-9]/g, "");
+    return digits.length >= 2 && !evidence.includes(digits);
+  });
+}
+
+function hasUnsupportedQuote(text: string, evidence: string): boolean {
+  const quotes = [...text.matchAll(/["'“”‘’]([^"'“”‘’]{2,})["'“”‘’]/g)].map((match) => match[1].trim());
+  return quotes.some((quote) => quote.length >= 2 && !evidence.includes(quote));
 }
 
 export async function generateWithRetry(article: Article, rank: number): Promise<CardNews | null> {
@@ -179,7 +209,7 @@ export async function saveToReviewQueue(cards: CardNews[], path = REVIEW_QUEUE_P
   const payload = {
     version: 1,
     generatedAt: new Date().toISOString(),
-    items: cards.map((card) => ({ ...card, needsReview: true }))
+    items: cards.map((card) => ({ ...card, needsReview: false }))
   };
 
   await mkdir(dirname(path), { recursive: true });
