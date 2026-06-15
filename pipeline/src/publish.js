@@ -33,12 +33,36 @@ function toPublicItem(item) {
     keywords: item.keywords || [],
     sourceName: item.sourceName,
     sourceUrl: item.sourceUrl,
+    coverage: buildCoverage(item),
     imageUrl: item.imageUrl || "",
     publishedAt: item.publishedAt,
     heat: item.heat,
     sensitivity: item.sensitivity,
     scoreSignals: item.scoreSignals
   };
+}
+
+function buildCoverage(item) {
+  const sourceNames = uniqueNames([item.sourceName, ...(item.coverageSources || [])]);
+
+  return {
+    sourceCount: sourceNames.length || 1,
+    sourceNames: sourceNames.slice(0, 12)
+  };
+}
+
+function uniqueNames(names) {
+  const seen = new Set();
+  const result = [];
+
+  for (const name of names) {
+    const clean = String(name || "").trim();
+    if (!clean || seen.has(clean)) continue;
+    seen.add(clean);
+    result.push(clean);
+  }
+
+  return result;
 }
 
 export async function publishJson(payload) {

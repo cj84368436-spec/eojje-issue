@@ -15,11 +15,13 @@ export function dedupeNews(items) {
       byNormTitle.set(key, {
         ...item,
         clusterSize: (existing?.clusterSize || 0) + 1,
-        fromTopFeed: Boolean(item.fromTopFeed || existing?.fromTopFeed)
+        fromTopFeed: Boolean(item.fromTopFeed || existing?.fromTopFeed),
+        coverageSources: mergeCoverageSources(existing, item)
       });
     } else {
       existing.clusterSize = (existing.clusterSize || 1) + 1;
       existing.fromTopFeed = Boolean(existing.fromTopFeed || item.fromTopFeed);
+      existing.coverageSources = mergeCoverageSources(existing, item);
     }
   }
 
@@ -32,12 +34,14 @@ export function dedupeNews(items) {
     if (duplicate) {
       duplicate.clusterSize += item.clusterSize;
       const fromTopFeed = Boolean(duplicate.fromTopFeed || item.fromTopFeed);
+      const coverageSources = mergeCoverageSources(duplicate, item);
       if (isBetter(item, duplicate)) {
         // 더 나은 기사로 본문을 교체하되 cluster 집계는 유지한다.
         const clusterSize = duplicate.clusterSize;
-        Object.assign(duplicate, item, { clusterSize, fromTopFeed, _titleTokens: duplicate._titleTokens });
+        Object.assign(duplicate, item, { clusterSize, fromTopFeed, coverageSources, _titleTokens: duplicate._titleTokens });
       } else {
         duplicate.fromTopFeed = fromTopFeed;
+        duplicate.coverageSources = coverageSources;
       }
       continue;
     }
@@ -45,6 +49,28 @@ export function dedupeNews(items) {
   }
 
   return result.map(({ _titleTokens, ...item }) => item);
+}
+
+function mergeCoverageSources(...items) {
+  const names = [];
+  const seen = new Set();
+
+  for (const item of items) {
+    if (!item) continue;
+    const candidates = [
+      ...(Array.isArray(item.coverageSources) ? item.coverageSources : []),
+      item.sourceName
+    ];
+
+    for (const name of candidates) {
+      const clean = String(name || "").trim();
+      if (!clean || seen.has(clean)) continue;
+      seen.add(clean);
+      names.push(clean);
+    }
+  }
+
+  return names;
 }
 
 function isBetter(a, b) {

@@ -142,7 +142,7 @@ function renderLeadCard(item, saved) {
         <div class="lead-top">
           <span class="rank-badge">01</span>
           <span class="cat-label">${CATEGORY_LABELS[item.category] || ""}</span>
-          <span class="meta-text">${escapeHtml(item.sourceName)} · ${timeLabel(item.publishedAt)}</span>
+          <span class="meta-text">${escapeHtml(coverageLabel(item))} · ${timeLabel(item.publishedAt)}</span>
         </div>
         <h2>${escapeHtml(item.title)}</h2>
         ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ""}
@@ -156,13 +156,20 @@ function renderLeadCard(item, saved) {
   `;
 }
 
+function coverageLabel(item) {
+  const sourceName = item.sourceName || "뉴스";
+  const count = Number(item.coverage?.sourceCount || 1);
+  if (count <= 1) return sourceName;
+  return `${sourceName} 외 ${count - 1}개사 보도`;
+}
+
 function renderHeadlineRow(item, rank, saved) {
   return `
     <article class="headline-row cat-${item.category}" data-id="${escapeHtml(item.id)}">
       <button class="row-main" data-action="open" data-id="${escapeHtml(item.id)}" type="button">
         ${renderArticleVisual(item, "row")}
         <span class="row-body">
-          <span class="row-meta"><span class="rank">${rank}</span><span class="cat-label">${CATEGORY_LABELS[item.category] || ""}</span><span class="meta-text">${escapeHtml(item.sourceName)} · ${timeLabel(item.publishedAt)}</span></span>
+          <span class="row-meta"><span class="rank">${rank}</span><span class="cat-label">${CATEGORY_LABELS[item.category] || ""}</span><span class="meta-text">${escapeHtml(coverageLabel(item))} · ${timeLabel(item.publishedAt)}</span></span>
           <span class="row-title">${escapeHtml(item.title)}</span>
           <span class="row-foot">
             ${renderHeatMeter(item, { compact: true })}
@@ -215,7 +222,7 @@ function renderIssueCard(item, saved) {
         <div class="card-copy">
           <div class="card-meta">
             <span class="cat-label">${CATEGORY_LABELS[item.category] || ""}</span>
-            <span class="meta-text">${escapeHtml(item.sourceName)} · ${timeLabel(item.publishedAt)}</span>
+            <span class="meta-text">${escapeHtml(coverageLabel(item))} · ${timeLabel(item.publishedAt)}</span>
           </div>
           <h3>${escapeHtml(item.title)}</h3>
           ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ""}
@@ -278,7 +285,7 @@ export function renderDetailSheet(item, saved) {
         <div class="sheet-hero">
           <div class="card-meta">
             <span class="cat-label">${CATEGORY_LABELS[item.category] || ""}</span>
-            <span class="meta-text">${escapeHtml(item.sourceName)} · ${timeLabel(item.publishedAt)}</span>
+            <span class="meta-text">${escapeHtml(coverageLabel(item))} · ${timeLabel(item.publishedAt)}</span>
           </div>
           <h2>${escapeHtml(item.title)}</h2>
         </div>

@@ -1,15 +1,15 @@
 {
-  "date": "2026-06-12",
+  "date": "2026-06-15",
   "quality": {
     "total": 25,
-    "emptySummary": 4,
+    "emptySummary": 2,
     "truncated": 0,
     "fragment": 0,
     "runOn": 0,
     "caption": 0,
     "titleMismatch": 0,
     "heat": {
-      "avg": 77.5,
+      "avg": 77.4,
       "max": 96,
       "min": 58,
       "ge90": 5,
@@ -17,12 +17,12 @@
       "lt60": 1
     },
     "sensitivity": {
-      "낮음": 17,
-      "중간": 8,
+      "낮음": 16,
+      "중간": 9,
       "높음": 0
     },
     "dupSuspects": 0,
-    "emptySummaryRate": 0.16
+    "emptySummaryRate": 0.08
   },
   "warnings": []
 }
