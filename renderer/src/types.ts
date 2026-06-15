@@ -8,7 +8,6 @@ export interface CardNews {
   rank: number;
   attention: number;
   sensitivity: Sensitivity;
-  emoji: string;
   needsReview?: boolean;
   createdAt?: string;
   cover: { title: string };

@@ -7,7 +7,7 @@ type ReviewQueuePayload = {
   items: CardNews[];
 };
 
-const payload = reviewQueue as ReviewQueuePayload;
+const payload = reviewQueue as unknown as ReviewQueuePayload;
 
 export const REVIEW_QUEUE_CARDS: CardNews[] = payload.items;
 export const REVIEW_QUEUE_GENERATED_AT = payload.generatedAt;

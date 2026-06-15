@@ -1,5 +1,6 @@
 import { attentionLabel, COLOR, GRAD, sensitivityClass } from "../tokens";
 import type { CardNews } from "../types";
+import { CategoryIcon } from "./CategoryIcon";
 
 interface HeroCardProps {
   card: CardNews;
@@ -15,7 +16,9 @@ export function HeroCard({ card, onClick }: HeroCardProps) {
       style={{ background: GRAD[card.category] }}
       aria-label={`${card.cover.title} 카드뉴스 열기`}
     >
-      <span className="emoji" aria-hidden="true">{card.emoji}</span>
+      <span className="hero-icon" aria-hidden="true">
+        <CategoryIcon category={card.category} />
+      </span>
       <span className="scrim" aria-hidden="true" />
       <span className="cap">
         <span className="badge">{card.rank}위 · {card.category} · 카드뉴스{card.needsReview ? " · 검수 전" : ""}</span>

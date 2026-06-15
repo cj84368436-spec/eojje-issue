@@ -1,5 +1,6 @@
 import { attentionLabel, COLOR, GRAD, sensitivityClass } from "../tokens";
 import type { CardNews } from "../types";
+import { CategoryIcon } from "./CategoryIcon";
 
 interface IssueListItemProps {
   card: CardNews;
@@ -11,7 +12,9 @@ export function IssueListItem({ card, onClick }: IssueListItemProps) {
 
   return (
     <button className="item" type="button" onClick={onClick}>
-      <span className="thumb" style={{ background: GRAD[card.category] }} aria-hidden="true">{card.emoji}</span>
+      <span className="thumb" style={{ background: GRAD[card.category] }} aria-hidden="true">
+        <CategoryIcon category={card.category} />
+      </span>
       <span className="meta">
         <span className="tl">
           <span className="rkno">{card.rank}</span>
