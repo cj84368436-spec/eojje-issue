@@ -4,6 +4,10 @@ import { timeLabel, briefDateLabel, escapeHtml } from "./format.js";
 const BOOKMARK_ICON = `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 4.2h12a.9.9 0 0 1 .9.9v15.1l-6.9-3.8-6.9 3.8V5.1a.9.9 0 0 1 .9-.9Z" fill="currentColor"/></svg>`;
 const BOOKMARK_OUTLINE = `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 4.2h12a.9.9 0 0 1 .9.9v15.1l-6.9-3.8-6.9 3.8V5.1a.9.9 0 0 1 .9-.9Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>`;
 const ARROW_ICON = `<svg viewBox="0 0 20 20" width="17" height="17" aria-hidden="true"><path d="M5 10h9m0 0-3.4-3.4M14 10l-3.4 3.4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const BELL_ICON = `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M10.27 21a2 2 0 0 0 3.46 0" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const HOME_ICON = `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="m3 11 9-8 9 8" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v10h14V10" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><path d="M9 20v-6h6v6" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/></svg>`;
+const FLAME_ICON = `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8.5 14.5A3.5 3.5 0 0 0 12 21a7 7 0 0 0 7-7c0-4-2.5-6.5-5-9 .3 2.6-.9 4.1-2.3 5.2C10.2 8 8.5 6.7 8.5 4c-2.2 2-3.5 4.7-3.5 8a6.7 6.7 0 0 0 3.5 6" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const USER_ICON = `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>`;
 
 // 앱 마크 (클로드 디자인 원본): 아침에 떠오른 이슈 = 상승하는 막대(트렌드) + 떠오르는 해(아침).
 const APP_MARK = `<svg viewBox="0 0 32 32" width="100%" height="100%" aria-hidden="true">
@@ -12,6 +16,14 @@ const APP_MARK = `<svg viewBox="0 0 32 32" width="100%" height="100%" aria-hidde
   <rect x="13.65" y="13" width="4.7" height="13" rx="1.9" fill="currentColor" opacity=".82"/>
   <rect x="21.9" y="8.6" width="4.7" height="17.4" rx="1.9" fill="currentColor"/>
 </svg>`;
+
+const CATEGORY_ICONS = {
+  politics: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 10h14M6 18V10m4 8V10m4 8V10m4 8V10M12 3l8 5H4l8-5Z" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  economy: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5M4 19h16M7 15l4-4 3 3 5-7" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  society: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-8 0v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 21v-2a4 4 0 0 0-3-3.87M4 21v-2a4 4 0 0 1 3-3.87" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  culture: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a10 10 0 1 1 10-10c0 1.7-1.3 3-3 3h-1.7a2 2 0 0 0-1.8 2.8l.2.5a2.6 2.6 0 0 1-2.4 3.7H12Z" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.5" cy="10" r="1" fill="currentColor"/><circle cx="10.5" cy="7" r="1" fill="currentColor"/><circle cx="14" cy="7" r="1" fill="currentColor"/><circle cx="16.5" cy="10" r="1" fill="currentColor"/></svg>`,
+  entertainment: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+};
 
 export function renderSplash() {
   return `
@@ -33,21 +45,21 @@ export function renderShell({ dateString, savedCount, activeTab, staleDaysCount,
           <span class="brand-mark" aria-hidden="true">${APP_MARK}</span>
           <div class="brand-text">
             <h1>어제이슈</h1>
-            <p>${escapeHtml(briefDateLabel(dateString))} · 오늘 대화에 나올 만한 뉴스</p>
+            <p>${escapeHtml(briefDateLabel(dateString))} · 어제 사람들이 많이 말한 이슈</p>
           </div>
         </div>
-        <button class="saved-chip ${activeTab === "saved" ? "is-active" : ""}" data-action="tab" data-tab="saved" type="button" aria-label="저장한 뉴스 보기">
-          ${BOOKMARK_ICON}<span data-saved-count>${savedCount}</span>
-        </button>
+        <button class="bell-btn" type="button" aria-label="알림">${BELL_ICON}</button>
       </header>
-      ${renderAttendance(attendance)}
+      ${renderBentoStatus(attendance, savedCount)}
       <nav class="tabs" aria-label="카테고리">
-        ${TABS.filter((tab) => tab.id !== "saved").map((tab) => `
-          <button class="tab ${activeTab === tab.id ? "is-active" : ""}" data-action="tab" data-tab="${tab.id}" type="button">${tab.label}</button>
+        <button class="tab ${activeTab === "headlines" ? "is-active" : ""}" data-action="tab" data-tab="headlines" type="button">전체</button>
+        ${TABS.filter((tab) => tab.id !== "saved" && tab.id !== "headlines").map((tab) => `
+          <button class="tab ${activeTab === tab.id ? "is-active" : ""}" data-action="tab" data-tab="${tab.id}" type="button"><i style="background:var(--c-${tab.id})"></i>${tab.label}</button>
         `).join("")}
       </nav>
       ${staleDaysCount >= 2 ? renderStaleBanner(dateString) : ""}
       <main id="content"></main>
+      ${renderBottomNav(activeTab, savedCount)}
       <footer class="app-foot">
         <p>요약은 원문 기사에서 추출한 문장입니다.<br>민감한 이슈는 원본에서 맥락을 확인해 주세요.</p>
       </footer>
@@ -56,18 +68,39 @@ export function renderShell({ dateString, savedCount, activeTab, staleDaysCount,
   `;
 }
 
-function renderAttendance(attendance) {
+function renderBentoStatus(attendance, savedCount) {
   const checked = attendance?.checkedToday;
+  const streak = Number(attendance?.streak || 0);
   return `
-    <section class="attendance-card ${checked ? "is-checked" : ""}" aria-label="출석 체크">
-      <div>
-        <span class="attendance-kicker">${checked ? "오늘 출석 완료" : "오늘 브리핑 열람"}</span>
-        <strong>${checked ? `${attendance.streak}일 연속 따라잡는 중` : "출석하고 이슈 감각 유지하기"}</strong>
+    <section class="bento-status" aria-label="브리핑 상태">
+      <div class="bento-tile streak">
+        <span class="tile-label">연속 출석</span>
+        <strong>${streak}일째 ${FLAME_ICON}</strong>
+        <span class="tile-sub">${checked ? "오늘 출석 완료" : "오늘 브리핑을 열었어요"}</span>
       </div>
-      <button class="attendance-btn" data-action="checkin" type="button" ${checked ? "disabled" : ""}>
-        ${checked ? "완료" : "출석"}
-      </button>
+      <div class="bento-tile progress ${checked ? "is-checked" : ""}">
+        <span class="tile-label">오늘 브리핑</span>
+        <div class="briefing-row">
+          <span class="progress-ring">
+            <svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="19"></circle><circle cx="23" cy="23" r="19" class="on"></circle></svg>
+            <b>${savedCount}</b>
+          </span>
+          <span class="progress-copy"><strong>${savedCount}개 저장</strong><small>중요한 이슈를 모아두세요</small></span>
+        </div>
+        <button class="attendance-btn" data-action="checkin" type="button" ${checked ? "disabled" : ""}>${checked ? "완료" : "출석"}</button>
+      </div>
     </section>
+  `;
+}
+
+function renderBottomNav(activeTab, savedCount) {
+  return `
+    <nav class="tabbar" aria-label="하단 내비게이션">
+      <button class="tabbar-item ${activeTab !== "saved" ? "is-active" : ""}" data-action="tab" data-tab="headlines" type="button">${HOME_ICON}<span>홈</span></button>
+      <button class="tabbar-item ${activeTab === "saved" ? "is-active" : ""}" data-action="tab" data-tab="saved" type="button">${BOOKMARK_OUTLINE}<span>저장</span><em data-saved-count>${savedCount}</em></button>
+      <button class="tabbar-item" data-action="tab" data-tab="headlines" type="button">${FLAME_ICON}<span>랭킹</span></button>
+      <button class="tabbar-item" type="button">${USER_ICON}<span>마이</span></button>
+    </nav>
   `;
 }
 
@@ -121,8 +154,8 @@ export function renderHeadlines(headlines, saved) {
   return `
     <section class="section headline-section">
       <div class="section-head">
-        <strong>오늘 먼저 볼 ${headlines.length}개</strong>
-        <span>밤사이 가장 많이 이야기된 이슈</span>
+        <strong>많이 보도된 이슈</strong>
+        <span>어제 사람들이 가장 많이 이야기한 ${headlines.length}개</span>
       </div>
       ${renderLeadCard(lead, saved)}
       <div class="headline-rows">
@@ -246,13 +279,13 @@ function renderArticleVisual(item, size) {
     // data-* 는 이미지 로드 실패 시 폴백으로 교체할 때 쓴다 (main.js의 error 핸들러).
     return `<span class="article-visual ${size}" data-size="${escapeHtml(size)}" data-label="${escapeHtml(label)}"><img src="${escapeHtml(image)}" alt="" loading="lazy"></span>`;
   }
-  return articleVisualFallbackHtml(size, label);
+  return articleVisualFallbackHtml(size, label, item.category);
 }
 
-export function articleVisualFallbackHtml(size, label) {
+export function articleVisualFallbackHtml(size, label, category = "") {
   return `
     <span class="article-visual ${escapeHtml(size)} is-fallback" aria-hidden="true">
-      <span class="visual-bars"><i></i><i></i><i></i></span>
+      <span class="visual-icon">${CATEGORY_ICONS[category] || CATEGORY_ICONS.society}</span>
       <span class="visual-label">${escapeHtml(label)}</span>
     </span>
   `;
