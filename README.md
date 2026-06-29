@@ -1,69 +1,91 @@
-# 어제 이슈
+# 어제이슈
 
-아침 1~3분 안에 "어제 사람들이 많이 이야기한 이슈"를 카테고리별로 정리해 주는 App in Toss 미니앱.
+전날 많이 언급된 뉴스를 아침에 빠르게 훑는 App in Toss 미니앱입니다.
+핵심 차별점은 단순 뉴스 목록이 아니라, 각 기사마다 `30초 브리핑` 카드뉴스로 맥락을 바로 읽게 하는 것입니다.
 
 ```text
 어제이슈/
-  app/        프론트엔드 (App in Toss 미니앱, Vite + 바닐라 JS)
-  pipeline/   매일 뉴스 수집/품질검사/발행 파이프라인 (Node, 외부 의존성 0)
-  .github/    매일 자동 갱신 GitHub Actions 워크플로
-  docs/       설계/QA 문서
+  app/        App in Toss 미니앱 프론트엔드(Vite + vanilla JS)
+  pipeline/   매일 뉴스 수집, 분류, 요약, 품질 검증, 발행 파이프라인
+  docs/       출시, QA, 디자인 문서
+  .github/    매일 자동 갱신 GitHub Actions
 ```
 
-## 데이터 흐름
+## 현재 기준
 
-```text
-[매일 06:30 KST]
-GitHub Actions (또는 로컬 실행)
-  → pipeline: 네이버 뉴스 API 수집 (40시간 이내 기사만)
-  → 중복 제거 → 카테고리 분류 → 추출형 요약 → 주목도/민감도 산정 → 최종 선별
-  → 품질 검사 (차단 경고 시 CI 실패)
-  → today-news.json 발행 → GitHub Pages 배포
-[앱 실행 시]
-앱 → 원격 today-news.json 로드 (실패 시 번들 데이터 fallback)
-  → 데이터 날짜가 2일 이상 뒤처지면 "갱신 실패" 배너 표시
-```
+- 기본 카테고리: 정치, 경제, 사회, 문화, 연예
+- 선택 카테고리: AI
+- 활성 카테고리마다 기사 6개 필요
+- AI 소식이 없으면 AI 카테고리는 비어 있어도 앱이 깨지지 않아야 함
+- 모든 상세 첫 장은 `30초 브리핑`이어야 함
+- `사람들 반응`, `주의할 점` 카드는 사용하지 않음
 
 ## 로컬 실행
-
-### 1. 파이프라인 (뉴스 생성)
-
-```powershell
-cd pipeline
-copy .env.example .env   # NAVER_CLIENT_ID / NAVER_CLIENT_SECRET 입력
-node src/run.js          # output/today-news.json + app/public/today-news.json 생성
-node src/validate.js     # 발행 데이터 재검증
-```
-
-- API 키가 없으면 목업 데이터로 동작한다 (`source: "mock"`).
-- 실행 결과: `output/today-news.json`, `output/quality-report.md`, `output/history/news-YYYY-MM-DD.json`
-
-### 2. 앱 (개발 서버)
 
 ```powershell
 cd app
 npm install
-npm run dev              # http://localhost:5175
+npm run dev
 ```
 
-배포용 웹 빌드는 `npm run build:web`, App in Toss 패키징은 `npm run build` (ait CLI 필요).
+브라우저는 Vite 서버가 켜진 뒤 `http://127.0.0.1:5173/` 또는 터미널에 표시된 주소로 열어야 합니다.
 
-## 매일 자동 갱신 설정 (출시 전 필수)
+## 앱 검증
 
-1. 이 폴더를 GitHub 저장소로 푸시한다.
-2. 저장소 Settings → Secrets and variables → Actions 에 `NAVER_CLIENT_ID`, `NAVER_CLIENT_SECRET` 등록.
-3. Settings → Pages → Source 를 **GitHub Actions** 로 설정.
-4. Actions 탭에서 `daily-news` 워크플로를 수동 실행해 1회 검증.
-5. 발행 URL(`https://<계정>.github.io/<저장소>/today-news.json`)을
-   `app/src/config.js` 의 `REMOTE_DATA_URL` 에 넣고 앱을 다시 빌드한다.
-6. App in Toss 콘솔에서 해당 도메인을 허용 도메인에 추가한다.
+```powershell
+cd app
+npm run verify:data
+npm run verify:ui
+npm run verify:story
+npm run check
+```
 
-## 품질 기준 (파이프라인이 자동 검사)
+- `verify:data`: 현재 데이터와 AI 없는 날의 데이터 계약을 검증
+- `verify:ui`: AI 빈 상태, 동적 이슈 개수, AI 탭, 상세 카드 계약을 검증
+- `verify:story`: 모든 기사 상세 첫 장이 `30초 브리핑`이고 금지 카드가 없는지 검증
+- `check`: 데이터 검증, UI 계약 검증, 스토리 검증, Vite 빌드를 한 번에 실행
 
-- 제목/요약이 `...` 으로 끝나면 발행 차단
-- 카테고리당 5개 미만이면 발행 차단
-- 헤드라인에 5개 카테고리가 1개씩 없으면 발행 차단
-- 사진 캡션/앞 잘린 파편/run-on 요약은 요약에서 제외 (억지 템플릿으로 채우지 않음)
-- 같은 인물/사건은 카테고리 내, 헤드라인 간 중복 금지
-- 보도자료성/지역 홍보성/인사·동정 기사는 감점으로 후순위
-- 민감도(낮음/중간/높음) 산정, "높음"은 헤드라인 제외
+## 뉴스 파이프라인
+
+```powershell
+cd pipeline
+copy .env.example .env
+node src/run.js
+node src/validate.js
+```
+
+원격 배포 데이터까지 확인하려면:
+
+```powershell
+cd pipeline
+npm run validate:remote
+```
+
+기본 원격 주소는 `pipeline/src/validate-url.js`의 기본값을 사용합니다. 다른 주소를 확인하려면 `NEWS_VALIDATE_URL` 환경변수를 지정합니다.
+
+## 출시 파일
+
+App in Toss 콘솔에 올릴 파일:
+
+```text
+app/eojje-issue.ait
+```
+
+출시 전 최소 확인:
+
+```powershell
+cd pipeline
+npm run validate
+npm run validate:remote
+
+cd ..\app
+npm run check
+npm run build
+```
+
+## 문서
+
+- `docs/qa-checklist.md`: 수동 QA 체크리스트
+- `docs/launch-next-steps.md`: App in Toss 콘솔 등록 전 확인 사항
+- `docs/release-readiness.md`: 출시 후보 상태와 남은 외부 확인 항목
+- `DESIGN.md`: 현재 디자인/제품 방향

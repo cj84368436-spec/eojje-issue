@@ -1,8 +1,8 @@
 import "./styles.css";
 import { loadNews, flattenPayload, staleDays } from "./data.js";
-import { attendanceSummary, checkInToday, savedEntries, savedIds, toggleSaved } from "./store.js";
+import { savedEntries, savedIds, toggleSaved } from "./store.js";
 import {
-  renderShell, renderSplash, renderLoading, renderError,
+  renderShell, renderLoading, renderError,
   renderHeadlines, renderCategoryList, renderSavedList, renderStory,
   saveButtonHtml, storySaveButtonHtml, articleVisualFallbackHtml
 } from "./view.js";
@@ -11,11 +11,6 @@ import { todayFallbackDate } from "./fallback.js";
 import { track } from "./analytics.js";
 
 const root = document.querySelector("#app");
-
-document.body.insertAdjacentHTML("afterbegin", renderSplash());
-setTimeout(() => {
-  document.querySelector(".splash")?.remove();
-}, 1700);
 
 track("app_open", { source: "browser" });
 
@@ -29,6 +24,8 @@ const state = {
   failed: false
 };
 
+let detailOpener = null;
+
 function renderApp() {
   const dateString = state.payload?.date || todayFallbackDate();
   root.innerHTML = renderShell({
@@ -36,7 +33,7 @@ function renderApp() {
     savedCount: savedEntries().length,
     activeTab: state.activeTab,
     staleDaysCount: state.payload ? staleDays(state.payload) : 0,
-    attendance: attendanceSummary()
+    issueCount: state.payload?.headlines?.length || 0
   });
   renderContent();
   renderSheet();
@@ -75,11 +72,19 @@ function renderSheet() {
     ? renderStory(item, savedIds(), { rank: rankOf(item.id), index: state.storyIndex })
     : "";
   document.body.classList.toggle("sheet-open", Boolean(item));
+  const appShell = root.querySelector(".app-shell");
+  if (appShell) appShell.inert = Boolean(item);
 
   // 슬라이드업 등장 애니메이션(.story.on)은 DOM 삽입 후 한 프레임 뒤에 켠다.
   if (item) {
     const story = sheetRoot.querySelector(".story");
-    if (story) requestAnimationFrame(() => story.classList.add("on"));
+    if (story) requestAnimationFrame(() => {
+      story.classList.add("on");
+      story.querySelector(".story-x")?.focus();
+    });
+  } else if (detailOpener?.isConnected) {
+    detailOpener.focus();
+    detailOpener = null;
   }
 }
 
@@ -96,9 +101,17 @@ function updateStory() {
     const on = i === state.storyIndex;
     slide.classList.toggle("on", on);
     slide.setAttribute("aria-hidden", String(!on));
+    slide.hidden = !on;
+    slide.inert = !on;
   });
   const label = story.querySelector(".pbars");
   if (label) label.setAttribute("aria-label", `${total}장 중 ${state.storyIndex + 1}장`);
+  const count = story.querySelector(".story-count");
+  if (count) count.textContent = `${state.storyIndex + 1} / ${total}`;
+  const previous = story.querySelector(".story-nav.prev");
+  const next = story.querySelector(".story-nav.next");
+  if (previous) previous.disabled = state.storyIndex === 0;
+  if (next) next.disabled = state.storyIndex === total - 1;
 }
 
 function findItem(id) {
@@ -133,10 +146,12 @@ function onAction(action, target) {
   }
 
   if (action === "open") {
+    detailOpener = target;
     state.detailId = target.dataset.id;
     state.storyIndex = 0;
     track("issue_open", { id: state.detailId });
     renderSheet();
+    track("story_slide", { id: state.detailId, index: 1, total: storySlideCount() });
     return;
   }
 
@@ -151,18 +166,16 @@ function onAction(action, target) {
     if (state.storyIndex > 0) {
       state.storyIndex -= 1;
       updateStory();
+      track("story_slide", { id: state.detailId, index: state.storyIndex + 1, total: storySlideCount() });
     }
     return;
   }
 
   if (action === "story-next") {
-    if (state.storyIndex >= storySlideCount() - 1) {
-      state.detailId = null;
-      track("sheet_close");
-      renderSheet();
-    } else {
+    if (state.storyIndex < storySlideCount() - 1) {
       state.storyIndex += 1;
       updateStory();
+      track("story_slide", { id: state.detailId, index: state.storyIndex + 1, total: storySlideCount() });
     }
     return;
   }
@@ -181,13 +194,6 @@ function onAction(action, target) {
     updateSavedCount();
     // 스토리가 열려 있으면 한 줄 정리 슬라이드의 저장 버튼만 갱신(슬라이드 위치 유지).
     updateStorySaveButton(item.id);
-    return;
-  }
-
-  if (action === "checkin") {
-    checkInToday();
-    track("attendance_checkin");
-    renderApp();
     return;
   }
 
@@ -235,14 +241,33 @@ document.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
   if (!state.detailId) return;
   if (event.key === "Escape") {
-    state.detailId = null;
-    renderSheet();
+    onAction("close", null);
+  } else if (event.key === "Tab") {
+    trapStoryFocus(event);
   } else if (event.key === "ArrowRight") {
     onAction("story-next", null);
   } else if (event.key === "ArrowLeft") {
     onAction("story-prev", null);
   }
 });
+
+function trapStoryFocus(event) {
+  const story = root.querySelector("#sheet-root .story");
+  if (!story) return;
+  const focusable = [...story.querySelectorAll(
+    'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+  )].filter((element) => !element.closest("[hidden]") && !element.closest("[inert]"));
+  if (focusable.length === 0) return;
+  const first = focusable[0];
+  const last = focusable.at(-1);
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
 
 // 언론사 썸네일이 로드에 실패하면 깨진 이미지 대신 카테고리 폴백으로 바꾼다.
 document.addEventListener("error", (event) => {

@@ -7,6 +7,10 @@
     "dev": "vite dev",
     "build:web": "vite build",
     "build": "ait build",
+    "verify:data": "node verify-data-contract.mjs",
+    "verify:ui": "node verify-ui-contract.mjs",
+    "verify:story": "node verify-omx-story.mjs",
+    "check": "node verify-data-contract.mjs && node verify-ui-contract.mjs && node verify-omx-story.mjs && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

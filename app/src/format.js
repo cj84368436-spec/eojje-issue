@@ -1,10 +1,9 @@
-// 날짜/시간 표기는 모두 KST 기준 상대 표현으로 통일한다.
-
 export function timeLabel(iso) {
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return "";
 
   const diffMs = Date.now() - date.getTime();
+  if (diffMs < 0) return kstMonthDay(date);
   const diffH = diffMs / 3_600_000;
 
   if (diffH < 1) return "방금 전";
@@ -36,11 +35,10 @@ function kstClock(date) {
 }
 
 function kstDayDiff(date) {
-  const toKstDay = (d) => Math.floor((d.getTime() + 9 * 3600 * 1000) / 86_400_000);
+  const toKstDay = (value) => Math.floor((value.getTime() + 9 * 3600 * 1000) / 86_400_000);
   return toKstDay(new Date()) - toKstDay(date);
 }
 
-// 모든 동적 문자열은 innerHTML에 넣기 전에 이스케이프한다.
 export function escapeHtml(value = "") {
   return String(value)
     .replaceAll("&", "&amp;")

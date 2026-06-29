@@ -1,28 +1,36 @@
 {
-  "date": "2026-06-15",
+  "date": "2026-06-24",
   "quality": {
-    "total": 25,
-    "emptySummary": 2,
+    "total": 30,
+    "emptySummary": 0,
     "truncated": 0,
     "fragment": 0,
     "runOn": 0,
     "caption": 0,
+    "htmlEntity": 0,
+    "futurePublishedAt": 0,
+    "summaryPointDuplicates": 0,
+    "titleSummaryDuplicates": 0,
     "titleMismatch": 0,
+    "weakSummary": 0,
+    "invalidSentence": 0,
+    "invalidPoint": 0,
+    "excludedTopic": 0,
+    "dupSuspects": 0,
     "heat": {
-      "avg": 77.4,
+      "avg": 77.3,
       "max": 96,
       "min": 58,
       "ge90": 5,
-      "ge75": 14,
-      "lt60": 1
+      "ge75": 17,
+      "lt60": 2
     },
     "sensitivity": {
-      "낮음": 16,
-      "중간": 9,
+      "낮음": 24,
+      "중간": 6,
       "높음": 0
     },
-    "dupSuspects": 0,
-    "emptySummaryRate": 0.08
+    "emptySummaryRate": 0
   },
   "warnings": []
 }

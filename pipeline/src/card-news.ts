@@ -1,5 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
 export type ArticleCategory = "정치" | "경제" | "사회" | "문화" | "연예";
@@ -12,6 +12,8 @@ export interface Article {
   sourceUrl: string;
   title: string;
   body: string;
+  summary?: string;
+  points?: string[];
   publishedAt: string;
   attention?: number;
 }
@@ -83,15 +85,47 @@ export const SYSTEM_PROMPT = `
 
 const DEFAULT_MODEL = "claude-haiku-4-5";
 const REVIEW_QUEUE_PATH = resolve("output", "review-queue", "card-news.json");
+const MAX_DAILY_CARD_ARTICLES = 5;
+const MAX_ARTICLE_BODY_CHARS = 1200;
 const client = new Anthropic();
 
-export function buildUserInput(a: Article): string {
-  return `카테고리: ${a.category}
-출처: ${a.sourceName}
-원문 제목: ${a.title}
+class CardNewsParseError extends Error {
+  constructor(message = "Card news JSON parse failed") {
+    super(message);
+    this.name = "CardNewsParseError";
+  }
+}
 
-[기사 본문]
-${a.body}`;
+export interface RunDailyBatchOptions {
+  enabled?: boolean;
+  reviewQueuePath?: string;
+  generator?: (article: Article, rank: number) => Promise<CardNews>;
+}
+
+export function isCardNewsEnabled(): boolean {
+  return process.env.CARD_NEWS_ENABLED === "true";
+}
+
+function truncateText(value = "", maxChars = MAX_ARTICLE_BODY_CHARS): string {
+  return value.length > maxChars ? value.slice(0, maxChars).trim() + "..." : value;
+}
+
+export function prepareArticleForGeneration(article: Article): Article {
+  return {
+    ...article,
+    body: truncateText(article.body || "")
+  };
+}
+
+export function buildUserInput(a: Article): string {
+  const body = truncateText(a.body || "");
+  const summary = a.summary ? "\n요약: " + a.summary : "";
+  const points = a.points?.length ? "\n포인트:\n" + a.points.slice(0, 3).map((point) => "- " + point).join("\n") : "";
+
+  return "카테고리: " + a.category + "\n" +
+    "출처: " + a.sourceName + "\n" +
+    "원문 제목: " + a.title + summary + points + "\n\n" +
+    "[기사 본문 앞부분]\n" + body;
 }
 
 export async function generateCardNews(article: Article, rank: number): Promise<CardNews> {
@@ -127,7 +161,7 @@ export function parseAndValidate(raw: string, article: Article): GeneratedCard {
   try {
     g = JSON.parse(clean) as GeneratedCard;
   } catch {
-    throw new Error("JSON 파싱 실패");
+    throw new CardNewsParseError();
   }
 
   if (!g.cover?.title) throw new Error("cover.title 없음");
@@ -182,27 +216,66 @@ function hasUnsupportedQuote(text: string, evidence: string): boolean {
   return quotes.some((quote) => quote.length >= 2 && !evidence.includes(quote));
 }
 
-export async function generateWithRetry(article: Article, rank: number): Promise<CardNews | null> {
+export async function generateWithRetry(
+  article: Article,
+  rank: number,
+  generator: (article: Article, rank: number) => Promise<CardNews> = generateCardNews
+): Promise<CardNews | null> {
   try {
-    return await generateCardNews(article, rank);
-  } catch {
+    return await generator(article, rank);
+  } catch (error) {
+    if (!(error instanceof CardNewsParseError)) {
+      console.error("Card news generation failed without retry:", article.id, error);
+      return null;
+    }
+
     try {
-      return await generateCardNews(article, rank);
-    } catch (e2) {
-      console.error("생성 2회 실패:", article.id, e2);
+      return await generator(article, rank);
+    } catch (retryError) {
+      console.error("Card news JSON retry failed:", article.id, retryError);
       return null;
     }
   }
 }
 
-export async function runDailyBatch(topArticles: Article[]): Promise<CardNews[]> {
-  const results: (CardNews | null)[] = [];
-  for (let i = 0; i < topArticles.length; i++) {
-    results.push(await generateWithRetry(topArticles[i], i + 1));
+async function loadCachedCards(path = REVIEW_QUEUE_PATH): Promise<Map<string, CardNews>> {
+  try {
+    const raw = await readFile(path, "utf8");
+    const payload = JSON.parse(raw) as { items?: CardNews[] };
+    return new Map((payload.items || []).map((card) => [card.id, card]));
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException)?.code === "ENOENT") return new Map();
+    throw error;
   }
-  const ready = results.filter((r): r is CardNews => r !== null);
-  await saveToReviewQueue(ready);
-  return ready;
+}
+
+export async function runDailyBatch(topArticles: Article[], options: RunDailyBatchOptions = {}): Promise<CardNews[]> {
+  const reviewQueuePath = options.reviewQueuePath || REVIEW_QUEUE_PATH;
+  const generator = options.generator || generateCardNews;
+  const selectedArticles = topArticles.slice(0, MAX_DAILY_CARD_ARTICLES).map(prepareArticleForGeneration);
+  const cachedCards = await loadCachedCards(reviewQueuePath);
+  const results: CardNews[] = [];
+
+  for (let i = 0; i < selectedArticles.length; i++) {
+    const article = selectedArticles[i];
+    const cached = cachedCards.get(article.id);
+    if (cached) {
+      results.push(cached);
+      continue;
+    }
+
+    const enabled = options.enabled ?? isCardNewsEnabled();
+    if (!enabled) {
+      console.log("Card news API disabled. Set CARD_NEWS_ENABLED=true to generate: " + article.id);
+      continue;
+    }
+
+    const generated = await generateWithRetry(article, i + 1, generator);
+    if (generated) results.push(generated);
+  }
+
+  await saveToReviewQueue(results, reviewQueuePath);
+  return results;
 }
 
 export async function saveToReviewQueue(cards: CardNews[], path = REVIEW_QUEUE_PATH): Promise<void> {
@@ -213,5 +286,7 @@ export async function saveToReviewQueue(cards: CardNews[], path = REVIEW_QUEUE_P
   };
 
   await mkdir(dirname(path), { recursive: true });
-  await writeFile(path, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+  const tempPath = `${path}.${process.pid}.${Date.now()}.tmp`;
+  await writeFile(tempPath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+  await rename(tempPath, path);
 }

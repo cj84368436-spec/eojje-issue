@@ -3,11 +3,6 @@ import { FRESH_HOURS } from "./config.js";
 import { cleanText, cleanTitle, isTruncated } from "./text.js";
 import { resolveSource } from "./sources.js";
 
-// 트렌드 발견 수집기: 주요 언론사 공식 RSS의 톱 기사들을 가져온다.
-// "무엇이 중요한가"를 우리 키워드 사전이 아니라 전국 편집국들의 집단 판단에서 얻는 입구다.
-// 여러 매체가 동시에 톱으로 올린 주제는 dedupe 단계에서 큰 클러스터가 되어 주목도 최상위로 간다.
-// 피드 장애는 흔하므로 피드 단위로 fail-open 한다.
-
 const FEEDS = [
   ["연합뉴스", "https://www.yna.co.kr/rss/news.xml"],
   ["SBS", "https://news.sbs.co.kr/news/headlineRssFeed.do?plink=RSSREADER"],
@@ -45,8 +40,8 @@ export async function collectRssTopNews({ date }) {
       items.push({
         id: `${date}-${hash(entry.link)}`,
         date,
-        rawCategory: "",                       // RSS는 카테고리 단서가 없다. classify가 정한다.
-        fromTopFeed: true,                     // 편집국 톱 피드 출신 표시 (점수 가점용)
+        rawCategory: "",
+        fromTopFeed: true,
         title,
         description: cleanText(entry.description || ""),
         sourceName: source.name,
@@ -57,7 +52,7 @@ export async function collectRssTopNews({ date }) {
     }
   }
 
-  console.log(`[rss] 톱 피드 ${okFeeds}/${FEEDS.length}개 수신 → 유효 ${items.length}건`);
+  console.log(`[rss] 피드 ${okFeeds}/${FEEDS.length}개 수신, 유효 ${items.length}건`);
   return items;
 }
 
@@ -83,7 +78,6 @@ async function fetchFeed(name, url) {
   }
 }
 
-// 의존성 없는 단순 RSS 2.0 파서: <item> 블록에서 title/link/pubDate/description만 뽑는다.
 function parseRss(xml) {
   const items = [];
   const blocks = xml.match(/<item[\s>][\s\S]*?<\/item>/gi) || [];
@@ -102,9 +96,7 @@ function parseRss(xml) {
 function pickTag(block, tag) {
   const match = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
   if (!match) return "";
-  return match[1]
-    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
-    .trim();
+  return match[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1").trim();
 }
 
 function pickAttr(block, tag, attr) {

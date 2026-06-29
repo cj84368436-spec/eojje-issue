@@ -6,6 +6,7 @@ import { CATEGORIES } from "./config.js";
 export function classifyNews(items) {
   return items.map((item) => {
     const text = `${item.title} ${item.description || ""}`;
+    const forcedCategory = forceCategory(text);
     let best = { id: item.rawCategory || "", score: 0 };
 
     for (const category of CATEGORIES) {
@@ -23,10 +24,15 @@ export function classifyNews(items) {
     return {
       ...item,
       // RSS처럼 수집 단서가 없는 기사가 어떤 키워드에도 안 걸리면 사회로 보낸다.
-      category: best.id || "society",
-      categoryFit: best.score
+      category: forcedCategory || best.id || "society",
+      categoryFit: forcedCategory ? Math.max(6, best.score) : best.score
     };
   });
+}
+
+function forceCategory(text) {
+  if (/(물에 빠져|익사|숨져|사망|화재|큰 불|교통사고|실종)/.test(text)) return "society";
+  return "";
 }
 
 function weight(word) {

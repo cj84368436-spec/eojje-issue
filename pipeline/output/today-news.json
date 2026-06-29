@@ -1,939 +1,933 @@
 {
   "version": 2,
-  "date": "2026-06-15",
-  "generatedAt": "2026-06-15T01:26:09.788Z",
+  "date": "2026-06-24",
+  "generatedAt": "2026-06-24T00:56:31.044Z",
   "source": "naver",
   "headlines": [
     {
-      "id": "2026-06-15-9b0a61556f94",
-      "category": "politics",
-      "title": "\"국민 모욕 반사회적 행태\" 李대통령, '부정선거론' 비판",
-      "summary": "이재명 대통령은 14일(현지시간) \"선거 결과 조작 등등을 운운하면서 부정선거론을 퍼뜨리는 것은 이 문제의 본질을 왜곡하고 국민들의 귀한 목소리를 모욕하는 반사회적 행태\"라고 비판했다.",
+      "id": "2026-06-24-dde7ed011d7b",
+      "category": "entertainment",
+      "title": "역시 임영웅 파워..'산골총각 영웅', 시청률 1위",
+      "summary": "SBS 새 예능 프로그램 '산골총각 영웅'이 첫 방송부터 시청률 1위에 올랐다.",
       "why": "",
       "points": [],
       "keywords": [
-        "李대통령,",
-        "반사회적",
-        "부정선거론"
+        "역시",
+        "임영웅",
+        "파워"
+      ],
+      "sourceName": "starnewskorea",
+      "sourceUrl": "https://www.starnewskorea.com/broadcast-show/2026/06/24/2026062408380829817",
+      "coverage": {
+        "sourceCount": 3,
+        "sourceNames": [
+          "starnewskorea",
+          "isplus",
+          "slist"
+        ]
+      },
+      "imageUrl": "",
+      "publishedAt": "2026-06-23T23:45:00.000Z",
+      "heat": 96,
+      "sensitivity": "낮음",
+      "scoreSignals": {
+        "cluster": 16,
+        "topFeed": 0,
+        "recency": 20,
+        "conversation": 15,
+        "fit": 20,
+        "source": 0,
+        "penalty": 0
+      }
+    },
+    {
+      "id": "2026-06-24-4f1485e22ed1",
+      "category": "politics",
+      "title": "증거능력 없는 보완 '조사'?…\"기소하는 검사 있겠나\"",
+      "summary": "검사에게 증거 능력이 없는 조사권만 부여하는 방향으로 형사소송법이 개정된다면 다른 법령과 충돌할 수 있다는 우려도 제기된다.",
+      "why": "검사의 보완수사권을 폐지하는 후속 법안이 시행되면 기소가 위축될 것이라는 우려가 나온다.",
+      "points": [
+        "강제성과 증거 능력이 없는 방법만으로는 기소 여부를 판가름하기 어려우며, 자칫 법왜곡죄로 처벌될 가능성이 있는 탓이다.",
+        "24일 법조계에 따르면 국무총리실 산하 검찰개혁추진단은 형사소송법에서 검사의 수사에 관한 규정을 삭제하고, 행정조사에 준하는 권한만 부여하는 방안을 검토 중이다.",
+        "행정조사기본법상 행정조사는 기관이 직무를 수행하는 데 필요한 정보나 자료를 수집하기 위해 문서 열람 등을 하거나 조사 대상자에게 자료 제출과 진술을 요구하는 행위를 뜻한다."
+      ],
+      "keywords": [
+        "증거능력",
+        "없는",
+        "보완"
       ],
       "sourceName": "노컷뉴스",
-      "sourceUrl": "https://www.nocutnews.co.kr/news/6532725",
+      "sourceUrl": "https://www.nocutnews.co.kr/news/6537534",
       "coverage": {
         "sourceCount": 1,
         "sourceNames": [
           "노컷뉴스"
         ]
       },
-      "imageUrl": "https://file2.nocutnews.co.kr/newsroom/image/2026/06/15/202606150043196165_0.jpg",
-      "publishedAt": "2026-06-15T00:45:48.000Z",
-      "heat": 90,
+      "imageUrl": "",
+      "publishedAt": "",
+      "heat": 88,
+      "sensitivity": "중간",
+      "scoreSignals": {
+        "cluster": 0,
+        "topFeed": 8,
+        "recency": 20,
+        "conversation": 5,
+        "fit": 20,
+        "source": 6,
+        "penalty": 0
+      }
+    },
+    {
+      "id": "2026-06-24-7c3a57daf426",
+      "category": "economy",
+      "title": "코스피, 하루 만에 10% 가까이 폭락…8200선 턱걸이 마감",
+      "summary": "코스피가 23일 하루 만에 10% 가까이 폭락하며 8200선 턱걸이로 장을 마감했습니다.",
+      "why": "",
+      "points": [],
+      "keywords": [
+        "코스피",
+        "하루",
+        "만에"
+      ],
+      "sourceName": "JTBC",
+      "sourceUrl": "https://news.jtbc.co.kr/article/NB12304647?influxDiv=NAVER",
+      "coverage": {
+        "sourceCount": 1,
+        "sourceNames": [
+          "JTBC"
+        ]
+      },
+      "imageUrl": "",
+      "publishedAt": "2026-06-23T06:46:00.000Z",
+      "heat": 86,
+      "sensitivity": "낮음",
+      "scoreSignals": {
+        "cluster": 0,
+        "topFeed": 0,
+        "recency": 13,
+        "conversation": 5,
+        "fit": 20,
+        "source": 10,
+        "penalty": 0
+      }
+    },
+    {
+      "id": "2026-06-24-44672ddcfa2e",
+      "category": "society",
+      "title": "\"전과사실 익명 공개도 명예훼손?\"…언론보도 재판소원, 본안 간다",
+      "summary": "헌법재판소가 과거 전과사실을 익명으로 보도한 언론인들에게 손해배상 책임을 인정한 법원 판결의 취소를 구하는 재판소원 사건을 본안 심리 대상으로 선정했다.",
+      "why": "청구인들은 법원이 언론의 자유로서 보호될 수 없다고 본 보도사실 1가지(과거 전과사실의 익명 공개) 역시 공직사회의 신뢰에 끼치는 부정적 영향을 다루는 공적 사안에 해당하는 것으로, 명예훼손으로 인한 민사상 손해배상책임의 성립이 면제되는 '공공의 이익'이 인정된다고 주장했다.",
+      "points": [
+        "헌재는 23일 재판소원 사전심사를 담당하는 지정재판부 평의를 거쳐 재판취소 헌법소원 사건 1건을 전원재판부에 회부했다고 밝혔다.",
+        "재판소원 제도 시행 이후 전원재판부에 회부된 사건은 모두 9건으로 늘었다.",
+        "해당 사건은 KBS 기자 2명이 사기 혐의로 수사를 받던 기업가 A씨에 대해 현재 고위공직자와의 친분 과시 행태와 과거 사기 전과사실 등을 익명으로 보도하면서 시작됐다."
+      ],
+      "keywords": [
+        "전과사실",
+        "익명",
+        "공개도"
+      ],
+      "sourceName": "노컷뉴스",
+      "sourceUrl": "https://www.nocutnews.co.kr/news/6537375",
+      "coverage": {
+        "sourceCount": 1,
+        "sourceNames": [
+          "노컷뉴스"
+        ]
+      },
+      "imageUrl": "",
+      "publishedAt": "2026-06-23T16:47:14.000Z",
+      "heat": 93,
       "sensitivity": "중간",
       "scoreSignals": {
         "cluster": 8,
         "topFeed": 8,
-        "recency": 20,
-        "conversation": 15,
+        "recency": 17,
+        "conversation": 5,
         "fit": 20,
         "source": 6,
-        "national": 6,
-        "rawPenalty": 0,
-        "penalty": 0,
-        "buzzTotal": 524,
-        "buzzBoost": 4
+        "penalty": 0
       }
     },
     {
-      "id": "2026-06-15-a1a89c3ac835",
-      "category": "economy",
-      "title": "코스피 급등에 매수 사이드카 발동",
-      "summary": "코스피가 15일 급등하며 프로그램매수호가 일시효력정지(사이드카)가 발동됐다.",
+      "id": "2026-06-24-d460a33e6a15",
+      "category": "culture",
+      "title": "\"달빛 아래 달콤한 밤\"…서초구, 27∼28일 K-디저트 축제",
+      "summary": "서초구가 27일부터 28일까지 달빛무지개분수를 배경으로 달콤한 K-디저트 축제를 연다.",
       "why": "",
-      "points": [
-        "미국과 이란이 사실상 종전 합의에 도달했다는 소식이 전해지며 코스피는 상승세를 보이고 있다.",
-        "올해 들어 14번째 매수 사이드카다"
-      ],
+      "points": [],
       "keywords": [
-        "코스피",
-        "매수",
-        "일시효력정지"
+        "달빛",
+        "아래",
+        "달콤한"
       ],
-      "sourceName": "동아일보",
-      "sourceUrl": "https://www.donga.com/news/Economy/article/all/20260615/134111665/2",
+      "sourceName": "연합뉴스",
+      "sourceUrl": "https://www.yna.co.kr/view/AKR20260624016500004?input=1195m",
       "coverage": {
-        "sourceCount": 9,
+        "sourceCount": 2,
         "sourceNames": [
-          "동아일보",
-          "경향신문",
-          "노컷뉴스",
-          "businesskorea",
-          "digitaltoday",
-          "tvchosun",
-          "newsworks",
-          "straightnews",
-          "한겨레"
+          "연합뉴스",
+          "jeonmae"
         ]
       },
-      "imageUrl": "https://dimg.donga.com/wps/NEWS/IMAGE/2026/06/15/134111666.2.jpg",
-      "publishedAt": "2026-06-15T00:38:00.000Z",
-      "heat": 94,
+      "imageUrl": "",
+      "publishedAt": "2026-06-23T22:10:00.000Z",
+      "heat": 91,
       "sensitivity": "낮음",
       "scoreSignals": {
-        "cluster": 24,
-        "topFeed": 8,
+        "cluster": 8,
+        "topFeed": 0,
         "recency": 20,
         "conversation": 5,
-        "fit": 4,
-        "source": 10,
-        "national": 0,
-        "rawPenalty": 0,
-        "penalty": 0,
-        "buzzTotal": 911724,
-        "buzzBoost": 20
-      }
-    },
-    {
-      "id": "2026-06-15-2b098c41b3a7",
-      "category": "society",
-      "title": "법원 \"연립주택 '장애인 경사로 미설치'는 하자\"‥GS건설 패소",
-      "summary": "서울행정법원 행정2부는 경기 고양시에 단지형 연립주택을 시공한 GS건설이 \"2024년 받은 하자 판정을 취소해달라\"며 국토교통부 하자심사분쟁조정위원회를 상대로 낸 소송에서 원고 패소 판결했습니다.",
-      "why": "",
-      "points": [
-        "건설사가 단지형 연립주택에 장애인 통행을 위한 경사로를 일부 설치하지 않은 건 하자에 해당한다고 법원이 판단했습니다."
-      ],
-      "keywords": [
-        "연립주택",
-        "법원",
-        "장애인"
-      ],
-      "sourceName": "MBC",
-      "sourceUrl": "https://imnews.imbc.com/news/2026/society/article/6830208_36918.html",
-      "coverage": {
-        "sourceCount": 9,
-        "sourceNames": [
-          "MBC",
-          "dnews",
-          "연합뉴스",
-          "SBS",
-          "delighti",
-          "youthdaily",
-          "sentv",
-          "뉴스핌",
-          "더팩트"
-        ]
-      },
-      "imageUrl": "https://image.imnews.imbc.com/news/2026/society/article/__icsFiles/afieldfile/2026/06/15/yh_20260615-4.jpg",
-      "publishedAt": "2026-06-15T00:55:00.000Z",
-      "heat": 86,
-      "sensitivity": "중간",
-      "scoreSignals": {
-        "cluster": 24,
-        "topFeed": 0,
-        "recency": 20,
-        "conversation": 0,
-        "fit": 16,
-        "source": 10,
-        "national": 0,
-        "rawPenalty": 0,
-        "penalty": 0,
-        "buzzTotal": 1523,
-        "buzzBoost": 7
-      }
-    },
-    {
-      "id": "2026-06-15-92954012de3f",
-      "category": "culture",
-      "title": "500만 넘긴 '군체', 4주 연속 주말 박스오피스 1위",
-      "summary": "영화 '군체'가 4주 연속 주말 박스오피스 1위를 차지했다.",
-      "why": "",
-      "points": [
-        "지난달 5월 21일 개봉한 '군체'는 단 한 번도 박스오피스 1위 자리를 내주지 않으며 24일 만에 500만 관객을 돌파했다.",
-        "이로써 올해 개봉작 중 '왕과 사는 남자'에 이어 두 번째로 500만 고지를 밟은 영화가 됐다."
-      ],
-      "keywords": [
-        "군체",
-        "연속",
-        "주말"
-      ],
-      "sourceName": "SBS",
-      "sourceUrl": "https://ent.sbs.co.kr/news/article.do?article_id=E10010317858&plink=ORI&cooper=NAVER",
-      "coverage": {
-        "sourceCount": 13,
-        "sourceNames": [
-          "SBS",
-          "더팩트",
-          "celuvmedia",
-          "엑스포츠뉴스",
-          "스포츠서울",
-          "마이데일리",
-          "isplus",
-          "topstarnews",
-          "TV리포트",
-          "동아일보",
-          "bntnews",
-          "MBC"
-        ]
-      },
-      "imageUrl": "https://img.sbs.co.kr/newsnet/etv/upload/2026/05/21/30001063645_16v9.jpg",
-      "publishedAt": "2026-06-14T23:56:00.000Z",
-      "heat": 86,
-      "sensitivity": "낮음",
-      "scoreSignals": {
-        "cluster": 24,
-        "topFeed": 0,
-        "recency": 20,
-        "conversation": 0,
-        "fit": 18,
-        "source": 10,
-        "national": 6,
-        "rawPenalty": 0,
-        "penalty": 0,
-        "buzzTotal": 1246,
-        "buzzBoost": 7
-      }
-    },
-    {
-      "id": "2026-06-15-81e70c1e5a00",
-      "category": "entertainment",
-      "title": "‘강회장’ 이준영, 7월 21일 입대…손편지로 쓴 뜨거운 안녕",
-      "summary": "이준영은 지난 14일 개인 SNS를 통해 자필 손편지를 공개하며 오는 7월 21일 입대 소식을 알렸다.",
-      "why": "",
-      "points": [
-        "가수 겸 배우 이준영이 손편지를 통해 직접 입대 소식을 전했다.",
-        "손편지로 쓴 뜨거운 안녕"
-      ],
-      "keywords": [
-        "강회장",
-        "이준영",
-        "입대"
-      ],
-      "sourceName": "경향신문",
-      "sourceUrl": "https://sports.khan.co.kr/article/202606150836003?pt=nv",
-      "coverage": {
-        "sourceCount": 4,
-        "sourceNames": [
-          "경향신문",
-          "ize",
-          "데일리안",
-          "nc"
-        ]
-      },
-      "imageUrl": "https://images.khan.co.kr/article/2026/06/15/news-p.v1.20260615.a99319bf5fc44d62a9ee857acac0fd40_P1.jpg",
-      "publishedAt": "2026-06-14T23:37:00.000Z",
-      "heat": 93,
-      "sensitivity": "낮음",
-      "scoreSignals": {
-        "cluster": 24,
-        "topFeed": 0,
-        "recency": 20,
-        "conversation": 10,
         "fit": 20,
         "source": 10,
-        "national": 0,
-        "rawPenalty": 0,
-        "penalty": 0,
-        "buzzTotal": 1251,
-        "buzzBoost": 7
+        "penalty": 0
       }
     }
   ],
   "categories": {
     "politics": [
       {
-        "id": "2026-06-15-9b0a61556f94",
+        "id": "2026-06-24-4f1485e22ed1",
         "category": "politics",
-        "title": "\"국민 모욕 반사회적 행태\" 李대통령, '부정선거론' 비판",
-        "summary": "이재명 대통령은 14일(현지시간) \"선거 결과 조작 등등을 운운하면서 부정선거론을 퍼뜨리는 것은 이 문제의 본질을 왜곡하고 국민들의 귀한 목소리를 모욕하는 반사회적 행태\"라고 비판했다.",
-        "why": "",
-        "points": [],
+        "title": "증거능력 없는 보완 '조사'?…\"기소하는 검사 있겠나\"",
+        "summary": "검사에게 증거 능력이 없는 조사권만 부여하는 방향으로 형사소송법이 개정된다면 다른 법령과 충돌할 수 있다는 우려도 제기된다.",
+        "why": "검사의 보완수사권을 폐지하는 후속 법안이 시행되면 기소가 위축될 것이라는 우려가 나온다.",
+        "points": [
+          "강제성과 증거 능력이 없는 방법만으로는 기소 여부를 판가름하기 어려우며, 자칫 법왜곡죄로 처벌될 가능성이 있는 탓이다.",
+          "24일 법조계에 따르면 국무총리실 산하 검찰개혁추진단은 형사소송법에서 검사의 수사에 관한 규정을 삭제하고, 행정조사에 준하는 권한만 부여하는 방안을 검토 중이다.",
+          "행정조사기본법상 행정조사는 기관이 직무를 수행하는 데 필요한 정보나 자료를 수집하기 위해 문서 열람 등을 하거나 조사 대상자에게 자료 제출과 진술을 요구하는 행위를 뜻한다."
+        ],
         "keywords": [
-          "李대통령,",
-          "반사회적",
-          "부정선거론"
+          "증거능력",
+          "없는",
+          "보완"
         ],
         "sourceName": "노컷뉴스",
-        "sourceUrl": "https://www.nocutnews.co.kr/news/6532725",
+        "sourceUrl": "https://www.nocutnews.co.kr/news/6537534",
         "coverage": {
           "sourceCount": 1,
           "sourceNames": [
             "노컷뉴스"
           ]
         },
-        "imageUrl": "https://file2.nocutnews.co.kr/newsroom/image/2026/06/15/202606150043196165_0.jpg",
-        "publishedAt": "2026-06-15T00:45:48.000Z",
-        "heat": 90,
-        "sensitivity": "중간",
-        "scoreSignals": {
-          "cluster": 8,
-          "topFeed": 8,
-          "recency": 20,
-          "conversation": 15,
-          "fit": 20,
-          "source": 6,
-          "national": 6,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 524,
-          "buzzBoost": 4
-        }
-      },
-      {
-        "id": "2026-06-15-cc6530770fb8",
-        "category": "politics",
-        "title": "장동혁 “李, 참정권 침해 인정은 립서비스…재선거·특검 입장 밝혀야”",
-        "summary": "",
-        "why": "",
-        "points": [
-          "재선거·특검 입장 밝혀야",
-          "국민의 정당한 문제 제기를 다 인정하고 수용한다면 재선거 및 특검에 대한 분명한 입장을 밝혀야 할 것”이라고 밝혔다"
-        ],
-        "keywords": [
-          "장동혁",
-          "참정권",
-          "국민의힘"
-        ],
-        "sourceName": "동아일보",
-        "sourceUrl": "https://www.donga.com/news/Politics/article/all/20260615/134111898/1",
-        "coverage": {
-          "sourceCount": 1,
-          "sourceNames": [
-            "동아일보"
-          ]
-        },
-        "imageUrl": "https://dimg.donga.com/wps/NEWS/IMAGE/2026/06/15/134111899.1.jpg",
-        "publishedAt": "2026-06-15T00:57:58.000Z",
+        "imageUrl": "",
+        "publishedAt": "",
         "heat": 88,
         "sensitivity": "중간",
         "scoreSignals": {
           "cluster": 0,
           "topFeed": 8,
           "recency": 20,
-          "conversation": 20,
+          "conversation": 5,
           "fit": 20,
-          "source": 10,
-          "national": 0,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 2028,
-          "buzzBoost": 8
+          "source": 6,
+          "penalty": 0
         }
       },
       {
-        "id": "2026-06-15-f59dd080a0dd",
+        "id": "2026-06-24-606093115dbf",
         "category": "politics",
-        "title": "특검, ‘반란우두머리’ 혐의 윤 전 대통령 9시간 조사",
-        "summary": "권창영 2차 종합특별검사팀이 13일 윤석열 전 대통령을 두 번째로 소환해 9시간 가까이 조사했다.",
-        "why": "",
+        "title": "한-중 서비스 무역협의회 첫 개최…의료관광·AI 협력 확대하나",
+        "summary": "산업통상부는 중국 상무부와 24일 중국 베이징에서 '제1차 한·중 서비스 무역 협력 협의회'를 개최했다.",
+        "why": "의료관광에 대해 양측은 중국인의 방한 의료관광이 지속적으로 증가함에 따라, 의료서비스 관련 정보에 대한 접근 편의성을 높이고 신뢰할 수 있는 의료관광 환경을 조성해야 한다는 필요성에 공감했다.",
         "points": [
-          "특검팀은 이날 오전 10시쯤부터 윤 전 대통령을 군형법상 반란 혐의 피의자로 신문했다.",
-          "조사는 조서 열람 시간을 포함해 9시간가량 이뤄진 뒤 오후 6시54분쯤 끝났다.",
-          "윤 대통령은 조사가 끝난 뒤 법무부 호송차를 타고 서울구치소로 돌아갔다."
+          "이번 협의회에는 배준형 통상협력국장과 공더쥔 서비스무역·상무서비스업사장 등 양국 수석대표를 비롯해 관계자들이 참석했다.",
+          "양국은 앞서 지난해 11월 한·중 정상회담을 계기로 교역을 서비스 분야로 확대하기 위해 '한·중 서비스무역 교류 협력 강화에 관한 양해각서'를 체결한 바 있다.",
+          "이번 제1차 협의회는 서비스 무역 분야의 실질적인 협력과제를 발굴·논의하기 위해 개최됐다."
         ],
         "keywords": [
-          "반란우두머리",
-          "혐의",
-          "대통령"
-        ],
-        "sourceName": "경향신문",
-        "sourceUrl": "https://www.khan.co.kr/article/202606132037001",
-        "coverage": {
-          "sourceCount": 6,
-          "sourceNames": [
-            "경향신문",
-            "newswhoplus",
-            "연합뉴스",
-            "한국경제",
-            "kado",
-            "kookje"
-          ]
-        },
-        "imageUrl": "https://img.khan.co.kr/news/2026/06/13/news-p.v1.20260613.6d167eaef7714ec7bf518adc381a8361_P2.jpg",
-        "publishedAt": "2026-06-13T11:37:00.000Z",
-        "heat": 87,
-        "sensitivity": "중간",
-        "scoreSignals": {
-          "cluster": 24,
-          "topFeed": 0,
-          "recency": 3,
-          "conversation": 20,
-          "fit": 20,
-          "source": 10,
-          "national": 0,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 2971,
-          "buzzBoost": 9
-        }
-      },
-      {
-        "id": "2026-06-15-89f4805ac22f",
-        "category": "politics",
-        "title": "하정우, 북갑 지역위원장 신청…한동훈과 '리턴매치' 시동",
-        "summary": "6·3 부산 북갑 국회의원 보궐선거에서 석패한 하정우 전 청와대 AI미래기획수석이 더불어민주당 북갑 지역위원장 공모에 신청하기로 했다.",
-        "why": "",
-        "points": [
-          "한동훈과 '리턴매치' 시동"
-        ],
-        "keywords": [
-          "리턴매치",
-          "하정우",
-          "북갑"
+          "서비스",
+          "무역협의회",
+          "개최"
         ],
         "sourceName": "노컷뉴스",
-        "sourceUrl": "https://www.nocutnews.co.kr/news/6532802",
+        "sourceUrl": "https://www.nocutnews.co.kr/news/6537527",
         "coverage": {
           "sourceCount": 1,
           "sourceNames": [
             "노컷뉴스"
           ]
         },
-        "imageUrl": "https://file2.nocutnews.co.kr/newsroom/image/2026/06/15/202606150925317541_0.jpg",
-        "publishedAt": "2026-06-15T09:35:34.000Z",
-        "heat": 82,
-        "sensitivity": "중간",
+        "imageUrl": "",
+        "publishedAt": "",
+        "heat": 80,
+        "sensitivity": "낮음",
         "scoreSignals": {
           "cluster": 0,
           "topFeed": 8,
           "recency": 20,
-          "conversation": 15,
-          "fit": 20,
+          "conversation": 5,
+          "fit": 10,
           "source": 6,
-          "national": 12,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 31,
-          "buzzBoost": 0
+          "penalty": 0
         }
       },
       {
-        "id": "2026-06-15-ac2bf362af52",
+        "id": "2026-06-24-056c96cfac6e",
         "category": "politics",
-        "title": "초록색 펜으로 작성된 '계엄사무 우선' 메모…작성자는?",
-        "summary": "김명수 전 합동참모의장이 구속 기로에 놓이는 가운데, 구속 심사에선 이른바 '계엄사무 우선' 메모가 쟁점 중 하나로 떠오를 전망이다.",
+        "title": "안도걸 \"디지털자산기본법, 하반기에 국회 통과시킬 것\"",
+        "summary": "안도걸 더불어민주당 의원이 국회에서 표류 중인 디지털자산기본법을 하반기에 통과시키겠다는 계획을 23일 밝혔다.",
         "why": "",
         "points": [],
         "keywords": [
-          "계엄사무 우선",
-          "메모",
-          "김명수"
+          "안도걸",
+          "디지털자산기본법",
+          "하반기에"
+        ],
+        "sourceName": "한국경제",
+        "sourceUrl": "https://www.hankyung.com/article/202606233751i",
+        "coverage": {
+          "sourceCount": 1,
+          "sourceNames": [
+            "한국경제"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T10:53:00.000Z",
+        "heat": 79,
+        "sensitivity": "낮음",
+        "scoreSignals": {
+          "cluster": 0,
+          "topFeed": 0,
+          "recency": 13,
+          "conversation": 5,
+          "fit": 20,
+          "source": 10,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-16c27a96ce7d",
+        "category": "politics",
+        "title": "법사위원장 놓고 충돌…與 \"발목잡기 안 돼\"·野 \"정상적 국회 아냐\"",
+        "summary": "여야가 22대 국회 후반기 법제사법위원장 자리를 놓고 정면으로 충돌했다.",
+        "why": "",
+        "points": [],
+        "keywords": [
+          "법사위원장",
+          "놓고",
+          "충돌"
+        ],
+        "sourceName": "한국경제",
+        "sourceUrl": "https://www.hankyung.com/article/2026062325267",
+        "coverage": {
+          "sourceCount": 1,
+          "sourceNames": [
+            "한국경제"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T05:47:00.000Z",
+        "heat": 78,
+        "sensitivity": "낮음",
+        "scoreSignals": {
+          "cluster": 0,
+          "topFeed": 0,
+          "recency": 13,
+          "conversation": 5,
+          "fit": 20,
+          "source": 10,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-995c8ca26716",
+        "category": "politics",
+        "title": "국회의장 \"24일 정오까지 국회 상임위 명단 제출해달라\"",
+        "summary": "국회의장은 24일까지 국회 상임위원회 명단을 제출해달라고 여야에 요구했다.",
+        "why": "이 때문에 민주당은 민생 법안 등을 속도감 있게 처리하려면 법사위원장 자리가 꼭 필요하다는 입장이다.",
+        "points": [],
+        "keywords": [
+          "국회의장",
+          "24일",
+          "정오까지"
+        ],
+        "sourceName": "머니투데이",
+        "sourceUrl": "https://www.mt.co.kr/politics/2026/06/23/2026062219573198516",
+        "coverage": {
+          "sourceCount": 1,
+          "sourceNames": [
+            "머니투데이"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-22T19:59:00.000Z",
+        "heat": 67,
+        "sensitivity": "낮음",
+        "scoreSignals": {
+          "cluster": 0,
+          "topFeed": 0,
+          "recency": 8,
+          "conversation": 5,
+          "fit": 20,
+          "source": 6,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-b08a1e303c3b",
+        "category": "politics",
+        "title": "트럼프 시선 의식했나…김정은, 잇단 핵무력 강조",
+        "summary": "북한 김정은 국무위원장이 핵무력을 강조하며 한국에 대해서는 적대적 기조를 재확인했다.",
+        "why": "대화 기대 일축하며 비핵화 논의 차단 북한의 연이은 핵무력 강조와 비핵화에 대한 강한 반발은 북미대화 가능성과 맞물려 '적대노선' 입장을 고수하면서도, 향후 대화가 진행되더라도 비핵화 의제를 논하지 않는다는 선포로 풀이된다.",
+        "points": [
+          "그러면서 \"한국을 가장 적대적 국가로 공인한 우리 당의 대적 투쟁 원칙을 철저히 견지해야 한다\"고 강조했다.",
+          "북한이 최근 핵무력과 관련해 국제사회에 내놓는 메시지의 빈도는 부쩍 잦아지고 있다.",
+          "트럼프 대통령은 지난 13일(현지시간) 자신의 SNS에 과거 싱가포르에서 열린 1차 북미대화 이후 김 위원장과 나란히 걷는 사진을 올렸다."
+        ],
+        "keywords": [
+          "트럼프",
+          "시선",
+          "의식했나"
         ],
         "sourceName": "노컷뉴스",
-        "sourceUrl": "https://www.nocutnews.co.kr/news/6532723",
+        "sourceUrl": "https://www.nocutnews.co.kr/news/6537525",
         "coverage": {
           "sourceCount": 1,
           "sourceNames": [
             "노컷뉴스"
           ]
         },
-        "imageUrl": "https://file2.nocutnews.co.kr/newsroom/image/2026/06/14/202606142238514862_0.jpg",
-        "publishedAt": "2026-06-15T05:00:00.000Z",
-        "heat": 74,
+        "imageUrl": "",
+        "publishedAt": "",
+        "heat": 89,
         "sensitivity": "중간",
         "scoreSignals": {
           "cluster": 0,
           "topFeed": 8,
           "recency": 20,
-          "conversation": 15,
-          "fit": 20,
+          "conversation": 10,
+          "fit": 16,
           "source": 6,
-          "national": 0,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 239,
-          "buzzBoost": 2
+          "penalty": 0
         }
       }
     ],
     "economy": [
       {
-        "id": "2026-06-15-628049dd8628",
+        "id": "2026-06-24-7c3a57daf426",
         "category": "economy",
-        "title": "결국 꺼낸 보유세 카드…공급절벽 넘을 수 있나?",
-        "summary": "",
+        "title": "코스피, 하루 만에 10% 가까이 폭락…8200선 턱걸이 마감",
+        "summary": "코스피가 23일 하루 만에 10% 가까이 폭락하며 8200선 턱걸이로 장을 마감했습니다.",
         "why": "",
-        "points": [
-          "공급절벽 넘을 수 있나?",
-          "이재명 대통령이 지난 8일 취임 1주년 기자회견에서 오는 7월 부동산 세제 개편을 공식화하면서 시장의 관심이 개편안으로 쏠리고 있다."
-        ],
+        "points": [],
         "keywords": [
-          "이재명",
-          "취임",
-          "기자회견에서"
+          "코스피",
+          "하루",
+          "만에"
         ],
-        "sourceName": "노컷뉴스",
-        "sourceUrl": "https://www.nocutnews.co.kr/news/6532671",
+        "sourceName": "JTBC",
+        "sourceUrl": "https://news.jtbc.co.kr/article/NB12304647?influxDiv=NAVER",
         "coverage": {
           "sourceCount": 1,
           "sourceNames": [
-            "노컷뉴스"
+            "JTBC"
           ]
         },
-        "imageUrl": "https://file2.nocutnews.co.kr/newsroom/image/2026/06/14/202606141624313136_0.jpg",
-        "publishedAt": "2026-06-15T06:00:00.000Z",
-        "heat": 96,
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T06:46:00.000Z",
+        "heat": 86,
         "sensitivity": "낮음",
         "scoreSignals": {
           "cluster": 0,
-          "topFeed": 8,
-          "recency": 20,
-          "conversation": 20,
+          "topFeed": 0,
+          "recency": 13,
+          "conversation": 5,
           "fit": 20,
-          "source": 6,
-          "national": 0,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 193924,
-          "buzzBoost": 20
+          "source": 10,
+          "penalty": 0
         }
       },
       {
-        "id": "2026-06-15-a1a89c3ac835",
+        "id": "2026-06-24-9d2146346447",
         "category": "economy",
-        "title": "코스피 급등에 매수 사이드카 발동",
-        "summary": "코스피가 15일 급등하며 프로그램매수호가 일시효력정지(사이드카)가 발동됐다.",
+        "title": "코스피 8%대 폭락에 서킷브레이커 발동…올들어 4번째",
+        "summary": "코스피가 8% 넘게 폭락하며 유가증권시장에 1단계 서킷브레이커가 발동됐다.",
         "why": "",
         "points": [
-          "미국과 이란이 사실상 종전 합의에 도달했다는 소식이 전해지며 코스피는 상승세를 보이고 있다.",
-          "올해 들어 14번째 매수 사이드카다"
+          "이날 급락장은 최근 증시 상승을 주도했던 반도체 주가 촉발했다."
         ],
         "keywords": [
           "코스피",
-          "매수",
-          "일시효력정지"
+          "폭락에",
+          "서킷브레이커"
         ],
-        "sourceName": "동아일보",
-        "sourceUrl": "https://www.donga.com/news/Economy/article/all/20260615/134111665/2",
+        "sourceName": "매일경제",
+        "sourceUrl": "https://www.mk.co.kr/article/12080839",
         "coverage": {
-          "sourceCount": 9,
+          "sourceCount": 1,
           "sourceNames": [
-            "동아일보",
-            "경향신문",
-            "노컷뉴스",
-            "businesskorea",
-            "digitaltoday",
-            "tvchosun",
-            "newsworks",
-            "straightnews",
-            "한겨레"
+            "매일경제"
           ]
         },
-        "imageUrl": "https://dimg.donga.com/wps/NEWS/IMAGE/2026/06/15/134111666.2.jpg",
-        "publishedAt": "2026-06-15T00:38:00.000Z",
-        "heat": 94,
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T05:37:00.000Z",
+        "heat": 75,
         "sensitivity": "낮음",
         "scoreSignals": {
-          "cluster": 24,
-          "topFeed": 8,
-          "recency": 20,
+          "cluster": 0,
+          "topFeed": 0,
+          "recency": 13,
           "conversation": 5,
-          "fit": 4,
+          "fit": 20,
           "source": 10,
-          "national": 0,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 911724,
-          "buzzBoost": 20
+          "penalty": 0
         }
       },
       {
-        "id": "2026-06-15-f630a7ddbd2c",
+        "id": "2026-06-24-f49eaef4982d",
         "category": "economy",
-        "title": "스페이스X 상장 이벤트 일단락…집나간 외국인 돌아올까",
-        "summary": "나스닥 상장에 성공한 스페이스X가 당분간 유동성을 흡수하는 '블랙홀' 역할을 하며 주식시장의 변동성을 확대할 것으로 관측된다.",
-        "why": "",
+        "title": "이재용, 천안 HBM 패키징 라인 현장점검…AI메모리 경쟁력 강화 '박차'",
+        "summary": "삼성전자의 최신 기술이 집약된 6세대 제품 HBM4가 글로벌 시장에서 상품성을 인정받고 있고, 패키징 기술의 중요성도 갈수록 부각되는 만큼 메모리 경쟁력 강화에 박차를 가하기 위한 현장 점검으로 풀이된다.",
+        "why": "업계에 따르면이 회장은 이날 천안사업장 C1·C2 라인을 찾아 사업장 운영과 생산 계획, 기술 개발 진행 상황 등에 대한 설명을 청취한 뒤, 방진복을 착용하고 HBM 생산 현황을 살펴봤다.",
         "points": [
-          "집나간 외국인 돌아올까"
+          "이재용 삼성전자 회장이 인공지능(AI) 시대 핵심 반도체인 고대역폭메모리(HBM)의 패키징(후공정) 담당 생산 거점인 충남 천안사업장을 23일 방문해 현장을 점검했다.",
+          "천안사업장은 삼성전자 HBM 첨단 패키징을 담당하는 핵심 생산 거점이다.",
+          "패키징은 전(前)공정 공장에서 생산된 칩을 제품 형태로 완성하고 품질을 최종 검증하는 단계로, 칩을 이어 성능을 향상시키는 공정도 포함된다."
         ],
         "keywords": [
-          "스페이스X",
-          "상장",
-          "나스닥"
+          "이재용",
+          "천안",
+          "HBM"
         ],
         "sourceName": "노컷뉴스",
-        "sourceUrl": "https://www.nocutnews.co.kr/news/6532722",
+        "sourceUrl": "https://www.nocutnews.co.kr/news/6537447",
         "coverage": {
           "sourceCount": 1,
           "sourceNames": [
             "노컷뉴스"
           ]
         },
-        "imageUrl": "https://file2.nocutnews.co.kr/newsroom/image/2026/06/14/202606142237331222_0.jpg",
-        "publishedAt": "2026-06-15T05:00:00.000Z",
-        "heat": 91,
-        "sensitivity": "낮음",
-        "scoreSignals": {
-          "cluster": 0,
-          "topFeed": 8,
-          "recency": 20,
-          "conversation": 15,
-          "fit": 20,
-          "source": 6,
-          "national": 8,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 15242,
-          "buzzBoost": 13
-        }
-      },
-      {
-        "id": "2026-06-15-d9c8402479b8",
-        "category": "economy",
-        "title": "주가 눌렀던 스페이스X...이젠 코스피 상승 모멘텀?",
-        "summary": "측면에서 코스피 상승의 모멘텀이 생길 수 있을 것으로 전망합니다.",
-        "why": "",
-        "points": [
-          "류환홍 기자가 보도합니다"
-        ],
-        "keywords": [
-          "주가",
-          "스페이스X",
-          "측면에서"
-        ],
-        "sourceName": "YTN",
-        "sourceUrl": "https://www.ytn.co.kr/_ln/0102_202606142317037515",
-        "coverage": {
-          "sourceCount": 2,
-          "sourceNames": [
-            "YTN",
-            "뉴스1"
-          ]
-        },
-        "imageUrl": "https://image.ytn.co.kr/general/jpg/2026/0614/202606142317037515_t.jpg",
-        "publishedAt": "2026-06-14T14:17:00.000Z",
-        "heat": 85,
-        "sensitivity": "낮음",
-        "scoreSignals": {
-          "cluster": 16,
-          "topFeed": 0,
-          "recency": 17,
-          "conversation": 10,
-          "fit": 20,
-          "source": 10,
-          "national": 0,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 13546,
-          "buzzBoost": 13
-        }
-      },
-      {
-        "id": "2026-06-15-a5d171b13393",
-        "category": "economy",
-        "title": "신용대출 조이고 금리 올린다… 주담대 8%대 눈앞",
-        "summary": "주택담보대출 고정금리 상단은 연 8%대, 신용대출 금리는 7%대 진입 가능성이 거론된다.",
-        "why": "한국은행의 기준금리 인상 가능성이 커진 가운데 은행권 대출금리가 먼저 빠르게 오르고 있다.",
-        "points": [
-          "주담대 8%대 눈앞"
-        ],
-        "keywords": [
-          "신용대출",
-          "금리",
-          "기준금리"
-        ],
-        "sourceName": "국민일보",
-        "sourceUrl": "https://www.kmib.co.kr/article/view.asp?arcid=1781425187&code=11151300&cp=nv",
-        "coverage": {
-          "sourceCount": 1,
-          "sourceNames": [
-            "국민일보"
-          ]
-        },
-        "imageUrl": "https://image.kmib.co.kr/online_image/2026/0615/2026061422040633398_1781442246_1781425187.jpg",
-        "publishedAt": "2026-06-14T17:04:00.000Z",
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T17:51:52.000Z",
         "heat": 72,
         "sensitivity": "낮음",
         "scoreSignals": {
           "cluster": 0,
-          "topFeed": 0,
+          "topFeed": 8,
           "recency": 17,
-          "conversation": 20,
-          "fit": 20,
+          "conversation": 5,
+          "fit": 8,
+          "source": 6,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-484d55431eee",
+        "category": "economy",
+        "title": "1분기 기업 실적 개선…전자·통신장비 쏠림 뚜렷",
+        "summary": "올해 1분기 국내 기업들의 성장성과 수익성이 모두 개선된 것으로 나타났습니다.",
+        "why": "",
+        "points": [],
+        "keywords": [
+          "1분기",
+          "기업",
+          "실적"
+        ],
+        "sourceName": "KBS",
+        "sourceUrl": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8592723&ref=A",
+        "coverage": {
+          "sourceCount": 1,
+          "sourceNames": [
+            "KBS"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T03:00:00.000Z",
+        "heat": 66,
+        "sensitivity": "낮음",
+        "scoreSignals": {
+          "cluster": 0,
+          "topFeed": 0,
+          "recency": 13,
+          "conversation": 0,
+          "fit": 16,
           "source": 10,
-          "national": 0,
-          "rawPenalty": 0,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-9f62c9691f9d",
+        "category": "economy",
+        "title": "“지역 제조업 생산 및 출하 감소와 수출 부진 영향”",
+        "summary": "지역 제조업 생산 및 출하 감소와 수출 부진이 지역 내 고용 ·소득 여건 개선 기대를 제약하면서 가계수입 전망이 하락했다고 분석했다.",
+        "why": "생활형편전망(97·-3p)·, 현재생활형편(92·-2p)도 모두 내려갔다.",
+        "points": [],
+        "keywords": [
+          "지역",
+          "제조업",
+          "생산"
+        ],
+        "sourceName": "kwnews",
+        "sourceUrl": "https://www.kwnews.co.kr/page/view/2026062350131800000",
+        "coverage": {
+          "sourceCount": 1,
+          "sourceNames": [
+            "kwnews"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T08:24:00.000Z",
+        "heat": 59,
+        "sensitivity": "낮음",
+        "scoreSignals": {
+          "cluster": 0,
+          "topFeed": 0,
+          "recency": 13,
+          "conversation": 0,
+          "fit": 16,
+          "source": 0,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-383fd188e039",
+        "category": "economy",
+        "title": "금투협회장 \"전국민이 투자에 눈 벌겋다…삼전닉스 레버리지 염려\"",
+        "summary": "황 회장은 23일 여의도 금융투자협회에서 기자들과 만나 \"5월 27일 단일종목 레버리지 ETF가 출시됐을 때 과연 시장에 어떤 영향을 미칠지 염려하는 부분들이 많이 있었다\"고 말했다.",
+        "why": "황성엽 금융투자협회장이 최근 단일종목 레버리지 상장지수펀드(ETF) 과열 논란을 계기로 개인투자자 중심으로 쏠린 국내 자본시장 구조에 우려를 나타냈다.",
+        "points": [
+          "단일종목 레버리지 ETF의 구조적 위험도 언급했다.",
+          "전날 이찬진 금융감독원장의 우려 표명에 이어 황 회장도 관련 입장을 밝힌 것이다.",
+          "효과는 인정하면서도 기관투자자와 연금, 펀드·ISA 중심의 장기·간접투자 문화가 자리 잡아야 한다고 강조했다."
+        ],
+        "keywords": [
+          "금투협회장",
+          "전국민이",
+          "투자에"
+        ],
+        "sourceName": "노컷뉴스",
+        "sourceUrl": "https://www.nocutnews.co.kr/news/6537477",
+        "coverage": {
+          "sourceCount": 1,
+          "sourceNames": [
+            "노컷뉴스"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T18:10:45.000Z",
+        "heat": 95,
+        "sensitivity": "중간",
+        "scoreSignals": {
+          "cluster": 0,
+          "topFeed": 8,
+          "recency": 17,
+          "conversation": 15,
+          "fit": 20,
+          "source": 6,
           "penalty": 0
         }
       }
     ],
     "society": [
       {
-        "id": "2026-06-15-2b098c41b3a7",
+        "id": "2026-06-24-44672ddcfa2e",
         "category": "society",
-        "title": "법원 \"연립주택 '장애인 경사로 미설치'는 하자\"‥GS건설 패소",
-        "summary": "서울행정법원 행정2부는 경기 고양시에 단지형 연립주택을 시공한 GS건설이 \"2024년 받은 하자 판정을 취소해달라\"며 국토교통부 하자심사분쟁조정위원회를 상대로 낸 소송에서 원고 패소 판결했습니다.",
-        "why": "",
+        "title": "\"전과사실 익명 공개도 명예훼손?\"…언론보도 재판소원, 본안 간다",
+        "summary": "헌법재판소가 과거 전과사실을 익명으로 보도한 언론인들에게 손해배상 책임을 인정한 법원 판결의 취소를 구하는 재판소원 사건을 본안 심리 대상으로 선정했다.",
+        "why": "청구인들은 법원이 언론의 자유로서 보호될 수 없다고 본 보도사실 1가지(과거 전과사실의 익명 공개) 역시 공직사회의 신뢰에 끼치는 부정적 영향을 다루는 공적 사안에 해당하는 것으로, 명예훼손으로 인한 민사상 손해배상책임의 성립이 면제되는 '공공의 이익'이 인정된다고 주장했다.",
         "points": [
-          "건설사가 단지형 연립주택에 장애인 통행을 위한 경사로를 일부 설치하지 않은 건 하자에 해당한다고 법원이 판단했습니다."
+          "헌재는 23일 재판소원 사전심사를 담당하는 지정재판부 평의를 거쳐 재판취소 헌법소원 사건 1건을 전원재판부에 회부했다고 밝혔다.",
+          "재판소원 제도 시행 이후 전원재판부에 회부된 사건은 모두 9건으로 늘었다.",
+          "해당 사건은 KBS 기자 2명이 사기 혐의로 수사를 받던 기업가 A씨에 대해 현재 고위공직자와의 친분 과시 행태와 과거 사기 전과사실 등을 익명으로 보도하면서 시작됐다."
         ],
         "keywords": [
-          "연립주택",
-          "법원",
-          "장애인"
+          "전과사실",
+          "익명",
+          "공개도"
         ],
-        "sourceName": "MBC",
-        "sourceUrl": "https://imnews.imbc.com/news/2026/society/article/6830208_36918.html",
-        "coverage": {
-          "sourceCount": 9,
-          "sourceNames": [
-            "MBC",
-            "dnews",
-            "연합뉴스",
-            "SBS",
-            "delighti",
-            "youthdaily",
-            "sentv",
-            "뉴스핌",
-            "더팩트"
-          ]
-        },
-        "imageUrl": "https://image.imnews.imbc.com/news/2026/society/article/__icsFiles/afieldfile/2026/06/15/yh_20260615-4.jpg",
-        "publishedAt": "2026-06-15T00:55:00.000Z",
-        "heat": 86,
-        "sensitivity": "중간",
-        "scoreSignals": {
-          "cluster": 24,
-          "topFeed": 0,
-          "recency": 20,
-          "conversation": 0,
-          "fit": 16,
-          "source": 10,
-          "national": 0,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 1523,
-          "buzzBoost": 7
-        }
-      },
-      {
-        "id": "2026-06-15-1075f90a611a",
-        "category": "society",
-        "title": "BTF푸른나무재단, 학교폭력 예방 ‘초등 저학년 관계회복 프로그램 실습 연수’ 실시",
-        "summary": "BTF푸른나무재단(이하 BTF)은 ‘초등학교 저학년 관계회복 프로그램 실습형 집합연수’를 실시했다고 15일 밝혔다.",
-        "why": "",
-        "points": [
-          "BTF는 우리나라 최초로 학교폭력의 심각성을 시민사회에 알리고, 이를 예방 및 치료하기 위해 설립된 비영리 공익법인(NGO)이다."
-        ],
-        "keywords": [
-          "BTF푸른나무재단",
-          "학교폭력",
-          "이하"
-        ],
-        "sourceName": "동아일보",
-        "sourceUrl": "https://www.donga.com/news/Society/article/all/20260615/134111735/1",
+        "sourceName": "노컷뉴스",
+        "sourceUrl": "https://www.nocutnews.co.kr/news/6537375",
         "coverage": {
           "sourceCount": 1,
           "sourceNames": [
-            "동아일보"
+            "노컷뉴스"
           ]
         },
-        "imageUrl": "https://dimg.donga.com/wps/NEWS/IMAGE/2026/06/15/134111571.2.jpg",
-        "publishedAt": "2026-06-15T00:42:59.000Z",
-        "heat": 79,
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T16:47:14.000Z",
+        "heat": 93,
         "sensitivity": "중간",
         "scoreSignals": {
-          "cluster": 0,
+          "cluster": 8,
           "topFeed": 8,
-          "recency": 20,
+          "recency": 17,
           "conversation": 5,
           "fit": 20,
-          "source": 10,
-          "national": 12,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 147,
-          "buzzBoost": 1
-        }
-      },
-      {
-        "id": "2026-06-15-057f5506ad4d",
-        "category": "society",
-        "title": "서울 아파트 거래 중 13%는 20억 이상…강남3구 급증",
-        "summary": "서울 아파트 매매 시장에서 20억원을 넘는 거래 비중이 올해 초 대비 증가하며 지난달 13%를 넘어선 것으로 나타났다.",
-        "why": "",
-        "points": [
-          "특히 강남3구를 중심으로 고가 거래가 급증했다."
-        ],
-        "keywords": [
-          "서울",
-          "아파트",
-          "매매"
-        ],
-        "sourceName": "동아일보",
-        "sourceUrl": "https://www.donga.com/news/Economy/article/all/20260615/134111969/1",
-        "coverage": {
-          "sourceCount": 3,
-          "sourceNames": [
-            "동아일보",
-            "SBS",
-            "매일경제"
-          ]
-        },
-        "imageUrl": "https://dimg.donga.com/wps/NEWS/IMAGE/2026/06/15/134111970.1.jpg",
-        "publishedAt": "2026-06-15T01:07:00.000Z",
-        "heat": 69,
-        "sensitivity": "낮음",
-        "scoreSignals": {
-          "cluster": 16,
-          "topFeed": 8,
-          "recency": 20,
-          "conversation": 0,
-          "fit": 4,
-          "source": 10,
-          "national": 6,
-          "rawPenalty": 0,
+          "source": 6,
           "penalty": 0
         }
       },
       {
-        "id": "2026-06-15-e6dae775830b",
+        "id": "2026-06-24-605e97746b6e",
         "category": "society",
-        "title": "특검, 이창수 前중앙지검장 첫 소환 …‘도이치 수사 무마’ 의혹",
-        "summary": "김건희 여사가 연루된 도이치모터스 주가조작 사건 수사 무마 의혹을 들여다보는 2차 종합특별검사팀이 이창수 전 서울중앙지검장을 소환했다.",
+        "title": "서울 교육청, 학교 수영장 부대시설 안전관리 표준 마련",
+        "summary": "시설관리본부는 한국교육시설안전원에 정책 연구를 의뢰해 시설 특성에 맞는 안전관리 기준과 점검체계를 구축해 '학교 수영장 부대시설 안전관리 표준'을 정립했다.",
         "why": "",
         "points": [],
         "keywords": [
-          "이창수",
-          "수사",
-          "김건희"
+          "서울",
+          "교육청",
+          "학교"
+        ],
+        "sourceName": "노컷뉴스",
+        "sourceUrl": "https://www.nocutnews.co.kr/news/6537350?utm_source=naver&utm_medium=article&utm_campaign=20260624060036",
+        "coverage": {
+          "sourceCount": 2,
+          "sourceNames": [
+            "노컷뉴스",
+            "뉴스1"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T21:01:00.000Z",
+        "heat": 86,
+        "sensitivity": "낮음",
+        "scoreSignals": {
+          "cluster": 8,
+          "topFeed": 0,
+          "recency": 20,
+          "conversation": 5,
+          "fit": 16,
+          "source": 6,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-7e6722791537",
+        "category": "society",
+        "title": "현대차 노조, 파업 찬반투표 돌입…오후 5시 종료",
+        "summary": "현대자동차 노조가 올해 임금 및 단체협상 결렬로 파업 찬반투표에 돌입했다. 노조는 24일 오전 8시 전체 조합원 3만 9000여 명을 대상으로 투표를 시작했다.",
+        "why": "대부분 모바일 방식으로 투표에 참여해 결과는 투표 종료 후 발표될 예정이다. 앞서 현대차 노사는 지난달 6일 상견례를 시작으로 교섭을 이어왔으나 합의점을 찾지 못했다.",
+        "points": [],
+        "keywords": [
+          "현대차",
+          "노조",
+          "파업"
         ],
         "sourceName": "동아일보",
-        "sourceUrl": "https://www.donga.com/news/Society/article/all/20260615/134111901/1",
+        "sourceUrl": "https://www.donga.com/news/Society/article/all/20260624/134170898/1",
         "coverage": {
           "sourceCount": 2,
           "sourceNames": [
             "동아일보",
-            "뉴시스"
+            "매일경제"
           ]
         },
-        "imageUrl": "https://dimg.donga.com/wps/NEWS/IMAGE/2026/06/15/134111902.1.jpg",
-        "publishedAt": "2026-06-15T00:58:25.000Z",
-        "heat": 68,
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T23:19:59.000Z",
+        "heat": 84,
         "sensitivity": "중간",
         "scoreSignals": {
           "cluster": 8,
           "topFeed": 8,
           "recency": 20,
-          "conversation": 5,
-          "fit": 12,
+          "conversation": 0,
+          "fit": 8,
           "source": 10,
-          "national": 0,
-          "rawPenalty": 0,
           "penalty": 0
         }
       },
       {
-        "id": "2026-06-15-4d043c6365cd",
+        "id": "2026-06-24-46d3664455f7",
         "category": "society",
-        "title": "'한국 4-0 격파' 코트디부아르, '디알로 후반 45분 극적 결승골'로 웃었다.. 에콰도르 '골대 3번 강타' 불운",
-        "summary": "한국을 4-0, 프랑스를 상대로 2-1 격파했던 아프리카팀 코트디부아르가 고전 끝에 남미팀 에콰도르를 꺾었다.",
+        "title": "프랑스, 관측 이래 가장 더운 날…유럽 폭염에 학교·관광지 운영 차질",
+        "summary": "23일(현지시간) 프랑스에서 1947년 기상 관측 시작 이후 가장 더운 날이 기록됐다.",
         "why": "",
         "points": [],
         "keywords": [
-          "한국",
-          "코트디부아르",
-          "격파했던"
+          "프랑스",
+          "관측",
+          "이래"
         ],
-        "sourceName": "조선일보",
-        "sourceUrl": "https://www.chosun.com/sports/world-football/2026/06/15/MI3DOMZUMEZTMNLDG5TGEZRUME/",
+        "sourceName": "뉴스1",
+        "sourceUrl": "https://www.news1.kr/world/europe/6206262",
         "coverage": {
           "sourceCount": 1,
           "sourceNames": [
-            "조선일보"
+            "뉴스1"
           ]
         },
-        "imageUrl": "https://www.chosun.com/pf/resources/images/thumb_meta.png?d=2244",
-        "publishedAt": "2026-06-15T01:11:00.000Z",
-        "heat": 66,
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T17:06:00.000Z",
+        "heat": 83,
         "sensitivity": "낮음",
         "scoreSignals": {
           "cluster": 0,
-          "topFeed": 8,
-          "recency": 20,
+          "topFeed": 0,
+          "recency": 17,
+          "conversation": 15,
+          "fit": 16,
+          "source": 6,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-7c5a5e99f207",
+        "category": "society",
+        "title": "'이 대통령 명예훼손 혐의' 모스탄, 내일 경찰 조사 첫 출석",
+        "summary": "모스탄은 처음으로 경찰에 출석해 피의자 조사를 받는다.",
+        "why": "",
+        "points": [],
+        "keywords": [
+          "李대통령",
+          "명예훼손",
+          "혐의"
+        ],
+        "sourceName": "노컷뉴스",
+        "sourceUrl": "https://www.nocutnews.co.kr/news/6537420?utm_source=naver&utm_medium=article&utm_campaign=20260623055529",
+        "coverage": {
+          "sourceCount": 2,
+          "sourceNames": [
+            "노컷뉴스",
+            "safetimes"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T08:33:00.000Z",
+        "heat": 82,
+        "sensitivity": "낮음",
+        "scoreSignals": {
+          "cluster": 8,
+          "topFeed": 0,
+          "recency": 13,
+          "conversation": 10,
+          "fit": 16,
+          "source": 6,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-7402bd09a9dd",
+        "category": "society",
+        "title": "부산도시철도 차량기지 침입해 전동차에 그라피티… 경찰 수사",
+        "summary": "부산교통공사는 이번 사건도 경찰 수사에 적극 협조하고, 피해 산정을 완료하는 대로 손해배상을 청구한다는 방침이다.",
+        "why": "",
+        "points": [],
+        "keywords": [
+          "부산도시철도",
+          "차량기지",
+          "침입해"
+        ],
+        "sourceName": "노컷뉴스",
+        "sourceUrl": "https://www.nocutnews.co.kr/news/6537236?utm_source=naver&utm_medium=article&utm_campaign=20260623022628",
+        "coverage": {
+          "sourceCount": 1,
+          "sourceNames": [
+            "노컷뉴스"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T05:27:00.000Z",
+        "heat": 71,
+        "sensitivity": "중간",
+        "scoreSignals": {
+          "cluster": 0,
+          "topFeed": 0,
+          "recency": 13,
           "conversation": 5,
-          "fit": 4,
-          "source": 10,
-          "national": 20,
-          "rawPenalty": 0,
+          "fit": 20,
+          "source": 6,
           "penalty": 0
         }
       }
     ],
     "culture": [
       {
-        "id": "2026-06-15-92954012de3f",
+        "id": "2026-06-24-d460a33e6a15",
         "category": "culture",
-        "title": "500만 넘긴 '군체', 4주 연속 주말 박스오피스 1위",
-        "summary": "영화 '군체'가 4주 연속 주말 박스오피스 1위를 차지했다.",
+        "title": "\"달빛 아래 달콤한 밤\"…서초구, 27∼28일 K-디저트 축제",
+        "summary": "서초구가 27일부터 28일까지 달빛무지개분수를 배경으로 달콤한 K-디저트 축제를 연다.",
         "why": "",
-        "points": [
-          "지난달 5월 21일 개봉한 '군체'는 단 한 번도 박스오피스 1위 자리를 내주지 않으며 24일 만에 500만 관객을 돌파했다.",
-          "이로써 올해 개봉작 중 '왕과 사는 남자'에 이어 두 번째로 500만 고지를 밟은 영화가 됐다."
-        ],
+        "points": [],
         "keywords": [
-          "군체",
-          "연속",
-          "주말"
+          "달빛",
+          "아래",
+          "달콤한"
         ],
-        "sourceName": "SBS",
-        "sourceUrl": "https://ent.sbs.co.kr/news/article.do?article_id=E10010317858&plink=ORI&cooper=NAVER",
+        "sourceName": "연합뉴스",
+        "sourceUrl": "https://www.yna.co.kr/view/AKR20260624016500004?input=1195m",
         "coverage": {
-          "sourceCount": 13,
+          "sourceCount": 2,
           "sourceNames": [
-            "SBS",
-            "더팩트",
-            "celuvmedia",
-            "엑스포츠뉴스",
-            "스포츠서울",
-            "마이데일리",
-            "isplus",
-            "topstarnews",
-            "TV리포트",
-            "동아일보",
-            "bntnews",
-            "MBC"
+            "연합뉴스",
+            "jeonmae"
           ]
         },
-        "imageUrl": "https://img.sbs.co.kr/newsnet/etv/upload/2026/05/21/30001063645_16v9.jpg",
-        "publishedAt": "2026-06-14T23:56:00.000Z",
-        "heat": 86,
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T22:10:00.000Z",
+        "heat": 91,
         "sensitivity": "낮음",
         "scoreSignals": {
-          "cluster": 24,
+          "cluster": 8,
           "topFeed": 0,
           "recency": 20,
-          "conversation": 0,
-          "fit": 18,
+          "conversation": 5,
+          "fit": 20,
           "source": 10,
-          "national": 6,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 1246,
-          "buzzBoost": 7
+          "penalty": 0
         }
       },
       {
-        "id": "2026-06-15-c9d57c774c83",
+        "id": "2026-06-24-60e954ef6df6",
         "category": "culture",
-        "title": "놀유니버스, 8월 중순까지 '놀데이' 진행…\"숙소 최대 81% 할인\"",
-        "summary": "이 밖에 연극, 뮤지컬, 전시, 클래식ㆍ무용 등 전국 주요 공연 티켓을 최대 60% 할인된 가격에 구매할 수 있다.",
+        "title": "문학동네, 도서전서 시인선·베스트셀러 리커버 선보인다",
+        "summary": "출판사 문학동네가 오는 24일 개막하는 서울국제도서전에서 시인선 15주년을 기념하고 베스트셀러 리커버, 굿즈 등을 선보이고, 한국문학을 이끄는 작가의 사인회 등 행사를 선보인다.",
         "why": "",
-        "points": [
-          "숙소 최대 81% 할인"
-        ],
+        "points": [],
         "keywords": [
-          "놀데이",
-          "놀유니버스",
-          "최대"
+          "문학동네",
+          "도서전서",
+          "시인선"
         ],
-        "sourceName": "연합뉴스",
-        "sourceUrl": "https://www.yna.co.kr/view/AKR20260615036200030?input=1195m",
+        "sourceName": "뉴시스",
+        "sourceUrl": "https://www.newsis.com/view/NISX20260623_0003679441",
         "coverage": {
           "sourceCount": 1,
           "sourceNames": [
-            "연합뉴스"
+            "뉴시스"
           ]
         },
-        "imageUrl": "https://img2.yna.co.kr/etc/inner/KR/2026/06/15/AKR20260615036200030_01_i_P4.jpg",
-        "publishedAt": "2026-06-15T00:43:00.000Z",
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T01:10:00.000Z",
+        "heat": 65,
+        "sensitivity": "낮음",
+        "scoreSignals": {
+          "cluster": 0,
+          "topFeed": 0,
+          "recency": 13,
+          "conversation": 0,
+          "fit": 20,
+          "source": 6,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-27665c9027d3",
+        "category": "culture",
+        "title": "342만 관객 모은 '체인소 맨' 후속 제작 확정... '자객편' 나온다",
+        "summary": "올해 초 개봉한 '극장판 체인소 맨: 레제편'은 342만 관객을 모으며 2025년 개봉 영화 중 흥행 5위에 올랐다.",
+        "why": "",
+        "points": [
+          "이 작품은 개봉 8주 차에도 박스오피스 3위권을 유지하며 장기 흥행에 성공했다."
+        ],
+        "keywords": [
+          "342만",
+          "관객",
+          "모은"
+        ],
+        "sourceName": "인사이트",
+        "sourceUrl": "https://www.insight.co.kr/news/559873",
+        "coverage": {
+          "sourceCount": 1,
+          "sourceNames": [
+            "인사이트"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-24T00:36:00.000Z",
         "heat": 63,
         "sensitivity": "낮음",
         "scoreSignals": {
@@ -941,38 +935,36 @@
           "topFeed": 0,
           "recency": 20,
           "conversation": 0,
-          "fit": 20,
-          "source": 10,
-          "national": 6,
-          "rawPenalty": 15,
-          "penalty": 9
+          "fit": 18,
+          "source": 0,
+          "penalty": 0
         }
       },
       {
-        "id": "2026-06-15-d4aa976b368b",
+        "id": "2026-06-24-3f70d3f18e3c",
         "category": "culture",
-        "title": "한국인 132만 명 찾은 베트남…다낭·푸꾸옥 관광 수요 증가",
-        "summary": "베트남이 한국인 여행객들의 주요 동남아 휴양지로 자리 잡은 가운데, 다낭과 푸꾸옥이 관광 수요 확대를 이끄는 핵심 지역으로 떠오르고 있다.",
-        "why": "푸꾸옥 역시 새로운 휴양지로 주목받고 있다.",
+        "title": "'K-뷰티의 모든 것'…문체부, 오늘 코리아뷰티페스티벌 개막",
+        "summary": "문체부가 화장·헤어·피부관리 등을 관광 상품과 연결하는 코리아뷰티페스티벌을 개막했다.",
+        "why": "",
         "points": [
-          "직항 노선 확대와 관광 인프라 개선, 한국인 여행객 대상 서비스 강화 등이 이어지면서 두 지역을 찾는 방문객도 증가하는 추세다.",
-          "다낭 도심에서 차량으로 약 1시간 거리에 위치해 있어 한강변 일대에서 열리는 다낭 국제불꽃축제(DIFF 2026) 등 지역 행사와 연계한 관광 일정도 가능하다."
+          "한국 관광 명예홍보대사 세시 드 라 쿠에바, 차드라발 강인즈가 참석해 축제의 시작을 알렸다.",
+          "온라인 여행사(OTA) 9개사 함께 'K-뷰티 관광 상품 특별전'도 진행한다."
         ],
         "keywords": [
-          "한국인",
-          "베트남",
-          "주요"
+          "뷰티의",
+          "모든",
+          "문체부"
         ],
-        "sourceName": "thebilliards",
-        "sourceUrl": "https://www.thebilliards.kr/news/articleView.html?idxno=31139",
+        "sourceName": "연합뉴스",
+        "sourceUrl": "https://www.yna.co.kr/view/AKR20260624032000030?input=1195m",
         "coverage": {
           "sourceCount": 1,
           "sourceNames": [
-            "thebilliards"
+            "연합뉴스"
           ]
         },
-        "imageUrl": "https://cdn.thebilliards.kr/news/thumbnail/202606/31139_49632_212_v150.jpg",
-        "publishedAt": "2026-06-15T01:22:00.000Z",
+        "imageUrl": "",
+        "publishedAt": "2026-06-24T00:20:00.000Z",
         "heat": 61,
         "sensitivity": "낮음",
         "scoreSignals": {
@@ -981,296 +973,303 @@
           "recency": 20,
           "conversation": 0,
           "fit": 16,
-          "source": 0,
-          "national": 12,
-          "rawPenalty": 15,
-          "penalty": 3
+          "source": 10,
+          "penalty": 12
         }
       },
       {
-        "id": "2026-06-15-be3936d02e46",
+        "id": "2026-06-24-dc204ee07471",
         "category": "culture",
-        "title": "'토이 스토리5' 개봉 D-2, 예매율?…사전 예매 6만장 돌파",
-        "summary": "개봉일이 이틀 앞으로 다가 온 영화 '토이스토리5'가 예매율 1위 자리를 지키고 있다.",
-        "why": "신작 개봉이 이어지는 가운데 박스오피스에 어떤 변화가 생길지 주목된다.",
-        "points": [
-          "사전 예매 6만장 돌파",
-          "순차적으로 이름을 올리고 있다"
-        ],
+        "title": "관광공사, 스타필드 수원에 ‘대한민국 구석구석’ 팝업스토어",
+        "summary": "대한민국 구석구석은 관광공사가 전국 관광지, 축제, 맛집, 여행 코스 등 국내 여행 정보를 제공하는 플랫폼으로, 지난해 약 5600만 회 방문과 1억 3000만 회 페이지뷰를 기록했다.",
+        "why": "",
+        "points": [],
         "keywords": [
-          "토이 스토리5",
-          "개봉",
-          "예매율"
+          "관광공사",
+          "스타필드",
+          "수원에"
         ],
-        "sourceName": "topstarnews",
-        "sourceUrl": "https://www.topstarnews.net/news/articleView.html?idxno=16093872",
+        "sourceName": "국민일보",
+        "sourceUrl": "https://www.kmib.co.kr/article/view.asp?arcid=0030006745&code=61172311&cp=nv",
         "coverage": {
-          "sourceCount": 1,
+          "sourceCount": 3,
           "sourceNames": [
-            "topstarnews"
+            "국민일보",
+            "seoulfn",
+            "lawissue"
           ]
         },
-        "imageUrl": "https://cdn.topstarnews.net/news/photo/202606/16093872_1942720_4438_crop.jpg",
-        "publishedAt": "2026-06-14T23:48:00.000Z",
-        "heat": 60,
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T00:15:00.000Z",
+        "heat": 62,
         "sensitivity": "낮음",
         "scoreSignals": {
-          "cluster": 0,
+          "cluster": 16,
           "topFeed": 0,
-          "recency": 20,
+          "recency": 8,
           "conversation": 0,
-          "fit": 18,
-          "source": 0,
-          "national": 6,
-          "rawPenalty": 0,
-          "penalty": 0
+          "fit": 16,
+          "source": 10,
+          "penalty": 12
         }
       },
       {
-        "id": "2026-06-15-2600eb9bd101",
+        "id": "2026-06-24-9f432929093d",
         "category": "culture",
-        "title": "A24 최고 흥행작…영화 '백룸', 100만 돌파 목전",
-        "summary": "특히 이 작품은 이르면 오늘(15일), 늦어도 이번 주 평일께 100만 관객을 돌파할 것으로 예상되고 있다.",
+        "title": "IP 왕국 디즈니, 올여름도 검증된 흥행 카드로 총력전",
+        "summary": "지난해 글로벌 박스오피스 매출 65억 달러를 기록하며 할리우드 스튜디오 가운데 1위에 오른 디즈니가 올여름 극장가에서도 대형 IP들을 전면에 내세운다.",
         "why": "",
-        "points": [
-          "영화 '백룸'은 지난달 27일 개봉한 이후 꾸준히 박스오피스 상위권에 이름을 올리고 있다.",
-          "영화 '백룸', 100만 돌파 목전"
-        ],
+        "points": [],
         "keywords": [
-          "백룸",
-          "영화",
-          "지난달"
+          "IP",
+          "왕국",
+          "디즈니"
         ],
-        "sourceName": "topstarnews",
-        "sourceUrl": "https://www.topstarnews.net/news/articleView.html?idxno=16093854",
+        "sourceName": "dailian",
+        "sourceUrl": "https://www.dailian.co.kr/news/view/1658677/?sc=Naver",
         "coverage": {
           "sourceCount": 1,
           "sourceNames": [
-            "topstarnews"
+            "dailian"
           ]
         },
-        "imageUrl": "https://cdn.topstarnews.net/news/photo/202606/16093854_1942706_3612_crop.jpg",
-        "publishedAt": "2026-06-14T23:38:00.000Z",
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T01:37:00.000Z",
         "heat": 58,
         "sensitivity": "낮음",
         "scoreSignals": {
           "cluster": 0,
           "topFeed": 0,
-          "recency": 20,
+          "recency": 13,
           "conversation": 0,
-          "fit": 18,
+          "fit": 14,
           "source": 0,
-          "national": 6,
-          "rawPenalty": 0,
           "penalty": 0
         }
       }
     ],
     "entertainment": [
       {
-        "id": "2026-06-15-81e70c1e5a00",
+        "id": "2026-06-24-dde7ed011d7b",
         "category": "entertainment",
-        "title": "‘강회장’ 이준영, 7월 21일 입대…손편지로 쓴 뜨거운 안녕",
-        "summary": "이준영은 지난 14일 개인 SNS를 통해 자필 손편지를 공개하며 오는 7월 21일 입대 소식을 알렸다.",
-        "why": "",
-        "points": [
-          "가수 겸 배우 이준영이 손편지를 통해 직접 입대 소식을 전했다.",
-          "손편지로 쓴 뜨거운 안녕"
-        ],
-        "keywords": [
-          "강회장",
-          "이준영",
-          "입대"
-        ],
-        "sourceName": "경향신문",
-        "sourceUrl": "https://sports.khan.co.kr/article/202606150836003?pt=nv",
-        "coverage": {
-          "sourceCount": 4,
-          "sourceNames": [
-            "경향신문",
-            "ize",
-            "데일리안",
-            "nc"
-          ]
-        },
-        "imageUrl": "https://images.khan.co.kr/article/2026/06/15/news-p.v1.20260615.a99319bf5fc44d62a9ee857acac0fd40_P1.jpg",
-        "publishedAt": "2026-06-14T23:37:00.000Z",
-        "heat": 93,
-        "sensitivity": "낮음",
-        "scoreSignals": {
-          "cluster": 24,
-          "topFeed": 0,
-          "recency": 20,
-          "conversation": 10,
-          "fit": 20,
-          "source": 10,
-          "national": 0,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 1251,
-          "buzzBoost": 7
-        }
-      },
-      {
-        "id": "2026-06-15-8627565e064d",
-        "category": "entertainment",
-        "title": "혜리, 무대 위 어깨끈 뚝…아찔 사고에도 완벽 대처 ‘프로 아이돌’",
-        "summary": "걸스데이 출신 배우 겸 가수 혜리가 팬 미팅에서 상의 한 쪽 어깨끈이 떨어지는 아찔한 일을 겪었지만, 센스 넘치게 이를 해결했다.",
-        "why": "",
-        "points": [
-          "센스 넘치게 이를 해결했다"
-        ],
-        "keywords": [
-          "프로 아이돌",
-          "혜리",
-          "어깨끈"
-        ],
-        "sourceName": "동아일보",
-        "sourceUrl": "https://www.donga.com/news/Entertainment/article/all/20260615/134111800/1",
-        "coverage": {
-          "sourceCount": 1,
-          "sourceNames": [
-            "동아일보"
-          ]
-        },
-        "imageUrl": "https://dimg.donga.com/wps/NEWS/IMAGE/2026/06/15/134111801.1.jpg",
-        "publishedAt": "2026-06-15T00:50:50.000Z",
-        "heat": 77,
-        "sensitivity": "낮음",
-        "scoreSignals": {
-          "cluster": 0,
-          "topFeed": 8,
-          "recency": 20,
-          "conversation": 15,
-          "fit": 12,
-          "source": 10,
-          "national": 8,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 337,
-          "buzzBoost": 3
-        }
-      },
-      {
-        "id": "2026-06-15-50bec59a6762",
-        "category": "entertainment",
-        "title": "야구 경기 중 플래시 터뜨린 아이돌, '민폐 논란' 사과",
-        "summary": "신인 보이그룹 아홉(AHOF)이 시구 및 시타자로 방문한 프로야구 경기 때 플래시를 터뜨려 자체 촬영을 하는 등의 행동으로 비판받자 사과했다.",
+        "title": "역시 임영웅 파워..'산골총각 영웅', 시청률 1위",
+        "summary": "SBS 새 예능 프로그램 '산골총각 영웅'이 첫 방송부터 시청률 1위에 올랐다.",
         "why": "",
         "points": [],
         "keywords": [
-          "민폐 논란",
-          "경기",
-          "플래시"
+          "역시",
+          "임영웅",
+          "파워"
+        ],
+        "sourceName": "starnewskorea",
+        "sourceUrl": "https://www.starnewskorea.com/broadcast-show/2026/06/24/2026062408380829817",
+        "coverage": {
+          "sourceCount": 3,
+          "sourceNames": [
+            "starnewskorea",
+            "isplus",
+            "slist"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T23:45:00.000Z",
+        "heat": 96,
+        "sensitivity": "낮음",
+        "scoreSignals": {
+          "cluster": 16,
+          "topFeed": 0,
+          "recency": 20,
+          "conversation": 15,
+          "fit": 20,
+          "source": 0,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-3120d2b42828",
+        "category": "entertainment",
+        "title": "K팝 콘서트 '예매 전쟁' 폐해 끝낼까…韓팬들 먼저 챙긴다",
+        "summary": "K팝 아이돌의 국내 단독 콘서트에서 팬클럽 가입자 중 내국인에게 우선 예매할 권한을 주는 선예매 제도가 확대되고 있다.",
+        "why": "놀 티켓에서 예매를 여는 NCT 드림의 10주년 기념 팬 미팅 '더 스위트 드림 호텔'(THE SWEET DREAM HOTEL)은 국내 페이지 팬클럽 선예매와 글로벌 페이지 팬클럽 선예매가 각각 23일 저녁 8시, 24일 저녁 8시로 예정돼 있다.",
+        "points": [
+          "한국에서 열리는 공연임에도 치열한 예매 경쟁으로 표를 구하기 어려웠던 내국인에게 더 기회를 여는 시도로 읽힌다.",
+          "그 출발점이 될 서울 송파구 올림픽공원 케이스포돔(구 체조경기장) 공연에 국내 팬클럽 선예매를 도입했다.",
+          "팬클럽 기수제를 운영 중인 JYP엔터테인먼트는 이번 스트레이 키즈 선예매에서 공식 팬클럽 '스테이 6기'에 우선권을 줬다."
+        ],
+        "keywords": [
+          "K팝",
+          "콘서트",
+          "예매"
         ],
         "sourceName": "노컷뉴스",
-        "sourceUrl": "https://www.nocutnews.co.kr/news/6532819",
+        "sourceUrl": "https://www.nocutnews.co.kr/news/6537508",
         "coverage": {
           "sourceCount": 1,
           "sourceNames": [
             "노컷뉴스"
           ]
         },
-        "imageUrl": "https://file2.nocutnews.co.kr/newsroom/image/2026/06/15/202606150955219918_0.jpg",
-        "publishedAt": "2026-06-15T09:59:22.000Z",
-        "heat": 75,
-        "sensitivity": "중간",
+        "imageUrl": "",
+        "publishedAt": "",
+        "heat": 92,
+        "sensitivity": "낮음",
         "scoreSignals": {
           "cluster": 0,
           "topFeed": 8,
           "recency": 20,
-          "conversation": 5,
+          "conversation": 10,
           "fit": 20,
           "source": 6,
-          "national": 8,
-          "rawPenalty": 0,
-          "penalty": 0,
-          "buzzTotal": 1474,
-          "buzzBoost": 7
-        }
-      },
-      {
-        "id": "2026-06-15-ce7576777d9e",
-        "category": "entertainment",
-        "title": "‘멋진 신세계’ 임지연, 진짜 신서리였다...자체 최고 시청률 경신",
-        "summary": "12화 시청률은 최고 12.8%을 기록했으며, 수도권 11.0%, 전국 10.5%로 자체 최고 시청률을 또 한 번 경신했다.",
-        "why": "",
-        "points": [
-          "무명 배우 신서리(임지연 분)와 ‘자본주의 괴물’이라 불리는 악질 재벌 차세계의 로맨스 코미디 드라마다."
-        ],
-        "keywords": [
-          "멋진 신세계",
-          "임지연",
-          "자체"
-        ],
-        "sourceName": "매일경제",
-        "sourceUrl": "https://www.mk.co.kr/article/12073507",
-        "coverage": {
-          "sourceCount": 3,
-          "sourceNames": [
-            "매일경제",
-            "stoo",
-            "joynews24"
-          ]
-        },
-        "imageUrl": "https://pimg.mk.co.kr/news/cms/202606/14/news-p.v1.20260614.47d6dec1116240359e4a3f11aab6498f_R.jpeg",
-        "publishedAt": "2026-06-13T23:54:00.000Z",
-        "heat": 71,
-        "sensitivity": "낮음",
-        "scoreSignals": {
-          "cluster": 16,
-          "topFeed": 0,
-          "recency": 8,
-          "conversation": 10,
-          "fit": 16,
-          "source": 10,
-          "national": 6,
-          "rawPenalty": 0,
           "penalty": 0
         }
       },
       {
-        "id": "2026-06-15-bd1533e0fb32",
+        "id": "2026-06-24-d0becd8e5368",
         "category": "entertainment",
-        "title": "'멋진 신세계' 허남준, 안방극장 심박수 높인 순도 100% 순애",
-        "summary": "배우 허남준이 순애로 안방극장의 심박수를 높였다.",
+        "title": "\"보내기 싫어서 인사 미뤘다\"…허남준, '멋진 신세계' 종영 후 속내 표출",
+        "summary": "배우 허남준이 '멋진 신세계' 종영 소감을 전했다.",
         "why": "",
-        "points": [
-          "이 같은 활약에 힘입어 '멋진 신세계' 12화는 전국 시청률 10.5%를 기록하며 자체 최고 성적을 또 경신했다."
-        ],
+        "points": [],
         "keywords": [
-          "멋진 신세계",
-          "허남준",
-          "안방극장"
+          "보내기",
+          "싫어서",
+          "인사"
         ],
-        "sourceName": "ize",
-        "sourceUrl": "https://www.ize.co.kr/news/articleView.html?idxno=77853",
+        "sourceName": "tenasia",
+        "sourceUrl": "https://www.tenasia.co.kr/article/2026062440854",
+        "coverage": {
+          "sourceCount": 3,
+          "sourceNames": [
+            "tenasia",
+            "kukinews",
+            "topstarnews"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T22:51:00.000Z",
+        "heat": 87,
+        "sensitivity": "낮음",
+        "scoreSignals": {
+          "cluster": 16,
+          "topFeed": 0,
+          "recency": 20,
+          "conversation": 5,
+          "fit": 16,
+          "source": 0,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-fb48b27a122f",
+        "category": "entertainment",
+        "title": "‘나는 반딧불’ 황가람, 안재욱에 이어 국민 애창곡 ‘친구’ 재해석",
+        "summary": "가수 황가람이 국민 애창곡 ‘친구’를 정식 리메이크한다.",
+        "why": "",
+        "points": [],
+        "keywords": [
+          "나는",
+          "반딧불",
+          "황가람"
+        ],
+        "sourceName": "경향신문",
+        "sourceUrl": "https://sports.khan.co.kr/article/202606240819003?pt=nv",
         "coverage": {
           "sourceCount": 1,
           "sourceNames": [
-            "ize"
+            "경향신문"
           ]
         },
-        "imageUrl": "https://cdn.ize.co.kr/news/thumbnail/202606/77853_118677_232_v150.jpg",
-        "publishedAt": "2026-06-15T01:25:00.000Z",
-        "heat": 64,
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T23:20:00.000Z",
+        "heat": 74,
         "sensitivity": "낮음",
         "scoreSignals": {
           "cluster": 0,
           "topFeed": 0,
           "recency": 20,
-          "conversation": 10,
-          "fit": 20,
-          "source": 0,
-          "national": 6,
-          "rawPenalty": 0,
+          "conversation": 5,
+          "fit": 12,
+          "source": 10,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-fecee3693844",
+        "category": "entertainment",
+        "title": "전원주, 증조할머니 됐다…“세월이 너무 빨라”",
+        "summary": "23일 유튜브 채널 ‘전원주인공’에는 ‘증조할머니가 된 전원주, 너무 사랑스러운 그녀의 증손주를 소개합니다’라는 제목의 영상이 공개됐다.",
+        "why": "",
+        "points": [
+          "배우 전원주가 증조할머니가 된 소감을 전했다.",
+          "전원주는 옥수수를 먹는 20개월 증손자의 모습에 “귀엽다”라며 애정을 드러냈다. 또 생후 40일 된 증손녀도 공개됐다.",
+          "제작진이 “다 해주고 싶을 것 같다”라고 말하자 그는 “다 해주고 싶지는 않다”라며 농담해 웃음을 자아냈다."
+        ],
+        "keywords": [
+          "전원주",
+          "증조할머니",
+          "세월이"
+        ],
+        "sourceName": "동아일보",
+        "sourceUrl": "https://www.donga.com/news/Entertainment/article/all/20260624/134171270/1",
+        "coverage": {
+          "sourceCount": 1,
+          "sourceNames": [
+            "동아일보"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-24T00:26:54.000Z",
+        "heat": 70,
+        "sensitivity": "낮음",
+        "scoreSignals": {
+          "cluster": 0,
+          "topFeed": 8,
+          "recency": 20,
+          "conversation": 0,
+          "fit": 4,
+          "source": 10,
+          "penalty": 0
+        }
+      },
+      {
+        "id": "2026-06-24-8fc32e46c7e2",
+        "category": "entertainment",
+        "title": "‘노예제 유지’ 남부연합기 티셔츠에 ‘발칵’…NCT 출신 마크, 결국 사과",
+        "summary": "그룹 NCT 출신 마크가 인종차별 상징인 남부연합기(旗) 문양의 티셔츠를 착용한 것을 사과했다.",
+        "why": "",
+        "points": [],
+        "keywords": [
+          "노예제",
+          "유지",
+          "남부연합기"
+        ],
+        "sourceName": "매일경제",
+        "sourceUrl": "https://www.mk.co.kr/news/society/12081560",
+        "coverage": {
+          "sourceCount": 1,
+          "sourceNames": [
+            "매일경제"
+          ]
+        },
+        "imageUrl": "",
+        "publishedAt": "2026-06-23T23:59:53.000Z",
+        "heat": 68,
+        "sensitivity": "낮음",
+        "scoreSignals": {
+          "cluster": 0,
+          "topFeed": 8,
+          "recency": 20,
+          "conversation": 0,
+          "fit": 4,
+          "source": 10,
           "penalty": 0
         }
       }
-    ]
+    ],
+    "ai": []
   },
   "stats": {
-    "collected": 773,
-    "deduped": 655
+    "collected": 811,
+    "deduped": 724
   }
 }

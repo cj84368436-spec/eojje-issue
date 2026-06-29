@@ -2,7 +2,7 @@ name: daily-news
 
 on:
   schedule:
-    # 매일 KST 06:30 (UTC 21:30) 1차, KST 08:00 (UTC 23:00) 보정 1회
+    # Daily KST 06:30 first run, KST 08:00 correction run.
     - cron: "30 21 * * *"
     - cron: "0 23 * * *"
   workflow_dispatch: {}
@@ -24,6 +24,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+
+      - name: Install pipeline dependencies
+        working-directory: pipeline
+        run: npm ci
+
+      - name: Check pipeline
+        working-directory: pipeline
+        run: npm run check
+
+      - name: Check card news safety
+        working-directory: pipeline
+        run: npm run check:cards:safety
 
       - name: Run news pipeline
         working-directory: pipeline
@@ -49,4 +61,11 @@ jobs:
           path: public-data
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Validate deployed Pages data
+        working-directory: pipeline
+        env:
+          NEWS_VALIDATE_URL: ${{ steps.deployment.outputs.page_url }}today-news.json
+        run: node src/validate-url.js

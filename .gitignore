@@ -4,5 +4,14 @@ dist/
 dist-web/
 .env
 pipeline/output/history/
+pipeline/output/cache/
+.pnpm-store/
 .granite/
 *.log
+.omx/
+.codex/
+.claude/
+setup_omx_project.sh
+run_omx_smoke_in_wsl.*
+omx_smoke*.png
+AGENTS.md

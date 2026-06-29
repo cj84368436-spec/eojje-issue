@@ -1,0 +1,58 @@
+name: ci
+
+on:
+  pull_request: {}
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        working-directory: pipeline
+        run: npm ci
+
+      - name: Check pipeline
+        working-directory: pipeline
+        run: npm run check
+
+      - name: Check card news safety
+        working-directory: pipeline
+        run: npm run check:cards:safety
+
+      - name: Validate bundled output
+        working-directory: pipeline
+        run: npm run validate
+
+  app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Check app
+        working-directory: app
+        run: npm run check
+
+      - name: Build AIT package
+        working-directory: app
+        run: npm run build

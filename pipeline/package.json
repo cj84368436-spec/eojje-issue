@@ -6,11 +6,16 @@
   "description": "어제 이슈 - 매일 뉴스 수집/품질검사/발행 파이프라인 (외부 의존성 없음)",
   "scripts": {
     "run": "node src/run.js",
+    "rerun:cached": "node src/rerun-cached.js",
     "validate": "node src/validate.js",
-    "check": "node --check src/run.js && node --check src/validate.js && tsc --noEmit",
+    "validate:remote": "node src/validate-url.js",
+    "verify:contract": "node verify-pipeline-contract.mjs",
+    "verify:selection": "node verify-selection-contract.mjs",
+    "check": "node verify-pipeline-contract.mjs && node verify-selection-contract.mjs && node --check src/run.js && node --check src/validate.js && node --check src/validate-url.js && tsc --noEmit",
     "build:cards": "tsc",
     "example:cards": "tsc && node dist/card-news-example.js",
-    "example:cards:dry": "tsc && node dist/card-news-dry-run.js"
+    "example:cards:dry": "tsc && node dist/card-news-dry-run.js",
+    "check:cards:safety": "tsc && node dist/card-news-safety-check.js"
   },
   "engines": {
     "node": ">=18"
