@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { prepareSummarySentence, summarizeNews, summaryFromConcreteEvent } from "./src/summarize.js";
-import { selectNews } from "./src/select.js";
+import { isFuturePublished, selectNews } from "./src/select.js";
 import { shapePayload } from "./src/publish.js";
 import { inspectPayload } from "./src/report.js";
 import { cleanTitle, hasBalancedQuotes, hasSentenceEnding, includesNumericClaim, isGoodSentence, isSimilarIssue, normalizePublicText, numericClaims } from "./src/text.js";
@@ -73,6 +73,36 @@ const aiItems = Array.from({ length: 2 }, (_, index) => ({
 }));
 const selected = selectNews(aiItems);
 assert.deepEqual(selected.categories.ai, [], "AI 뉴스가 6건 미만이면 AI 카테고리를 숨겨야 합니다.");
+
+const futureCandidate = {
+  id: "future-politics",
+  category: "politics",
+  rawCategory: "politics",
+  categoryFit: 5,
+  title: "Future dated politics item",
+  summary: "Future dated politics item should not be selected.",
+  heat: 999,
+  publishedAt: "2999-01-01T00:00:00.000Z",
+  sensitivity: "low"
+};
+const presentPolitics = Array.from({ length: 6 }, (_, index) => ({
+  id: `present-politics-${index}`,
+  category: "politics",
+  rawCategory: "politics",
+  categoryFit: 5,
+  title: `Present politics item ${index + 1}`,
+  summary: `Present politics item ${index + 1} is valid for release.`,
+  heat: 80 - index,
+  publishedAt: "2026-01-01T00:00:00.000Z",
+  sensitivity: "low"
+}));
+const futureFiltered = selectNews([futureCandidate, ...presentPolitics]);
+assert.equal(isFuturePublished(futureCandidate, "2026-01-01T00:00:00.000Z"), true);
+assert.equal(
+  futureFiltered.categories.politics.some((item) => item.id === futureCandidate.id),
+  false,
+  "Future-dated items must be excluded from publish candidates even when heat is high."
+);
 
 assert.equal(isSimilarIssue(
   { title: "코스피 9000인데 국내 증시 8%가 동전주, 7월부터 상장폐지 대상" },

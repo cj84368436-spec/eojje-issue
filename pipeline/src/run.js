@@ -95,6 +95,7 @@ console.log(JSON.stringify({
   headline: payload.headlines.map((item) => `${item.category}: ${item.title}`),
   warnings: report.warnings,
   blockers: report.blockers,
+  warningMessages: inspection.warnings.map((warning) => `[${warning.level}] ${warning.message}`),
   reportPath: report.mdPath
 }, null, 2));
 

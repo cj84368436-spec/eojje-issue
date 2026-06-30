@@ -10,6 +10,7 @@ export function selectNews(items) {
     const pool = globallyDistinct
       .filter((item) => item.category === category.id)
       .filter((item) => item.categoryFit >= 2 || item.rawCategory === category.id || category.optional)
+      .filter((item) => !isFuturePublished(item))
       .filter((item) => !isExcludedTopic(item))
       .filter((item) => !isOpinionLike(item))
       .sort(byQuality);
@@ -47,6 +48,7 @@ function pickGlobalIssues(items) {
   const eligible = items
     .filter((item) => CATEGORIES.some((category) => category.id === item.category
       && (item.categoryFit >= 2 || item.rawCategory === category.id || category.optional)))
+    .filter((item) => !isFuturePublished(item))
     .filter((item) => !isExcludedTopic(item))
     .sort(byQuality);
   const selected = [];
@@ -95,6 +97,12 @@ function isLowSubstance(item) {
 export function isExcludedTopic(item) {
   const text = `${item?.title || ""} ${item?.description || ""}`;
   return /(KBO리그|프로야구|야구장|타석|타자|투수|안타|홈런|이닝|득점|선발투수|축구대표팀|프로축구|K리그|프리미어리그|챔피언스리그|골프|KPGA|KLPGA|PGA\s*투어)/i.test(text);
+}
+
+export function isFuturePublished(item, now = new Date()) {
+  const publishedMs = new Date(item?.publishedAt).getTime();
+  const nowMs = new Date(now).getTime();
+  return Number.isFinite(publishedMs) && Number.isFinite(nowMs) && publishedMs > nowMs;
 }
 
 function isAnalysisTitle(title) {
