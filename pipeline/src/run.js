@@ -13,6 +13,7 @@ import { applyBuzzSignal } from "./buzz.js";
 import { shapePayload, publishJson } from "./publish.js";
 import { inspectPayload, writeReport } from "./report.js";
 import { isSimilarIssue } from "./text.js";
+import { buildRecoveryPlan, mergeCollectedItems } from "./recovery.js";
 
 await loadEnv();
 
@@ -22,18 +23,42 @@ const offlineRerun = cachedInput && process.env.NEWS_ENRICH_CACHED !== "1";
 
 console.log(`[run] 어제이슈 파이프라인 시작 (date=${date})`);
 
-const collected = await loadOrCollect({ date });
-const deduped = dedupeNews(collected.items);
+let collected = await loadOrCollect({ date });
+let deduped = dedupeNews(collected.items);
 console.log(`[run] 중복 제거: ${collected.items.length} -> ${deduped.length}`);
 
-const classified = classifyNews(deduped);
-const summarized = summarizeNews(classified);
-let scored = scoreNews(summarized);
-
-if (!cachedInput) await applyBuzzSignal(scored);
-if (!offlineRerun) scored = await enrichSummaryGaps(scored);
-
+let scored = await prepareScoredItems(deduped, { applyBuzz: !cachedInput, enrichGaps: !offlineRerun });
 let { categories, headlines } = selectNews(scored);
+
+if (!cachedInput) {
+  const recoveryPlan = buildRecoveryPlan(categories);
+  if (recoveryPlan) {
+    console.warn(`[recovery] 부족 카테고리 보강 시작: ${recoveryPlan.categoryIds.join(", ")} (${recoveryPlan.freshHours}h)`);
+    const recoveryCollected = await collectNews({
+      date,
+      categoryIds: recoveryPlan.categoryIds,
+      freshHours: recoveryPlan.freshHours
+    });
+    const mergedItems = mergeCollectedItems(collected.items, recoveryCollected.items);
+
+    if (mergedItems.length > collected.items.length) {
+      collected = { ...collected, items: mergedItems };
+      deduped = dedupeNews(collected.items);
+      console.log(`[recovery] 병합 후 중복 제거: ${collected.items.length} -> ${deduped.length}`);
+      scored = await prepareScoredItems(deduped, { applyBuzz: true, enrichGaps: true });
+      ({ categories, headlines } = selectNews(scored));
+
+      const remaining = buildRecoveryPlan(categories);
+      if (remaining) {
+        console.warn(`[recovery] 보강 후에도 부족: ${remaining.categoryIds.join(", ")}`);
+      } else {
+        console.log("[recovery] 필수 카테고리 수량 복구 완료");
+      }
+    } else {
+      console.warn("[recovery] 추가로 병합할 신규 후보가 없습니다.");
+    }
+  }
+}
 
 {
   const selected = [...new Map(
@@ -101,6 +126,16 @@ console.log(JSON.stringify({
 
 if (report.blockers > 0) {
   process.exitCode = 1;
+}
+
+async function prepareScoredItems(items, { applyBuzz, enrichGaps }) {
+  const classified = classifyNews(items);
+  const summarized = summarizeNews(classified);
+  let prepared = scoreNews(summarized);
+
+  if (applyBuzz) await applyBuzzSignal(prepared);
+  if (enrichGaps) prepared = await enrichSummaryGaps(prepared);
+  return prepared;
 }
 
 async function loadOrCollect({ date }) {

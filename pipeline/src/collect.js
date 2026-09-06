@@ -30,27 +30,34 @@ async function fetchNaverNews(query, sort) {
   return data.items || [];
 }
 
-export async function collectNews({ date }) {
+export async function collectNews({ date, categoryIds = null, freshHours = FRESH_HOURS }) {
   if (!hasNaverCredentials()) {
     console.warn("[collect] NAVER API 키 없음 - 목업 데이터로 진행합니다.");
     return { source: "mock", items: collectMockNews(date) };
   }
 
-  const freshLimit = Date.now() - FRESH_HOURS * 60 * 60 * 1000;
+  const targetCategories = categoryIds
+    ? CATEGORIES.filter((category) => categoryIds.includes(category.id))
+    : CATEGORIES;
+  const freshLimit = Date.now() - freshHours * 60 * 60 * 1000;
   const items = [];
   const seenUrls = new Set();
 
-  // 1단계: 주요 언론사 톱 피드(RSS) - 키워드 사전과 무관하게 "오늘의 진짜 화제"를 발견한다.
-  for (const item of await collectRssTopNews({ date })) {
-    if (seenUrls.has(item.sourceUrl)) continue;
-    seenUrls.add(item.sourceUrl);
-    items.push(item);
+  // 일반 수집에서만 주요 언론사 톱 피드(RSS)를 사용한다.
+  // 부족 카테고리 복구 수집은 지정된 검색 카테고리에만 집중한다.
+  if (!categoryIds) {
+    for (const item of await collectRssTopNews({ date })) {
+      if (seenUrls.has(item.sourceUrl)) continue;
+      seenUrls.add(item.sourceUrl);
+      items.push(item);
+    }
   }
+
   let fetched = 0;
   let droppedStale = 0;
   let droppedBroken = 0;
 
-  for (const category of CATEGORIES) {
+  for (const category of targetCategories) {
     for (const query of category.queries) {
       // 최신순 위주로 수집하고, 화제성 보강용으로 정확도순도 함께 수집한다.
       for (const sort of ["date", "sim"]) {
@@ -102,7 +109,8 @@ export async function collectNews({ date }) {
     }
   }
 
-  console.log(`[collect] 수신 ${fetched}건 → 유효 ${items.length}건 (오래됨 ${droppedStale}, 깨짐/중복URL ${droppedBroken})`);
+  const scope = categoryIds ? `, recovery=${categoryIds.join(",")}, fresh=${freshHours}h` : "";
+  console.log(`[collect] 수신 ${fetched}건 → 유효 ${items.length}건 (오래됨 ${droppedStale}, 깨짐/중복URL ${droppedBroken}${scope})`);
   return { source: "naver", items };
 }
 
