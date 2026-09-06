@@ -1,0 +1,76 @@
+name: daily-news-active
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/daily-news-active.yml"
+  schedule:
+    # Daily KST 06:30 first run, KST 08:07 correction run.
+    - cron: "30 21 * * *"
+    - cron: "7 23 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  publish-news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install pipeline dependencies
+        working-directory: pipeline
+        run: npm ci
+
+      - name: Check pipeline
+        working-directory: pipeline
+        run: npm run check
+
+      - name: Check card news safety
+        working-directory: pipeline
+        run: npm run check:cards:safety
+
+      - name: Run news pipeline
+        working-directory: pipeline
+        env:
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+          PUBLISH_TO_APP_PUBLIC: "false"
+        run: node src/run.js
+
+      - name: Validate published data
+        working-directory: pipeline
+        run: node src/validate.js
+
+      - name: Prepare Pages artifact
+        run: |
+          mkdir -p public-data
+          cp pipeline/output/today-news.json public-data/today-news.json
+          cp pipeline/output/quality-report.json public-data/quality-report.json
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public-data
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Validate deployed Pages data
+        working-directory: pipeline
+        env:
+          NEWS_VALIDATE_URL: ${{ steps.deployment.outputs.page_url }}today-news.json
+        run: node src/validate-url.js
