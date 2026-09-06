@@ -2,9 +2,10 @@ name: daily-news
 
 on:
   schedule:
-    # Daily KST 06:30 first run, KST 08:00 correction run.
+    # Daily KST 06:30 first run, KST 08:07 correction run.
+    # The cron change also reactivates schedules disabled by GitHub after 60 days of inactivity.
     - cron: "30 21 * * *"
-    - cron: "0 23 * * *"
+    - cron: "7 23 * * *"
   workflow_dispatch: {}
 
 permissions:
