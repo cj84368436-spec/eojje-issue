@@ -1,11 +1,6 @@
 name: daily-news-active
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/daily-news-active.yml"
   schedule:
     # Daily KST 06:30 first run, KST 08:07 correction run.
     - cron: "30 21 * * *"
